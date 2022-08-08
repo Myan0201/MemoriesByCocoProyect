@@ -1,0 +1,115 @@
+﻿@model Albumes_MemoriesByCoco.Models.CambiarPasswordModel
+
+<div class="row CentrarDiv">
+    <div class="col-md-2 col-sm-1 col-lg-2">
+
+    </div>
+    <div class="col-md-8 col-sm-10 col-lg-8">
+        <div class="row">
+            <div class="col-1">
+
+            </div>
+            <div class="col-md-10 col-sm-12 col-lg-10">
+                <div class=" fondoRegistro p-4">
+                    <div classs="card-header">
+                        <h2 class="text-center">Nueva contraseña</h2><hr style="height: 5px; background-color: #171b51; " />
+                        <div class="d-flex justify-content-center">
+                        <div class="d-flex justify-content-center">
+
+                        </div>
+
+                    </div>
+                    <div class="row card-body d-flex flex-row align-items-center justify-content-center">
+                       
+                        @using (Html.BeginForm("ConfirmarCambioContraseña", "RecuperarPassword"))
+                        {
+                        <div class="col-12 d-flex flex-column justify-content-center align-items-center">
+
+
+                            @Html.EditorFor(Model => Model.Password, "", new { htmlAttributes = new { @class = "form-control", placeholder = "Contraseña", autocomplete = "off", autofocus = "autofocus", onchange = "PasswordCoincide(this.value,'p1')", type="password" } })
+                            @Html.ValidationMessageFor(Model => Model.Password, "", new { @class = "text-danger" })
+
+
+                            @Html.EditorFor(Model => Model.ConfirmarPassword, "", new { htmlAttributes = new { @class = "form-control marginTop30", placeholder = "Confirmar contraseña", autocomplete = "off", onchange = "PasswordCoincide(this.value,'p2')", type="password" } })
+                            @Html.ValidationMessageFor(Model => Model.ConfirmarPassword, "", new { @class = "text-danger" })
+
+
+                            <p id="msjPass" class="text-danger text-center  mt-2 letraMidInfo">Las contraseñas no coinciden</p>
+
+                            @if (ViewBag.FailPass != null)
+                            {
+                                <div class="col-lg-12 col-sm-12 mt-2 d-flex flex-column justify-content-center align-items-center">
+                                    <p class="letraPeqInfo text-danger">
+                                        La contraseña debe contener:
+                                        <ul class="letraPeqInfo text-danger">
+                                            <li>Minimo 8 caracteres</li>
+                                            <li>Al menos una letra mayuscula</li>
+                                            <li>Al menos una letra minuscula</li>
+                                            <li>Al menos un dígito</li>
+                                            <li>Al menos un caracter especial(. * , - _ )</li>
+                                        </ul>
+
+                                    </p>
+                                </div>
+                            }
+
+                        </div><div class="col-12 d-flex flex-column mt-2 justify-content-center align-items-center">
+                                <button id="btnCambiar" class="btnAzulOscuro marginTop30">Cambiar</button>
+
+
+
+                            </div>
+                        }
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-1">
+
+            </div>
+
+        </div>
+    </div>
+    <div class="col-md-2 col-sm-1 col-lg-2">
+
+    </div>
+
+</div>
+
+<script>
+    var pass1 = "";
+    var pass2 = "";
+    document.getElementById("msjPass").style.display = "none";
+    function PasswordCoincide(valor, tipo) {
+        console.log(valor);
+        if (tipo == "p1") {
+            pass1 = valor;
+        } else if (tipo == "p2") {
+            pass2 = valor;
+        }
+
+        if (pass1 != "" && pass2 != "") {
+            if (pass1 == pass2) {
+                document.getElementById("msjPass").style.display = "none";
+                HabilitarBoton();
+
+            } else {
+                document.getElementById("msjPass").style.display = "block";
+                BloquearBoton();
+
+            }
+
+        } else {
+            document.getElementById("msjPass").style.display = "none";
+        }
+    }
+
+    function BloquearBoton() {
+        document.getElementById("btnCambiar").disabled = true;
+        document.getElementById("btnCambiar").style.backgroundColor = "#d3cbcb";
+    }
+    function HabilitarBoton() {
+        document.getElementById("btnCambiar").disabled = false;
+        document.getElementById("btnCambiar").style.backgroundColor = "#171b51";
+    }
+</script>

@@ -1,0 +1,141 @@
+﻿<div id="ElegirTipoAlbumPersonalizado">
+
+    
+        <h1 class="text-center">Elegi tipo de álbum</h1>
+   
+   
+    <a class="btn btn-info mt-0" onclick="OcultarElegirTipoAlbum2()"><i class="fa-solid fa-angle-left"></i></a>
+    <!--
+    <div class="row">
+        <div class="col-lg-4 col-md-12 col-sm-12 d-flex justify-content-center align-items-center">
+            <div class=container>
+                <div class=cardM>
+                    <div class="image CartaUp d-flex justify-content-center align-items-center">
+                        <img width="150" height="150" src="~/Imagenes/Tipo2.jpg" />
+                    </div>
+                    <div class=content>
+                        <h2>Tipo Acordeón</h2>
+
+
+                        <button onclick="IrElegirSticker('Acordeon')" class="btnCarta">Elegir</button>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-lg-4 col-md-12 col-sm-12 d-flex justify-content-center align-items-center">
+            <div class=container>
+                <div class=cardM>
+
+                    <div class="image CartaUp d-flex justify-content-center align-items-center">
+                        <img width="150" height="150" src="~/Imagenes/Tipo.jpg" />
+                    </div>
+
+
+                    <div class=content>
+
+                        <h2>Tipo libro</h2>
+                        <button onclick="IrElegirSticker('Libro')" class="btnCarta">Elegir</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-lg-4 col-md-12 col-sm-12 d-flex justify-content-center align-items-center">
+
+            <div class=container>
+                <div class=cardM>
+                    <div class="image CartaUp d-flex justify-content-center align-items-center">
+                        <img width="150" height="150" src="~/Imagenes/Tipo3.jpg" />
+                    </div>
+                    <div class=content>
+                        <h2>Tipo Belcro</h2>
+                        <div class="d-flex justify-content-center align-items-center ">
+                            <button onclick="IrElegirSticker('Belcro')" class="btnCarta">Elegir</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+        -->
+
+    <div class="containerMain">
+        <a onclick="IrElegirSticker('Acordeon')"  class="Rect d-flex">
+            <label class="textoTipoAlbum ">Prueba</label>
+            <img  class="fit" src="~/Imagenes/Tipo3.jpg" />
+        </a>
+        <a onclick="IrElegirSticker('Libro')" class="Rect">
+            <img class="fit" src="~/Imagenes/Tipo.jpg" />
+        </a>
+        <a  onclick="IrElegirSticker('Belcro')" class="Rect">
+            <img class="fit" src="~/Imagenes/Tipo2.jpg" />
+        </a>
+
+    </div>
+
+</div>
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script>
+
+    function IrElegirSticker(strTipo) {
+        $.ajax({
+            url: '@Url.Action("TipoAlbum", "Perfil")',
+            type: "POST",
+            data: { strTipoAlbum: strTipo },
+            success: function (result) {
+                SiguienteStep();
+                $("#ContainerVinilUsuario").show();
+                $("#ElegirTipoAlbumPersonalizado").hide();
+                CambiarPaginaVinilU(0)
+            }
+        })
+    }
+
+    function OcultarElegirTipoAlbum2() {
+        $("#ElegirTipoAlbumPersonalizado").hide();
+        $("#ElegirTipoAlbumPre").show();
+        $("#StepContainer").hide();
+
+    }
+
+
+    var variables = document.getElementsByClassName("fit");
+
+
+    for (i = 0; i < variables.length; i++) {
+
+
+
+        setTimeout(
+
+            Call(i)
+
+            , 50000
+        )
+
+    }
+    function Call(i) {
+        if (i % 2 == 0) {
+            variables[i].style.animationName = "mostrarFotoTop";
+            variables[i].style.animationDuration = "3000ms";
+
+        } else {
+            variables[i].style.animationName = "mostrarFotoBottom";
+            variables[i].style.animationDuration = "3000ms";
+        }
+
+        
+
+        
+    }
+
+   
+
+</script>
+
+

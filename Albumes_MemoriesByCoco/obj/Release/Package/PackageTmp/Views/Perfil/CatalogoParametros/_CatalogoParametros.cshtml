@@ -1,0 +1,121 @@
+﻿
+
+<div id="ContenedorParametros">
+    <a onclick="CerrarParametros()" style="font-size:40px"><i class="fa-solid fa-circle-arrow-left text-info"></i></a>
+    <h1 class="text-center">Parametros de aplicación</h1>
+    <div class="row">
+        <div class="col-2">
+
+        </div>
+        <div class="col-8">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th colspan="2">Sección</th>
+                        <th colspan="5">Descripción</th>
+                    </tr>
+                </thead>
+                <tbody id="CuerpoParametros">
+                </tbody>
+            </table>
+            <button onclick="ActualizarParametros()" class="btn btn-primary form-control">Guardar</button>
+            <div style="display:none" id="AlertIngresadoParametro" class="alert alert-success w-100 mt-2" role="alert">
+                Acción realizada correctamente.
+            </div>
+        </div>
+        <div class="col-2">
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script>
+    var ColorAplicacion="";
+   
+    var cantidad = 0;
+    var listaParametros=[];
+    function ConsultarParametros() {
+          $.ajax({
+                url: '@Url.Action("ConsultarParametros", "Perfil")',
+              type: "POST",
+            success: function (result) {
+
+                var Fila = "";
+                cantidad = result.length - 1;
+                var nombreColor;
+                for (i = 0; i < result.length; i++) {
+                    var descripcion = result[i].descripcion == null ? "" : result[i].descripcion
+                    if (result[i].seccion != "Color") {
+                        Fila = Fila + '<tr>' +
+                            '<td colspan="2">' + result[i].seccion + '</td>' +
+                            '<td><textarea id="Area' + result[i].id + '" rows="5" cols="50" class="form-control" colspan="5">' + descripcion + '</textarea></td>' +
+                            '</tr>';
+                    } else {
+                        Fila = Fila + '<tr>' +
+                            '<td colspan="2">' + result[i].seccion + '</td>' +
+                            '<td><input id="Area' + result[i].id + '" type="color" value="' + descripcion + '" rows="5" cols="50" class="form-control" colspan="5"/></td>' +
+                            '</tr>';
+                        ColorAplicacion = descripcion;
+
+                       
+
+                    }
+
+                    listaParametros.push(result[i].id);
+
+                }
+
+                $("#CuerpoParametros").html(Fila);
+
+            },
+            error: function (r) {
+
+                alert("Error inesperado.");
+            }
+        })
+    }
+
+
+    function ActualizarParametros() {
+        $("#AlertIngresadoParametro").hide();
+        for (i = 0; i < listaParametros.length; i++) {
+
+            var objParametros = {
+                id: listaParametros[i],
+                descripcion: $("#Area" + listaParametros[i]).val()
+            }
+
+             $.ajax({
+                url: '@Url.Action("ActualizarParametros", "Perfil")',
+                 type: "POST",
+                 data: objParametros,
+            success: function (result) {
+
+                $("#AlertIngresadoParametro").show();
+                listaParametros = [];
+                ConsultarParametros();
+
+                 },
+                 error: function (r) {
+
+                     alert("Error inesperado.");
+                 }
+        })
+        }
+
+       
+    }
+
+
+    function CerrarParametros() {
+
+        $("#AlertIngresadoParametro").hide();
+        $("#ContenedorParametros").hide();
+        $(".PaginaMantenimientos").show();
+
+    }
+
+</script>

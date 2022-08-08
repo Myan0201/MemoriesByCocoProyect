@@ -1,0 +1,427 @@
+﻿<div id="ContainerPrecioUsuario" class="ContainerPrecioUsuario">
+    <div class="row ">
+        <div class="d-flex justify-content-end align-items-end">
+            <div>
+                <button id="AtrasPrecios" class="btn btn-info mt-0"><i class="fa-solid fa-angle-left "></i></button>
+                <a onclick="CancelarPedido()" class="btn btn-danger mt-0">Salir</a>
+            </div>
+        </div>
+
+        <div class="col-2">
+
+        </div>
+        
+    </div>
+    <div id="modalConfirmarInfo" style="display:none" class="modal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Verificación de información</h5>
+                    <button id="btnCerrarInfoPersonal" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row mt-2">
+
+                        <div class="col-lg-12 col-md-12 col-sm-12 card">
+
+
+                            <div class="card-body">
+                                <div class="row">
+
+
+                                    <div class="col-4 mt-4">
+                                        <p class="text-center">Telefono </p>
+                                    </div>
+                                    <div class="col-8 mt-8">
+                                        <div class="row">
+                                            <div class="col-10">
+                                                <input id="inputTelefonoFinal" type="number" class="form-control" />
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                    <div class="col-4 mt-4">
+                                        <p class="text-center">Dirección </p>
+                                    </div>
+                                    <div class="col-8 mt-8">
+                                        <textarea id="inputDireccionFinal" style="height:100px" class="form-control"></textarea>
+                                    </div>
+                                    <b class="text-center p-4">La dirección debe estar detallada, debido a que es la dirección a la cual se enviara el pedido vía Correos de Costa Rica.</b>
+
+
+
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+
+                    <button onclick="ActualizarInfoPersonalFinal()" type="button" class="btn btn-primary form-control">Aceptar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-lg-4 col-md-4 col-sm-12">
+
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-12">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Descripción</th>
+                        <th>Valor</th>
+                    </tr>
+                </thead>
+
+                <tbody id="ContainerBodyPrecios">
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th>Total</th>
+                        <th id="ContenedorTotalPrecioUsuario"></th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-12">
+
+        </div>
+
+
+
+    </div>
+    <div class="row">
+        <div class="col-2">
+
+        </div>
+        <div class="col-8">
+            <p id="sinpe" class="text-center"></p>
+            <div id="bancaria">
+
+            </div>
+            <p class="text-center" id="CantidadPrecio"></p>
+            <hr />
+            <div class="d-flex justify-content-center align-items-center flex-column">
+                <p>Número de transferencia</p>
+                <input id="inputTransferencia" class="form-control" />
+                <input id="montoFinal" type="hidden"/>
+                <div id="pagoPuntos">
+
+                </div>
+
+                <p>* Se estará validando que el número de transferencia sea valido *</p>
+            </div>
+
+            <button id="btnFormalizar" class="btn form-control btn-primary m-0">Realizar pedido</button>
+
+        </div>
+        <div class="col-2">
+
+        </div>
+    </div>
+
+
+
+</div>
+
+
+<script>
+    var MitadPrecio = 0;
+    let TotalPrecio = 0;
+
+    ConsultarTelefono();
+    ObtenerCuentaBancaria();
+
+    function MuestraPrecioU() {
+
+          $.ajax({
+            url: '@Url.Action("ConsultarPreciosUsuarios", "Perfil")',
+            type: "POST",
+             success: function (result) {
+                 var Fila = "";
+            
+                 TotalPrecio = 0;
+                 for (i = 0; i < result.length; i++) {
+
+
+                    Fila= Fila+'<tr>' +
+                         '<td>' +
+                         result[i].DescripcionPrecios +
+                         '</td>' +
+                         '<td> ₡' +
+                         result[i].Valor +
+                         '</td>' +
+
+                         '</tr>';
+                     TotalPrecio = TotalPrecio + result[i].Valor;
+                 }
+                 $("#ContainerBodyPrecios").html(Fila);
+                 $("#ContenedorTotalPrecioUsuario").html('₡' +TotalPrecio);
+                 MitadPrecio = TotalPrecio / 2;
+                 $("#montoFinal").val('₡'+TotalPrecio);
+
+            },
+            error: function (r) {
+
+
+            }
+        })
+    }
+
+
+    $("#btnFormalizar").click(function (e) {
+        e.preventDefault();
+
+        $("#modalConfirmarInfo").show();
+        MostrarDatosPersonalesFinal();
+    })
+
+    $("#btnCerrarInfoPersonal").click(function (e) {
+        e.preventDefault();
+
+        $("#modalConfirmarInfo").hide();
+    })
+
+
+    function MostrarDatosPersonalesFinal() {
+
+         $.ajax({
+            url: '@Url.Action("InformacionUsuarioFinal", "Perfil")',
+            type: "POST",
+             success: function (result) {
+                 $("#inputDireccionFinal").val(result.strDireccion);;
+
+                 $("#inputTelefonoFinal").val(result.strTel);
+
+             },
+            error: function (r) {
+
+
+            }
+        })
+
+    }
+
+
+    function ConsultarTelefono() {
+
+          $.ajax({
+            url: '@Url.Action("ConsultarTelefono", "Perfil")',
+              type: "POST",
+             success: function (result) {
+
+                 $("#sinpe").html("Se debe cancelar pago para encargarlo al número de SINPE: <b>"+result.paq_descripcion+"</b> o por transferencia bancaria ")
+             },
+            error: function (r) {
+
+
+
+
+
+            }
+        })
+    }
+
+
+    function ActualizarInfoPersonalFinal() {
+
+          $.ajax({
+            url: '@Url.Action("ActualizarInformacionFinal", "Perfil")',
+              type: "POST",
+              data: {
+                  descripcion: $("#inputDireccionFinal").val(),
+                  telefono: $("#inputTelefonoFinal").val()
+
+              },
+             success: function (result) {
+                 EnviarInfoFinal();
+
+             },
+            error: function (r) {
+
+
+            }
+        })
+
+
+    }
+
+
+    function ConsultarPuntosUsuarioFinal() {
+
+          $.ajax({
+            url: '@Url.Action("ConsultarPuntos", "Perfil")',
+              type: "POST",
+
+              success: function (result) {
+                  console.log(result);
+                  if (result >= 100) {
+                      var fila = '<div class="d-flex justify-content-center align-items-center">' +
+                          '<input id="cbMisPuntos" type="checkbox" onclick="PagaPuntos()" /> <p class="mt-2">Pagar con mis puntos</p>' +
+                          '</div>';
+
+                      $("#pagoPuntos").html(fila);
+                  }
+
+
+             },
+            error: function (r) {
+
+
+            }
+        })
+
+
+    }
+
+    function PagaPuntos() {
+        console.log("paga puntos");
+
+        if ($("#cbMisPuntos").is(':checked')) {
+            console.log("pags");
+            $("#inputTransferencia").val("Pagado con mis puntos");
+            $("#inputTransferencia").prop("disabled", true);
+        } else {
+            console.log("paiiii");
+            $("#inputTransferencia").val("");
+            $("#inputTransferencia").prop("disabled", false);
+        }
+
+    }
+
+    function QuitarPuntos() {
+          $.ajax({
+            url: '@Url.Action("QuitarPuntos", "Perfil")',
+              type: "POST",
+
+              success: function (result) {
+
+
+
+             },
+            error: function (r) {
+
+
+            }
+        })
+    }
+
+
+    function EnviarInfoFinal() {
+        console.log($("#montoFinal").val());
+
+        if ($("#inputTransferencia").val() == "" && !$("#inputTransferencia").checked) {
+            alert("Favor digite el número de transferencia...")
+        } else {
+        $.ajax({
+            url: '@Url.Action("AsignarValoresPedidoFinal", "Perfil")',
+              type: "POST",
+            data: {
+                monto: $("#montoFinal").val(),
+                  transferencia: $("#inputTransferencia").val(),
+
+
+              },
+            success: function (result) {
+
+                if ($("#cbMisPuntos").is(':checked')) {
+                    QuitarPuntos();
+                }
+
+                  ProcesarPedido();
+
+             },
+            error: function (r) {
+
+
+            }
+        })
+        }
+
+    }
+
+
+    function ObtenerCuentaBancaria() {
+        $.ajax({
+            url: '@Url.Action("ConsultarCuentaBancaria", "Perfil")',
+            type: "POST",
+
+            success: function (result) {
+                console.log(result);
+                var fila = '<div class="card">' +
+                    '<div class="card-header">' +
+                    '<b class="text-center">Cuenta bancaria</b>' +
+                    '</div>' +
+                    '<div class="card-body">' 
+                    +result.paq_descripcion+
+                    '</div>' +
+
+
+
+                    '</div>';
+
+                $("#bancaria").html(fila);
+
+
+            },
+            error: function (r) {
+
+
+
+            }
+        })
+    }
+
+    function ProcesarPedido() {
+
+        if (!$("#cbMisPuntos").is(':checked') && $("#inputTransferencia").val() == "Pagado con mis puntos") {
+            alert("Error...");
+
+        } else {
+        $.ajax({
+            url: '@Url.Action("RegistrarPedido", "Perfil")',
+              type: "POST",
+
+             success: function (result) {
+                 console.log(result);
+                 if (result != 0) {
+                     alert("¡Gracias por su compra! Su número de pedido es "+result);
+                     location.reload();
+                 } else {
+                     alert("Ha ocurrido un error, intentelo mas tarde.");
+                 }
+
+
+
+
+             },
+            error: function (r) {
+
+
+            }
+        })
+        }
+
+    }
+
+
+    $("#AtrasPrecios").click(function (e) {
+        e.preventDefault();
+
+        $("#ContainerPreguntasUsuario").show();
+        $("#ContainerPrecioUsuario").hide();
+        AnteriorStep();
+
+
+    })
+
+</script>
+

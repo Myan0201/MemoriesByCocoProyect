@@ -1,0 +1,1584 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="MemoriesByCocoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <Function Name="PA_ActivarCategoria" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nCodigo" Type="int" Mode="In" />
+          <Parameter Name="bBool" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="PA_ActivarFrase" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nCodigo" Type="int" Mode="In" />
+          <Parameter Name="bBool" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="PA_ActivarVinil" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nCodigo" Type="int" Mode="In" />
+          <Parameter Name="bBool" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="PA_Actualizar_Parametro" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nCodigo" Type="int" Mode="In" />
+          <Parameter Name="strDescripcion" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="PA_ActualizarEstadoPedido" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nPedido" Type="int" Mode="In" />
+          <Parameter Name="nEstado" Type="int" Mode="In" />
+        </Function>
+        <Function Name="PA_ActualizarInfoUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nCodicion" Type="int" Mode="In" />
+          <Parameter Name="nCodigo" Type="int" Mode="In" />
+          <Parameter Name="strNombre" Type="varchar" Mode="In" />
+          <Parameter Name="strApellido1" Type="varchar" Mode="In" />
+          <Parameter Name="strApellido2" Type="varchar" Mode="In" />
+          <Parameter Name="strCorreo" Type="varchar" Mode="In" />
+          <Parameter Name="strTel" Type="varchar" Mode="In" />
+          <Parameter Name="strDireccion" Type="varchar(max)" Mode="In" />
+        </Function>
+        <Function Name="PA_AsignarPuntos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nUsuario" Type="int" Mode="In" />
+          <Parameter Name="nCantidad" Type="int" Mode="In" />
+        </Function>
+        <Function Name="PA_CambiosPassword" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="strCorreo" Type="varchar" Mode="In" />
+          <Parameter Name="strPass" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="PA_CONS_CantidadImgsxPedido" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="PA_CONS_Consultar_Solicita_Password" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="strUsuario" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="PA_CONS_ConsultarAlbum_Paginacion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nPagina" Type="int" Mode="In" />
+          <Parameter Name="nDatos" Type="int" Mode="In" />
+        </Function>
+        <Function Name="PA_CONS_ConsultarAlbum_Paginacion_" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nPagina" Type="int" Mode="In" />
+          <Parameter Name="nDatos" Type="int" Mode="In" />
+        </Function>
+        <Function Name="PA_CONS_ConsultarAlbumLike" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="strNombre" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="PA_CONS_ConsultarAlbumxCategoria" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nCategoria" Type="int" Mode="In" />
+        </Function>
+        <Function Name="PA_CONS_ConsultarCantidadProyectos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="PA_CONS_ConsultarCategoria" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nCodigo" Type="int" Mode="In" />
+        </Function>
+        <Function Name="PA_CONS_ConsultarCategoria_Paginacion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nPagina" Type="int" Mode="In" />
+          <Parameter Name="nDatos" Type="int" Mode="In" />
+        </Function>
+        <Function Name="PA_CONS_ConsultarCategoriaImgs" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nCodigo" Type="int" Mode="In" />
+        </Function>
+        <Function Name="PA_CONS_ConsultarCategoriaLike" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="strNombre" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="PA_CONS_ConsultarColor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="PA_CONS_ConsultarCorreo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nCorreo" Type="int" Mode="In" />
+        </Function>
+        <Function Name="PA_CONS_ConsultarCuentaBancaria" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nCuenta" Type="int" Mode="In" />
+        </Function>
+        <Function Name="PA_CONS_ConsultarEmailRegistrado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="strCorreo" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="PA_CONS_ConsultarEstados" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="PA_CONS_ConsultarEstadoxId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nCodigo" Type="int" Mode="In" />
+        </Function>
+        <Function Name="PA_CONS_ConsultarFotosxPedido" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nCodigo" Type="int" Mode="In" />
+        </Function>
+        <Function Name="PA_CONS_ConsultarFotosxPedido_" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nCodigo" Type="int" Mode="In" />
+        </Function>
+        <Function Name="PA_CONS_ConsultarFrases_Paginacion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nPagina" Type="int" Mode="In" />
+          <Parameter Name="nDatos" Type="int" Mode="In" />
+        </Function>
+        <Function Name="PA_CONS_ConsultarFrases_Paginacion_Sticker" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nPagina" Type="int" Mode="In" />
+          <Parameter Name="nDatos" Type="int" Mode="In" />
+        </Function>
+        <Function Name="PA_CONS_ConsultarFrases_Paginacion_Usuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nPagina" Type="int" Mode="In" />
+          <Parameter Name="nDatos" Type="int" Mode="In" />
+        </Function>
+        <Function Name="PA_CONS_ConsultarFrasesLike" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="strNombre" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="PA_CONS_ConsultarFrasesLike_Usuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="strNombre" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="PA_CONS_ConsultarFrasesLike_V2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="strNombre" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="PA_CONS_ConsultarFrasesxPedido" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nCodigo" Type="int" Mode="In" />
+        </Function>
+        <Function Name="PA_CONS_ConsultarFrasesxPedido_V2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nCodigo" Type="int" Mode="In" />
+        </Function>
+        <Function Name="PA_CONS_ConsultarFrasexID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nCodigo" Type="int" Mode="In" />
+        </Function>
+        <Function Name="PA_CONS_ConsultarImagenesAlbumPredefinido" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="PA_CONS_ConsultarImagenesAlbumPredefinido_" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nCodigo" Type="int" Mode="In" />
+        </Function>
+        <Function Name="PA_CONS_ConsultarImagenesAlbumPredefinido_V2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nCodigo" Type="int" Mode="In" />
+        </Function>
+        <Function Name="PA_CONS_ConsultarImgxIDCategoria" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nCodigo" Type="int" Mode="In" />
+        </Function>
+        <Function Name="PA_CONS_ConsultarImgxIDVinil" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nCodigo" Type="int" Mode="In" />
+        </Function>
+        <Function Name="PA_CONS_ConsultarImgxProyecto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nCodigo" Type="int" Mode="In" />
+        </Function>
+        <Function Name="PA_CONS_ConsultarInicioSesion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="strUsuario" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="PA_CONS_ConsultarPedidos_Paginados" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nCodigo" Type="int" Mode="In" />
+          <Parameter Name="nPagina" Type="int" Mode="In" />
+          <Parameter Name="nDatos" Type="int" Mode="In" />
+        </Function>
+        <Function Name="PA_CONS_ConsultarPedidos_Paginados_v2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nCodigo" Type="int" Mode="In" />
+          <Parameter Name="nPagina" Type="int" Mode="In" />
+          <Parameter Name="nDatos" Type="int" Mode="In" />
+        </Function>
+        <Function Name="PA_CONS_ConsultarPedidos_Paginados_v3" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nCodigo" Type="int" Mode="In" />
+          <Parameter Name="nPagina" Type="int" Mode="In" />
+          <Parameter Name="nDatos" Type="int" Mode="In" />
+        </Function>
+        <Function Name="PA_CONS_ConsultarPedidos_Paginados_v4" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nCodigo" Type="int" Mode="In" />
+          <Parameter Name="nPagina" Type="int" Mode="In" />
+          <Parameter Name="nDatos" Type="int" Mode="In" />
+        </Function>
+        <Function Name="PA_CONS_ConsultarPedidoxId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nCodigo" Type="int" Mode="In" />
+        </Function>
+        <Function Name="PA_CONS_ConsultarPrecios" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="PA_CONS_ConsultarPreguntas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="PA_CONS_ConsultarPreguntaxID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nCodigo" Type="int" Mode="In" />
+        </Function>
+        <Function Name="PA_CONS_ConsultarPuntosxUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nUsuario" Type="int" Mode="In" />
+        </Function>
+        <Function Name="PA_CONS_ConsultarRegistrosAlbum" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="PA_CONS_ConsultarRegistrosCategoria" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="PA_CONS_ConsultarRegistrosFrases" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="PA_CONS_ConsultarRegistrosFrases_Usuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="PA_CONS_ConsultarRegistrosPedido" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nCodigo" Type="int" Mode="In" />
+        </Function>
+        <Function Name="PA_CONS_ConsultarRegistroStickers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="PA_CONS_ConsultarRegistrosVinil" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="PA_CONS_ConsultarRegistroVinilActivo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="PA_CONS_ConsultarRespuestasxPedido" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nCodigo" Type="int" Mode="In" />
+        </Function>
+        <Function Name="PA_CONS_ConsultarStickerxID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nCodigo" Type="int" Mode="In" />
+        </Function>
+        <Function Name="PA_CONS_ConsultarTelMemories" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nTel" Type="int" Mode="In" />
+        </Function>
+        <Function Name="PA_CONS_ConsultarUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nCodigo" Type="int" Mode="In" />
+        </Function>
+        <Function Name="PA_CONS_ConsultarUsuarioAdmin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="PA_CONS_ConsultarVinil_Paginacion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nPagina" Type="int" Mode="In" />
+          <Parameter Name="nDatos" Type="int" Mode="In" />
+        </Function>
+        <Function Name="PA_CONS_ConsultarVinil_Paginacion_Img" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nPagina" Type="int" Mode="In" />
+          <Parameter Name="nDatos" Type="int" Mode="In" />
+        </Function>
+        <Function Name="PA_CONS_ConsultarVinilLike" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="strNombre" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="PA_CONS_ConsultarVinilLike_Img" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="strNombre" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="PA_ConsultarParametros" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nCodigo" Type="int" Mode="In" />
+        </Function>
+        <Function Name="PA_ConsultarProyecto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nCodigo" Type="int" Mode="In" />
+        </Function>
+        <Function Name="PA_ConsultarProyectoImg" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nCodigo" Type="int" Mode="In" />
+        </Function>
+        <Function Name="PA_Eliminar_ImagenPedido" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nCodigo" Type="int" Mode="In" />
+        </Function>
+        <Function Name="PA_EliminarPuntos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nUsuario" Type="int" Mode="In" />
+        </Function>
+        <Function Name="PA_EliminarPuntos_Cantidad" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nUsuario" Type="int" Mode="In" />
+          <Parameter Name="nCantidad" Type="int" Mode="In" />
+        </Function>
+        <Function Name="PA_INS_InsertarImagenPedidoUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nCodigo" Type="int" Mode="In" />
+          <Parameter Name="byImagen" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="PA_INS_InsertarRespuestasUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nPregunta" Type="int" Mode="In" />
+          <Parameter Name="strRespuesta" Type="varchar(max)" Mode="In" />
+          <Parameter Name="nPedido" Type="int" Mode="In" />
+        </Function>
+        <Function Name="PA_INS_RegistrarUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="strNombre" Type="varchar" Mode="In" />
+          <Parameter Name="strApellido1" Type="varchar" Mode="In" />
+          <Parameter Name="strApellido2" Type="varchar" Mode="In" />
+          <Parameter Name="strCorreo" Type="varchar" Mode="In" />
+          <Parameter Name="strTelefono" Type="varchar" Mode="In" />
+          <Parameter Name="strDireccion" Type="varchar(max)" Mode="In" />
+          <Parameter Name="strUsuario" Type="varchar" Mode="In" />
+          <Parameter Name="strPass" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="PA_INS_SolicitaCambio" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="strUsuario" Type="varchar" Mode="In" />
+          <Parameter Name="nCambio" Type="int" Mode="In" />
+        </Function>
+        <Function Name="PA_InsertarBitacora" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="error" Type="varchar(max)" Mode="In" />
+          <Parameter Name="fecha" Type="datetime" Mode="In" />
+          <Parameter Name="usuario" Type="int" Mode="In" />
+        </Function>
+        <Function Name="PA_InsertarFrases" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nAccion" Type="int" Mode="In" />
+          <Parameter Name="nCodigo" Type="int" Mode="In" />
+          <Parameter Name="strDescripcion" Type="varchar" Mode="In" />
+          <Parameter Name="bInactivo" Type="bit" Mode="In" />
+          <Parameter Name="bySticker" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="PA_InsertarFrasesxPedido" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nPedido" Type="int" Mode="In" />
+          <Parameter Name="nFrase" Type="int" Mode="In" />
+        </Function>
+        <Function Name="PA_InsertarVinil" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nCodigo" Type="int" Mode="In" />
+          <Parameter Name="strNombre" Type="varchar" Mode="In" />
+          <Parameter Name="strDescripcion" Type="varchar" Mode="In" />
+          <Parameter Name="bInactivo" Type="bit" Mode="In" />
+          <Parameter Name="byImg" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="PA_Mantenimiento_PAQ_ESTADO_PEDIDO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nOperacion" Type="int" Mode="In" />
+          <Parameter Name="bNotifica" Type="bit" Mode="In" />
+          <Parameter Name="nCodigo" Type="int" Mode="In" />
+          <Parameter Name="strDescripcion" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="PA_Mantenimiento_Preguntas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nOperacion" Type="int" Mode="In" />
+          <Parameter Name="bInactivo" Type="bit" Mode="In" />
+          <Parameter Name="nCodigo" Type="int" Mode="In" />
+          <Parameter Name="strDescripcion" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="PA_MantenimientoAlbumPredefinido" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nOperacion" Type="int" Mode="In" />
+          <Parameter Name="nCodigo" Type="int" Mode="In" />
+          <Parameter Name="strNombre" Type="varchar" Mode="In" />
+          <Parameter Name="nCategoria" Type="int" Mode="In" />
+        </Function>
+        <Function Name="PA_MantenimientoCategoria" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nAccion" Type="int" Mode="In" />
+          <Parameter Name="nCodigo" Type="int" Mode="In" />
+          <Parameter Name="strNombre" Type="varchar" Mode="In" />
+          <Parameter Name="strDescripcion" Type="varchar" Mode="In" />
+          <Parameter Name="bInactivo" Type="bit" Mode="In" />
+          <Parameter Name="bySticker" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="PA_MantenimientoFrases_" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nAccion" Type="int" Mode="In" />
+          <Parameter Name="nCodigo" Type="int" Mode="In" />
+          <Parameter Name="strDescripcion" Type="varchar" Mode="In" />
+          <Parameter Name="bInactivo" Type="bit" Mode="In" />
+          <Parameter Name="bySticker" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="PA_MantenimientoImgAlbumPredefinido" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nOperacion" Type="int" Mode="In" />
+          <Parameter Name="nAlbum" Type="int" Mode="In" />
+          <Parameter Name="nCodigo" Type="int" Mode="In" />
+          <Parameter Name="byImg" Type="varbinary(max)" Mode="In" />
+          <Parameter Name="bPortada" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="PA_MantenimientoPrecios" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nOperacion" Type="int" Mode="In" />
+          <Parameter Name="nCodigo" Type="int" Mode="In" />
+          <Parameter Name="strDescripcion" Type="varchar" Mode="In" />
+          <Parameter Name="nValor" Type="numeric" Mode="In" />
+        </Function>
+        <Function Name="PA_MantenimientoProyecto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nOperacion" Type="int" Mode="In" />
+          <Parameter Name="nCodigo" Type="int" Mode="In" />
+          <Parameter Name="strNombre" Type="varchar" Mode="In" />
+          <Parameter Name="strCategoria" Type="varchar" Mode="In" />
+          <Parameter Name="byImg" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="PA_MantenimientoVinil" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nAccion" Type="int" Mode="In" />
+          <Parameter Name="nCodigo" Type="int" Mode="In" />
+          <Parameter Name="strNombre" Type="varchar" Mode="In" />
+          <Parameter Name="strDescripcion" Type="varchar" Mode="In" />
+          <Parameter Name="bInactivo" Type="bit" Mode="In" />
+          <Parameter Name="bySticker" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="PA_Obtener_NumeroPedido" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="PA_RegistrarPedido" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nCodigo" Type="int" Mode="In" />
+          <Parameter Name="nUsuario" Type="int" Mode="In" />
+          <Parameter Name="nPersonalizado" Type="int" Mode="In" />
+          <Parameter Name="strTipoAlbum" Type="varchar" Mode="In" />
+          <Parameter Name="nVinil" Type="int" Mode="In" />
+          <Parameter Name="strNumeroTransferencia" Type="varchar" Mode="In" />
+          <Parameter Name="nMonto" Type="numeric" Mode="In" />
+          <Parameter Name="nEstado" Type="int" Mode="In" />
+          <Parameter Name="date" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="PA_RegistrarPedido_V2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nCodigo" Type="int" Mode="In" />
+          <Parameter Name="nUsuario" Type="int" Mode="In" />
+          <Parameter Name="nPersonalizado" Type="int" Mode="In" />
+          <Parameter Name="strTipoAlbum" Type="varchar" Mode="In" />
+          <Parameter Name="nVinil" Type="int" Mode="In" />
+          <Parameter Name="strNumeroTransferencia" Type="varchar" Mode="In" />
+          <Parameter Name="nMonto" Type="numeric" Mode="In" />
+          <Parameter Name="nEstado" Type="int" Mode="In" />
+          <Parameter Name="date" Type="datetime" Mode="In" />
+        </Function>
+        <EntityContainer Name="MemoriesByCocoModelStoreContainer" />
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MemoriesByCocoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="MemoriesByCocoEntities" annotation:LazyLoadingEnabled="true" >
+          <FunctionImport Name="PA_INS_RegistrarUsuario">
+            <Parameter Name="strNombre" Mode="In" Type="String" />
+            <Parameter Name="strApellido1" Mode="In" Type="String" />
+            <Parameter Name="strApellido2" Mode="In" Type="String" />
+            <Parameter Name="strCorreo" Mode="In" Type="String" />
+            <Parameter Name="strTelefono" Mode="In" Type="String" />
+            <Parameter Name="strDireccion" Mode="In" Type="String" />
+            <Parameter Name="strUsuario" Mode="In" Type="String" />
+            <Parameter Name="strPass" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="PA_CONS_ConsultarEmailRegistrado" ReturnType="Collection(String)">
+          <Parameter Name="strCorreo" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="PA_CambiosPassword">
+            <Parameter Name="strCorreo" Mode="In" Type="String" />
+            <Parameter Name="strPass" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="PA_INS_SolicitaCambio">
+            <Parameter Name="strUsuario" Mode="In" Type="String" />
+            <Parameter Name="nCambio" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="PA_CONS_Consultar_Solicita_Password" ReturnType="Collection(Int32)">
+          <Parameter Name="strUsuario" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="PA_CONS_ConsultarInicioSesion" ReturnType="Collection(MemoriesByCocoModel.PA_CONS_ConsultarInicioSesion_Result)">
+          <Parameter Name="strUsuario" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="PA_Mantenimiento_PAQ_ESTADO_PEDIDO">
+            <Parameter Name="nOperacion" Mode="In" Type="Int32" />
+            <Parameter Name="bNotifica" Mode="In" Type="Boolean" />
+            <Parameter Name="nCodigo" Mode="In" Type="Int32" />
+            <Parameter Name="strDescripcion" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="PA_CONS_ConsultarFrases_Paginacion" ReturnType="Collection(MemoriesByCocoModel.PA_CONS_ConsultarFrases_Paginacion_Result1)">
+            <Parameter Name="nPagina" Mode="In" Type="Int32" />
+            <Parameter Name="nDatos" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="PA_CONS_ConsultarRegistrosFrases" ReturnType="Collection(Int32)" />
+          <FunctionImport Name="PA_CONS_ConsultarFrasesLike" ReturnType="Collection(MemoriesByCocoModel.PA_CONS_ConsultarFrasesLike_Result)">
+          <Parameter Name="strNombre" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="PA_InsertarFrases">
+            <Parameter Name="nAccion" Mode="In" Type="Int32" />
+            <Parameter Name="nCodigo" Mode="In" Type="Int32" />
+            <Parameter Name="strDescripcion" Mode="In" Type="String" />
+            <Parameter Name="bInactivo" Mode="In" Type="Boolean" />
+            <Parameter Name="bySticker" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="PA_ActivarFrase">
+            <Parameter Name="nCodigo" Mode="In" Type="Int32" />
+            <Parameter Name="bBool" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="PA_CONS_ConsultarStickerxID" ReturnType="Collection(Binary)">
+          <Parameter Name="nCodigo" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="PA_ActivarVinil">
+            <Parameter Name="nCodigo" Mode="In" Type="Int32" />
+            <Parameter Name="bBool" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="PA_CONS_ConsultarImgxIDVinil" ReturnType="Collection(Binary)">
+          <Parameter Name="nCodigo" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="PA_CONS_ConsultarRegistrosVinil" ReturnType="Collection(Int32)" />
+          <FunctionImport Name="PA_CONS_ConsultarVinil_Paginacion" ReturnType="Collection(MemoriesByCocoModel.PA_CONS_ConsultarVinil_Paginacion_Result)">
+            <Parameter Name="nPagina" Mode="In" Type="Int32" />
+            <Parameter Name="nDatos" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="PA_CONS_ConsultarVinilLike" ReturnType="Collection(MemoriesByCocoModel.PA_CONS_ConsultarVinilLike_Result)">
+          <Parameter Name="strNombre" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="PA_InsertarVinil">
+            <Parameter Name="nCodigo" Mode="In" Type="Int32" />
+            <Parameter Name="strNombre" Mode="In" Type="String" />
+            <Parameter Name="strDescripcion" Mode="In" Type="String" />
+            <Parameter Name="bInactivo" Mode="In" Type="Boolean" />
+            <Parameter Name="byImg" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="PA_MantenimientoVinil">
+            <Parameter Name="nAccion" Mode="In" Type="Int32" />
+            <Parameter Name="nCodigo" Mode="In" Type="Int32" />
+            <Parameter Name="strNombre" Mode="In" Type="String" />
+            <Parameter Name="strDescripcion" Mode="In" Type="String" />
+            <Parameter Name="bInactivo" Mode="In" Type="Boolean" />
+            <Parameter Name="bySticker" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="PA_CONS_ConsultarEstados" ReturnType="Collection(MemoriesByCocoModel.PA_CONS_ConsultarEstados_Result)" />
+          <FunctionImport Name="PA_CONS_ConsultarFrases_Paginacion_Sticker" ReturnType="Collection(MemoriesByCocoModel.PA_CONS_ConsultarFrases_Paginacion_Sticker_Result)">
+            <Parameter Name="nPagina" Mode="In" Type="Int32" />
+            <Parameter Name="nDatos" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="PA_CONS_ConsultarRegistroStickers" ReturnType="Collection(Int32)" />
+          <FunctionImport Name="PA_CONS_ConsultarFrasesLike_Sticker" ReturnType="Collection(MemoriesByCocoModel.PA_CONS_ConsultarFrasesLike_Sticker_Result)">
+            <Parameter Name="strNombre" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="PA_CONS_ConsultarRegistroVinilActivo" ReturnType="Collection(Int32)" />
+          <FunctionImport Name="PA_CONS_ConsultarVinil_Paginacion_Img" ReturnType="Collection(MemoriesByCocoModel.PA_CONS_ConsultarVinil_Paginacion_Img_Result)">
+            <Parameter Name="nPagina" Mode="In" Type="Int32" />
+            <Parameter Name="nDatos" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="PA_CONS_ConsultarVinilLike_Img" ReturnType="Collection(MemoriesByCocoModel.PA_CONS_ConsultarVinilLike_Img_Result)">
+          <Parameter Name="strNombre" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="PA_CONS_ConsultarFrases_Paginacion_Usuario" ReturnType="Collection(MemoriesByCocoModel.PA_CONS_ConsultarFrases_Paginacion_Usuario_Result)">
+            <Parameter Name="nPagina" Mode="In" Type="Int32" />
+            <Parameter Name="nDatos" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="PA_CONS_ConsultarFrasesLike_Usuario" ReturnType="Collection(MemoriesByCocoModel.PA_CONS_ConsultarFrasesLike_Usuario_Result)">
+          <Parameter Name="strNombre" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="PA_CONS_ConsultarRegistrosFrases_Usuario" ReturnType="Collection(Int32)" />
+          <FunctionImport Name="PA_CONS_ConsultarFrasexID" ReturnType="Collection(MemoriesByCocoModel.PA_CONS_ConsultarFrasexID_Result)">
+          <Parameter Name="nCodigo" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="PA_MantenimientoFrases_" ReturnType="Collection(Int32)">
+            <Parameter Name="nAccion" Mode="In" Type="Int32" />
+            <Parameter Name="nCodigo" Mode="In" Type="Int32" />
+            <Parameter Name="strDescripcion" Mode="In" Type="String" />
+            <Parameter Name="bInactivo" Mode="In" Type="Boolean" />
+            <Parameter Name="bySticker" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="PA_CONS_ConsultarPreguntas" ReturnType="Collection(MemoriesByCocoModel.PA_CONS_ConsultarPreguntas_Result)" />
+          <FunctionImport Name="PA_Mantenimiento_Preguntas">
+            <Parameter Name="nOperacion" Mode="In" Type="Int32" />
+            <Parameter Name="bInactivo" Mode="In" Type="Boolean" />
+            <Parameter Name="nCodigo" Mode="In" Type="Int32" />
+            <Parameter Name="strDescripcion" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="PA_CONS_ConsultarPreguntaxID" ReturnType="Collection(MemoriesByCocoModel.PA_CONS_ConsultarPreguntaxID_Result)">
+          <Parameter Name="nCodigo" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="PA_Obtener_NumeroPedido" ReturnType="Collection(Int32)" />
+          <FunctionImport Name="PA_INS_InsertarImagenPedido" ReturnType="Collection(MemoriesByCocoModel.PA_INS_InsertarImagenPedido_Result)">
+            <Parameter Name="nCodigo" Mode="In" Type="Int32" />
+            <Parameter Name="byImagen" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="PA_Eliminar_ImagenPedido">
+          <Parameter Name="nCodigo" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="PA_INS_InsertarImagenPedidoUsuario" ReturnType="Collection(Int32)">
+            <Parameter Name="nCodigo" Mode="In" Type="Int32" />
+            <Parameter Name="byImagen" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="PA_INS_InsertarRespuestasUsuario">
+            <Parameter Name="nPregunta" Mode="In" Type="Int32" />
+            <Parameter Name="strRespuesta" Mode="In" Type="String" />
+            <Parameter Name="nPedido" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="PA_CONS_ConsultarPrecios" ReturnType="Collection(MemoriesByCocoModel.PA_CONS_ConsultarPrecios_Result)" />
+          <FunctionImport Name="PA_MantenimientoPrecios">
+            <Parameter Name="nOperacion" Mode="In" Type="Int32" />
+            <Parameter Name="nCodigo" Mode="In" Type="Int32" />
+            <Parameter Name="strDescripcion" Mode="In" Type="String" />
+            <Parameter Name="nValor" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="PA_ActualizarInfoUsuario">
+            <Parameter Name="nCodicion" Mode="In" Type="Int32" />
+            <Parameter Name="nCodigo" Mode="In" Type="Int32" />
+            <Parameter Name="strNombre" Mode="In" Type="String" />
+            <Parameter Name="strApellido1" Mode="In" Type="String" />
+            <Parameter Name="strApellido2" Mode="In" Type="String" />
+            <Parameter Name="strCorreo" Mode="In" Type="String" />
+            <Parameter Name="strTel" Mode="In" Type="String" />
+            <Parameter Name="strDireccion" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="PA_CONS_ConsultarUsuario" ReturnType="Collection(MemoriesByCocoModel.PA_CONS_ConsultarUsuario_Result)">
+          <Parameter Name="nCodigo" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="PA_AsignarPuntos">
+            <Parameter Name="nUsuario" Mode="In" Type="Int32" />
+            <Parameter Name="nCantidad" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="PA_RegistrarPedido">
+            <Parameter Name="nCodigo" Mode="In" Type="Int32" />
+            <Parameter Name="nUsuario" Mode="In" Type="Int32" />
+            <Parameter Name="nPersonalizado" Mode="In" Type="Int32" />
+            <Parameter Name="strTipoAlbum" Mode="In" Type="String" />
+            <Parameter Name="nVinil" Mode="In" Type="Int32" />
+            <Parameter Name="strNumeroTransferencia" Mode="In" Type="String" />
+            <Parameter Name="nMonto" Mode="In" Type="Decimal" />
+            <Parameter Name="nEstado" Mode="In" Type="Int32" />
+            <Parameter Name="date" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="PA_ActivarCategoria">
+            <Parameter Name="nCodigo" Mode="In" Type="Int32" />
+            <Parameter Name="bBool" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="PA_CONS_ConsultarCategoria_Paginacion" ReturnType="Collection(MemoriesByCocoModel.PA_CONS_ConsultarCategoria_Paginacion_Result)">
+            <Parameter Name="nPagina" Mode="In" Type="Int32" />
+            <Parameter Name="nDatos" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="PA_CONS_ConsultarCategoriaLike" ReturnType="Collection(MemoriesByCocoModel.PA_CONS_ConsultarCategoriaLike_Result)">
+          <Parameter Name="strNombre" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="PA_CONS_ConsultarImgxIDCategoria" ReturnType="Collection(Binary)">
+          <Parameter Name="nCodigo" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="PA_CONS_ConsultarRegistrosCategoria" ReturnType="Collection(Int32)" />
+          <FunctionImport Name="PA_MantenimientoCategoria">
+            <Parameter Name="nAccion" Mode="In" Type="Int32" />
+            <Parameter Name="nCodigo" Mode="In" Type="Int32" />
+            <Parameter Name="strNombre" Mode="In" Type="String" />
+            <Parameter Name="strDescripcion" Mode="In" Type="String" />
+            <Parameter Name="bInactivo" Mode="In" Type="Boolean" />
+            <Parameter Name="bySticker" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="PA_MantenimientoAlbumPredefinido" ReturnType="Collection(Int32)">
+            <Parameter Name="nOperacion" Mode="In" Type="Int32" />
+            <Parameter Name="nCodigo" Mode="In" Type="Int32" />
+            <Parameter Name="strNombre" Mode="In" Type="String" />
+            <Parameter Name="nCategoria" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="PA_MantenimientoImgAlbumPredefinido" ReturnType="Collection(Int32)">
+            <Parameter Name="nOperacion" Mode="In" Type="Int32" />
+            <Parameter Name="nAlbum" Mode="In" Type="Int32" />
+            <Parameter Name="nCodigo" Mode="In" Type="Int32" />
+            <Parameter Name="byImg" Mode="In" Type="Binary" />
+            <Parameter Name="bPortada" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="PA_CONS_ConsultarCategoria" ReturnType="Collection(MemoriesByCocoModel.PA_CONS_ConsultarCategoria_Result)">
+          <Parameter Name="nCodigo" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="PA_CONS_ConsultarAlbum_Paginacion" ReturnType="Collection(MemoriesByCocoModel.PA_CONS_ConsultarAlbum_Paginacion_Result)">
+            <Parameter Name="nPagina" Mode="In" Type="Int32" />
+            <Parameter Name="nDatos" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="PA_CONS_ConsultarAlbum_Paginacion_" ReturnType="Collection(MemoriesByCocoModel.PA_CONS_ConsultarAlbum_Paginacion__Result)">
+            <Parameter Name="nPagina" Mode="In" Type="Int32" />
+            <Parameter Name="nDatos" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="PA_CONS_ConsultarAlbumLike" ReturnType="Collection(MemoriesByCocoModel.PA_CONS_ConsultarAlbumLike_Result)">
+          <Parameter Name="strNombre" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="PA_CONS_ConsultarRegistrosAlbum" ReturnType="Collection(Int32)" />
+          <FunctionImport Name="PA_CONS_ConsultarImagenesAlbumPredefinido_V2" ReturnType="Collection(MemoriesByCocoModel.PA_CONS_ConsultarImagenesAlbumPredefinido_V2_Result)">
+          <Parameter Name="nCodigo" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="PA_CONS_ConsultarCategoriaImgs" ReturnType="Collection(MemoriesByCocoModel.PA_CONS_ConsultarCategoriaImgs_Result)">
+          <Parameter Name="nCodigo" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="PA_CONS_ConsultarAlbumxCategoria" ReturnType="Collection(MemoriesByCocoModel.PA_CONS_ConsultarAlbumxCategoria_Result)">
+          <Parameter Name="nCategoria" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="PA_CONS_ConsultarPuntosxUsuario" ReturnType="Collection(Int32)">
+          <Parameter Name="nUsuario" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="PA_CONS_ConsultarPedidos_Paginados" ReturnType="Collection(MemoriesByCocoModel.PA_CONS_ConsultarPedidos_Paginados_Result)">
+            <Parameter Name="nCodigo" Mode="In" Type="Int32" />
+            <Parameter Name="nPagina" Mode="In" Type="Int32" />
+            <Parameter Name="nDatos" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="PA_CONS_ConsultarPedidos_Paginados_v2" ReturnType="Collection(MemoriesByCocoModel.PA_CONS_ConsultarPedidos_Paginados_v2_Result)">
+            <Parameter Name="nCodigo" Mode="In" Type="Int32" />
+            <Parameter Name="nPagina" Mode="In" Type="Int32" />
+            <Parameter Name="nDatos" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="PA_RegistrarPedido_V2">
+            <Parameter Name="nCodigo" Mode="In" Type="Int32" />
+            <Parameter Name="nUsuario" Mode="In" Type="Int32" />
+            <Parameter Name="nPersonalizado" Mode="In" Type="Int32" />
+            <Parameter Name="strTipoAlbum" Mode="In" Type="String" />
+            <Parameter Name="nVinil" Mode="In" Type="Int32" />
+            <Parameter Name="strNumeroTransferencia" Mode="In" Type="String" />
+            <Parameter Name="nMonto" Mode="In" Type="Decimal" />
+            <Parameter Name="nEstado" Mode="In" Type="Int32" />
+            <Parameter Name="date" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="PA_CONS_ConsultarPedidos_Paginados_v3" ReturnType="Collection(MemoriesByCocoModel.PA_CONS_ConsultarPedidos_Paginados_v3_Result)">
+            <Parameter Name="nCodigo" Mode="In" Type="Int32" />
+            <Parameter Name="nPagina" Mode="In" Type="Int32" />
+            <Parameter Name="nDatos" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="PA_CONS_ConsultarRegistrosPedido" ReturnType="Collection(Int32)">
+          <Parameter Name="nCodigo" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="PA_CONS_ConsultarPedidos_Paginados_v4" ReturnType="Collection(MemoriesByCocoModel.PA_CONS_ConsultarPedidos_Paginados_v4_Result)">
+            <Parameter Name="nCodigo" Mode="In" Type="Int32" />
+            <Parameter Name="nPagina" Mode="In" Type="Int32" />
+            <Parameter Name="nDatos" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="PA_CONS_ConsultarPedidoxId" ReturnType="Collection(MemoriesByCocoModel.PA_CONS_ConsultarPedidoxId_Result)">
+          <Parameter Name="nCodigo" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="PA_CONS_ConsultarFotosxPedido" ReturnType="Collection(Binary)">
+          <Parameter Name="nCodigo" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="PA_CONS_ConsultarFrasesxPedido" ReturnType="Collection(String)">
+          <Parameter Name="nCodigo" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="PA_CONS_ConsultarRespuestasxPedido" ReturnType="Collection(MemoriesByCocoModel.PA_CONS_ConsultarRespuestasxPedido_Result)">
+          <Parameter Name="nCodigo" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="PA_InsertarFrasesxPedido">
+            <Parameter Name="nPedido" Mode="In" Type="Int32" />
+            <Parameter Name="nFrase" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="PA_CONS_ConsultarFotosxPedido_" ReturnType="Collection(MemoriesByCocoModel.PA_CONS_ConsultarFotosxPedido__Result)">
+          <Parameter Name="nCodigo" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="PA_ActualizarEstadoPedido">
+            <Parameter Name="nPedido" Mode="In" Type="Int32" />
+            <Parameter Name="nEstado" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="PA_Actualizar_Parametro">
+            <Parameter Name="nCodigo" Mode="In" Type="Int32" />
+            <Parameter Name="strDescripcion" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="PA_CONS_ConsultarCantidadProyectos" ReturnType="Collection(Int32)" />
+          <FunctionImport Name="PA_CONS_ConsultarColor" ReturnType="Collection(MemoriesByCocoModel.PA_CONS_ConsultarColor_Result)" />
+          <FunctionImport Name="PA_CONS_ConsultarImgxProyecto" ReturnType="Collection(Binary)">
+          <Parameter Name="nCodigo" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="PA_ConsultarParametros" ReturnType="Collection(MemoriesByCocoModel.PA_ConsultarParametros_Result)">
+          <Parameter Name="nCodigo" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="PA_ConsultarProyecto" ReturnType="Collection(MemoriesByCocoModel.PA_ConsultarProyecto_Result)">
+          <Parameter Name="nCodigo" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="PA_ConsultarProyectoImg" ReturnType="Collection(MemoriesByCocoModel.PA_ConsultarProyectoImg_Result)">
+          <Parameter Name="nCodigo" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="PA_MantenimientoProyecto">
+            <Parameter Name="nOperacion" Mode="In" Type="Int32" />
+            <Parameter Name="nCodigo" Mode="In" Type="Int32" />
+            <Parameter Name="strNombre" Mode="In" Type="String" />
+            <Parameter Name="strCategoria" Mode="In" Type="String" />
+            <Parameter Name="byImg" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="PA_CONS_ConsultarUsuarioAdmin" ReturnType="Collection(MemoriesByCocoModel.PA_CONS_ConsultarUsuarioAdmin_Result)" />
+          <FunctionImport Name="PA_CONS_ConsultarEstadoxId" ReturnType="Collection(MemoriesByCocoModel.PA_CONS_ConsultarEstadoxId_Result)">
+          <Parameter Name="nCodigo" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="PA_CONS_ConsultarFrasesLike_V2" ReturnType="Collection(MemoriesByCocoModel.PA_CONS_ConsultarFrasesLike_V2_Result)">
+          <Parameter Name="strNombre" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="PA_CONS_ConsultarFrasesxPedido_V2" ReturnType="Collection(MemoriesByCocoModel.PA_CONS_ConsultarFrasesxPedido_V2_Result)">
+          <Parameter Name="nCodigo" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="PA_CONS_ConsultarTelMemories" ReturnType="Collection(MemoriesByCocoModel.PA_CONS_ConsultarTelMemories_Result)">
+          <Parameter Name="nTel" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="PA_EliminarPuntos">
+          <Parameter Name="nUsuario" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="PA_CONS_ConsultarCorreo" ReturnType="Collection(MemoriesByCocoModel.PA_CONS_ConsultarCorreo_Result)">
+          <Parameter Name="nCorreo" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="PA_CONS_ConsultarCuentaBancaria" ReturnType="Collection(MemoriesByCocoModel.PA_CONS_ConsultarCuentaBancaria_Result)">
+          <Parameter Name="nCuenta" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="PA_EliminarPuntos_Cantidad">
+            <Parameter Name="nUsuario" Mode="In" Type="Int32" />
+            <Parameter Name="nCantidad" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="PA_CONS_CantidadImgsxPedido" ReturnType="Collection(Int32)">
+          <Parameter Name="nId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="PA_InsertarBitacora">
+            <Parameter Name="error" Mode="In" Type="String" />
+            <Parameter Name="fecha" Mode="In" Type="DateTime" />
+            <Parameter Name="usuario" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="PA_CONS_ConsultarInicioSesion_Result">
+          <Property Type="Int32" Name="seg_id" Nullable="false" />
+          <Property Type="String" Name="seg_nombre" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="seg_apellido1" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="seg_apellido2" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="seg_correo" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="seg_tel" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="seg_direccion" Nullable="false" />
+          <Property Type="String" Name="seg_usuario" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="seg_pass" Nullable="false" MaxLength="100" />
+          <Property Type="Int32" Name="paq_tipo_usuario" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="PA_CONS_ConsultarFrases_Paginacion_Result">
+          <Property Type="Int32" Name="paq_frase" Nullable="false" />
+          <Property Type="String" Name="paq_descripcion" Nullable="true" MaxLength="200" />
+          <Property Type="Boolean" Name="paq_inactivo" Nullable="true" />
+          <Property Type="Binary" Name="paq_sticker" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="PA_CONS_ConsultarFrasesLike_Result">
+          <Property Type="Int32" Name="paq_frase" Nullable="false" />
+          <Property Type="String" Name="paq_descripcion" Nullable="true" MaxLength="200" />
+          <Property Type="Boolean" Name="paq_inactivo" Nullable="true" />
+          <Property Type="Binary" Name="paq_sticker" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="PA_CONS_ConsultarFrases_Paginacion_Result1">
+          <Property Type="Int32" Name="paq_frase" Nullable="false" />
+          <Property Type="String" Name="paq_descripcion" Nullable="true" MaxLength="200" />
+          <Property Type="Boolean" Name="paq_inactivo" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="PA_CONS_ConsultarVinil_Paginacion_Result">
+          <Property Type="Int32" Name="paq_vinil" Nullable="false" />
+          <Property Type="String" Name="paq_nombre" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="paq_descripcion" Nullable="true" MaxLength="400" />
+          <Property Type="Boolean" Name="paq_inactivo" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="PA_CONS_ConsultarVinilLike_Result">
+          <Property Type="Int32" Name="paq_vinil" Nullable="false" />
+          <Property Type="String" Name="paq_nombre" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="paq_descripcion" Nullable="true" MaxLength="400" />
+          <Property Type="Boolean" Name="paq_inactivo" Nullable="true" />
+          <Property Type="Binary" Name="paq_img" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="PA_CONS_ConsultarEstados_Result">
+          <Property Type="Int32" Name="paq_estado_pedido" Nullable="false" />
+          <Property Type="String" Name="paq_descripcion" Nullable="true" MaxLength="200" />
+          <Property Type="Boolean" Name="paq_notifica" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="PA_CONS_ConsultarFrases_Paginacion_Sticker_Result">
+          <Property Type="Int32" Name="paq_frase" Nullable="false" />
+          <Property Type="String" Name="paq_descripcion" Nullable="true" MaxLength="200" />
+          <Property Type="Boolean" Name="paq_inactivo" Nullable="true" />
+          <Property Type="Binary" Name="paq_sticker" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="PA_CONS_ConsultarFrasesLike_Sticker_Result">
+          <Property Type="Int32" Name="paq_frase" Nullable="false" />
+          <Property Type="String" Name="paq_descripcion" Nullable="true" MaxLength="200" />
+          <Property Type="Boolean" Name="paq_inactivo" Nullable="true" />
+          <Property Type="Binary" Name="paq_sticker" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="PA_CONS_ConsultarVinil_Paginacion_Img_Result">
+          <Property Type="Int32" Name="paq_vinil" Nullable="false" />
+          <Property Type="String" Name="paq_descripcion" Nullable="true" MaxLength="400" />
+          <Property Type="Boolean" Name="paq_inactivo" Nullable="true" />
+          <Property Type="Binary" Name="paq_img" Nullable="true" />
+          <Property Type="String" Name="paq_nombre" Nullable="true" MaxLength="200" />
+        </ComplexType>
+        <ComplexType Name="PA_CONS_ConsultarVinilLike_Img_Result">
+          <Property Type="Int32" Name="paq_vinil" Nullable="false" />
+          <Property Type="String" Name="paq_nombre" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="paq_descripcion" Nullable="true" MaxLength="400" />
+          <Property Type="Boolean" Name="paq_inactivo" Nullable="true" />
+          <Property Type="Binary" Name="paq_img" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="PA_CONS_ConsultarFrases_Paginacion_Usuario_Result">
+          <Property Type="Int32" Name="paq_frase" Nullable="false" />
+          <Property Type="String" Name="paq_descripcion" Nullable="true" MaxLength="200" />
+          <Property Type="Boolean" Name="paq_inactivo" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="PA_CONS_ConsultarFrasesLike_Usuario_Result">
+          <Property Type="Int32" Name="paq_frase" Nullable="false" />
+          <Property Type="String" Name="paq_descripcion" Nullable="true" MaxLength="200" />
+          <Property Type="Boolean" Name="paq_inactivo" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="PA_CONS_ConsultarFrasexID_Result">
+          <Property Type="Int32" Name="paq_frase" Nullable="false" />
+          <Property Type="String" Name="paq_descripcion" Nullable="true" MaxLength="200" />
+        </ComplexType>
+        <ComplexType Name="PA_CONS_ConsultarPreguntas_Result">
+          <Property Type="Int32" Name="paq_pregunta" Nullable="false" />
+          <Property Type="String" Name="paq_descripcion" Nullable="true" MaxLength="400" />
+          <Property Type="Boolean" Name="paq_inactivo" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="PA_CONS_ConsultarPreguntaxID_Result">
+          <Property Type="Int32" Name="paq_pregunta" Nullable="false" />
+          <Property Type="String" Name="paq_descripcion" Nullable="true" MaxLength="400" />
+          <Property Type="Boolean" Name="paq_inactivo" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="PA_INS_InsertarImagenPedido_Result">
+          <Property Type="Int32" Name="Column1" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="PA_CONS_ConsultarPrecios_Result">
+          <Property Type="Int32" Name="paq_precio" Nullable="false" />
+          <Property Type="String" Name="paq_descripcion" Nullable="true" MaxLength="200" />
+          <Property Type="Decimal" Name="paq_valor" Nullable="true" Precision="18" Scale="0" />
+        </ComplexType>
+        <ComplexType Name="PA_CONS_ConsultarUsuario_Result">
+          <Property Type="Int32" Name="seg_id" Nullable="false" />
+          <Property Type="String" Name="seg_nombre" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="seg_apellido1" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="seg_apellido2" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="seg_correo" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="seg_direccion" Nullable="false" />
+          <Property Type="String" Name="seg_tel" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="PA_CONS_ConsultarCategoria_Paginacion_Result">
+          <Property Type="Int32" Name="paq_categoria" Nullable="false" />
+          <Property Type="String" Name="paq_nombre" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="paq_descripcion" Nullable="true" MaxLength="500" />
+          <Property Type="Boolean" Name="paq_inactivo" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="PA_CONS_ConsultarCategoriaLike_Result">
+          <Property Type="Int32" Name="paq_categoria" Nullable="false" />
+          <Property Type="String" Name="paq_nombre" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="paq_descripcion" Nullable="true" MaxLength="500" />
+          <Property Type="Boolean" Name="paq_inactivo" Nullable="true" />
+          <Property Type="Binary" Name="paq_img" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="PA_CONS_ConsultarCategoria_Result">
+          <Property Type="Int32" Name="paq_categoria" Nullable="false" />
+          <Property Type="String" Name="paq_nombre" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="paq_descripcion" Nullable="true" MaxLength="500" />
+        </ComplexType>
+        <ComplexType Name="PA_CONS_ConsultarAlbum_Paginacion_Result">
+          <Property Type="Int32" Name="paq_album" Nullable="false" />
+          <Property Type="Int32" Name="paq_categoria" Nullable="true" />
+          <Property Type="String" Name="paq_nombre" Nullable="true" MaxLength="200" />
+        </ComplexType>
+        <ComplexType Name="PA_CONS_ConsultarAlbum_Paginacion__Result">
+          <Property Type="Int32" Name="paq_album" Nullable="false" />
+          <Property Type="Int32" Name="paq_categoria" Nullable="true" />
+          <Property Type="String" Name="paq_nombre" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="paq_nombre_categoria" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="paq_descripcion" Nullable="true" MaxLength="500" />
+          <Property Type="Boolean" Name="paq_inactivo" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="PA_CONS_ConsultarAlbumLike_Result">
+          <Property Type="Int32" Name="paq_album" Nullable="false" />
+          <Property Type="Int32" Name="paq_categoria" Nullable="true" />
+          <Property Type="String" Name="paq_nombre" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="paq_nombre_categoria" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="paq_descripcion" Nullable="true" MaxLength="500" />
+          <Property Type="Boolean" Name="paq_inactivo" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="PA_CONS_ConsultarImagenesAlbumPredefinido_V2_Result">
+          <Property Type="Binary" Name="paq_img" Nullable="true" />
+          <Property Type="Int32" Name="paq_img_predefinido" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="PA_CONS_ConsultarCategoriaImgs_Result">
+          <Property Type="Int32" Name="paq_categoria" Nullable="false" />
+          <Property Type="String" Name="paq_nombre" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="paq_descripcion" Nullable="true" MaxLength="500" />
+          <Property Type="Boolean" Name="paq_inactivo" Nullable="true" />
+          <Property Type="Binary" Name="paq_img" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="PA_CONS_ConsultarAlbumxCategoria_Result">
+          <Property Type="Int32" Name="paq_album" Nullable="false" />
+          <Property Type="String" Name="paq_nombre" Nullable="true" MaxLength="200" />
+          <Property Type="Int32" Name="paq_categoria" Nullable="true" />
+          <Property Type="Binary" Name="paq_img" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="PA_CONS_ConsultarPedidos_Paginados_Result">
+          <Property Type="Int32" Name="paq_pedido" Nullable="false" />
+          <Property Type="Int32" Name="paq_personalizado" Nullable="true" />
+          <Property Type="String" Name="paq_nombre_album" Nullable="true" MaxLength="200" />
+          <Property Type="Int32" Name="paq_categoria" Nullable="true" />
+          <Property Type="String" Name="paq_tipo_album" Nullable="true" MaxLength="200" />
+          <Property Type="Int32" Name="paq_tipo_vinil" Nullable="true" />
+          <Property Type="String" Name="paq_nombre_vinil" Nullable="true" MaxLength="200" />
+          <Property Type="Int32" Name="paq_numero_transferencia" Nullable="true" />
+          <Property Type="Decimal" Name="paq_monto" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Int32" Name="paq_estado" Nullable="true" />
+          <Property Type="String" Name="paq_descripcion_estado" Nullable="true" MaxLength="200" />
+        </ComplexType>
+        <ComplexType Name="PA_CONS_ConsultarPedidos_Paginados_v2_Result">
+          <Property Type="Int32" Name="paq_pedido" Nullable="false" />
+          <Property Type="Int32" Name="paq_personalizado" Nullable="true" />
+          <Property Type="DateTime" Name="paq_fecha" Nullable="true" Precision="23" />
+          <Property Type="String" Name="paq_nombre_album" Nullable="true" MaxLength="200" />
+          <Property Type="Int32" Name="paq_categoria" Nullable="true" />
+          <Property Type="String" Name="paq_tipo_album" Nullable="true" MaxLength="200" />
+          <Property Type="Int32" Name="paq_tipo_vinil" Nullable="true" />
+          <Property Type="String" Name="paq_nombre_vinil" Nullable="true" MaxLength="200" />
+          <Property Type="Int32" Name="paq_numero_transferencia" Nullable="true" />
+          <Property Type="Decimal" Name="paq_monto" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Int32" Name="paq_estado" Nullable="true" />
+          <Property Type="String" Name="paq_descripcion_estado" Nullable="true" MaxLength="200" />
+        </ComplexType>
+        <ComplexType Name="PA_CONS_ConsultarPedidos_Paginados_v3_Result">
+          <Property Type="Int32" Name="paq_pedido" Nullable="false" />
+          <Property Type="Int32" Name="paq_personalizado" Nullable="true" />
+          <Property Type="DateTime" Name="paq_fecha" Nullable="true" Precision="23" />
+          <Property Type="String" Name="paq_nombre_album" Nullable="true" MaxLength="200" />
+          <Property Type="Int32" Name="paq_categoria" Nullable="true" />
+          <Property Type="String" Name="paq_tipo_album" Nullable="true" MaxLength="200" />
+          <Property Type="Int32" Name="paq_tipo_vinil" Nullable="true" />
+          <Property Type="String" Name="paq_nombre_vinil" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="paq_numero_transferencia" Nullable="true" MaxLength="200" />
+          <Property Type="Decimal" Name="paq_monto" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Int32" Name="paq_estado" Nullable="true" />
+          <Property Type="String" Name="paq_descripcion_estado" Nullable="true" MaxLength="200" />
+        </ComplexType>
+        <ComplexType Name="PA_CONS_ConsultarPedidos_Paginados_v4_Result">
+          <Property Type="Int32" Name="paq_pedido" Nullable="false" />
+          <Property Type="Int32" Name="paq_personalizado" Nullable="true" />
+          <Property Type="DateTime" Name="paq_fecha" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="seg_usuario" Nullable="true" />
+          <Property Type="String" Name="seg_nombre_completo" Nullable="false" MaxLength="302" />
+          <Property Type="String" Name="paq_nombre_album" Nullable="true" MaxLength="200" />
+          <Property Type="Int32" Name="paq_categoria" Nullable="true" />
+          <Property Type="String" Name="paq_tipo_album" Nullable="true" MaxLength="200" />
+          <Property Type="Int32" Name="paq_tipo_vinil" Nullable="true" />
+          <Property Type="String" Name="paq_nombre_vinil" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="paq_numero_transferencia" Nullable="true" MaxLength="200" />
+          <Property Type="Decimal" Name="paq_monto" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Int32" Name="paq_estado" Nullable="true" />
+          <Property Type="String" Name="paq_descripcion_estado" Nullable="true" MaxLength="200" />
+        </ComplexType>
+        <ComplexType Name="PA_CONS_ConsultarPedidoxId_Result">
+          <Property Type="Int32" Name="paq_pedido" Nullable="false" />
+          <Property Type="Int32" Name="paq_personalizado" Nullable="true" />
+          <Property Type="Int32" Name="seg_usuario" Nullable="true" />
+          <Property Type="String" Name="seg_nombre_completo" Nullable="false" MaxLength="302" />
+          <Property Type="DateTime" Name="paq_fecha" Nullable="true" Precision="23" />
+          <Property Type="String" Name="paq_nombre_album" Nullable="true" MaxLength="200" />
+          <Property Type="Int32" Name="paq_categoria" Nullable="true" />
+          <Property Type="String" Name="paq_tipo_album" Nullable="true" MaxLength="200" />
+          <Property Type="Int32" Name="paq_tipo_vinil" Nullable="true" />
+          <Property Type="String" Name="paq_nombre_vinil" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="paq_numero_transferencia" Nullable="true" MaxLength="200" />
+          <Property Type="Decimal" Name="paq_monto" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Int32" Name="paq_estado" Nullable="true" />
+          <Property Type="String" Name="paq_descripcion_estado" Nullable="true" MaxLength="200" />
+        </ComplexType>
+        <ComplexType Name="PA_CONS_ConsultarRespuestasxPedido_Result">
+          <Property Type="String" Name="paq_respuesta" Nullable="true" />
+          <Property Type="String" Name="paq_descripcion" Nullable="true" MaxLength="400" />
+        </ComplexType>
+        <ComplexType Name="PA_CONS_ConsultarFotosxPedido__Result">
+          <Property Type="Binary" Name="paq_imagen" Nullable="true" />
+          <Property Type="Int32" Name="paq_fotos_pedido" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="PA_CONS_ConsultarColor_Result">
+          <Property Type="Int32" Name="paq_parametro" Nullable="false" />
+          <Property Type="String" Name="paq_titulo" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="paq_descripcion" Nullable="true" MaxLength="500" />
+        </ComplexType>
+        <ComplexType Name="PA_ConsultarParametros_Result">
+          <Property Type="Int32" Name="paq_parametro" Nullable="false" />
+          <Property Type="String" Name="paq_titulo" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="paq_descripcion" Nullable="true" MaxLength="500" />
+        </ComplexType>
+        <ComplexType Name="PA_ConsultarProyecto_Result">
+          <Property Type="Int32" Name="paq_proyecto" Nullable="false" />
+          <Property Type="String" Name="paq_nombre" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="paq_descripcion" Nullable="true" MaxLength="200" />
+        </ComplexType>
+        <ComplexType Name="PA_ConsultarProyectoImg_Result">
+          <Property Type="Int32" Name="paq_proyecto" Nullable="false" />
+          <Property Type="String" Name="paq_nombre" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="paq_descripcion" Nullable="true" MaxLength="200" />
+          <Property Type="Binary" Name="paq_img" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="PA_CONS_ConsultarUsuarioAdmin_Result">
+          <Property Type="String" Name="seg_nombre" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="seg_apellido1" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="seg_apellido2" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="seg_correo" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="PA_CONS_ConsultarEstadoxId_Result">
+          <Property Type="Int32" Name="paq_estado_pedido" Nullable="false" />
+          <Property Type="String" Name="paq_descripcion" Nullable="true" MaxLength="200" />
+          <Property Type="Boolean" Name="paq_notifica" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="PA_CONS_ConsultarFrasesLike_V2_Result">
+          <Property Type="Int32" Name="paq_frase" Nullable="false" />
+          <Property Type="String" Name="paq_descripcion" Nullable="true" MaxLength="200" />
+          <Property Type="Boolean" Name="paq_inactivo" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="PA_CONS_ConsultarFrasesxPedido_V2_Result">
+          <Property Type="String" Name="paq_descripcion" Nullable="true" MaxLength="200" />
+          <Property Type="Int32" Name="paq_frase" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="PA_CONS_ConsultarTelMemories_Result">
+          <Property Type="Int32" Name="paq_parametro" Nullable="false" />
+          <Property Type="String" Name="paq_titulo" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="paq_descripcion" Nullable="true" MaxLength="500" />
+        </ComplexType>
+        <ComplexType Name="PA_CONS_ConsultarCorreo_Result">
+          <Property Type="Int32" Name="paq_parametro" Nullable="false" />
+          <Property Type="String" Name="paq_titulo" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="paq_descripcion" Nullable="true" MaxLength="500" />
+        </ComplexType>
+        <ComplexType Name="PA_CONS_ConsultarCuentaBancaria_Result">
+          <Property Type="Int32" Name="paq_parametro" Nullable="false" />
+          <Property Type="String" Name="paq_titulo" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="paq_descripcion" Nullable="true" MaxLength="500" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MemoriesByCocoModelStoreContainer" CdmEntityContainer="MemoriesByCocoEntities" >
+          <FunctionImportMapping FunctionImportName="PA_INS_RegistrarUsuario" FunctionName="MemoriesByCocoModel.Store.PA_INS_RegistrarUsuario" />
+          <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarEmailRegistrado" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarEmailRegistrado" />
+          <FunctionImportMapping FunctionImportName="PA_CambiosPassword" FunctionName="MemoriesByCocoModel.Store.PA_CambiosPassword" />
+          <FunctionImportMapping FunctionImportName="PA_INS_SolicitaCambio" FunctionName="MemoriesByCocoModel.Store.PA_INS_SolicitaCambio" />
+          <FunctionImportMapping FunctionImportName="PA_CONS_Consultar_Solicita_Password" FunctionName="MemoriesByCocoModel.Store.PA_CONS_Consultar_Solicita_Password" />
+          <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarInicioSesion" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarInicioSesion">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MemoriesByCocoModel.PA_CONS_ConsultarInicioSesion_Result">
+                <ScalarProperty Name="seg_id" ColumnName="seg_id" />
+                <ScalarProperty Name="seg_nombre" ColumnName="seg_nombre" />
+                <ScalarProperty Name="seg_apellido1" ColumnName="seg_apellido1" />
+                <ScalarProperty Name="seg_apellido2" ColumnName="seg_apellido2" />
+                <ScalarProperty Name="seg_correo" ColumnName="seg_correo" />
+                <ScalarProperty Name="seg_tel" ColumnName="seg_tel" />
+                <ScalarProperty Name="seg_direccion" ColumnName="seg_direccion" />
+                <ScalarProperty Name="seg_usuario" ColumnName="seg_usuario" />
+                <ScalarProperty Name="seg_pass" ColumnName="seg_pass" />
+                <ScalarProperty Name="paq_tipo_usuario" ColumnName="paq_tipo_usuario" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="PA_Mantenimiento_PAQ_ESTADO_PEDIDO" FunctionName="MemoriesByCocoModel.Store.PA_Mantenimiento_PAQ_ESTADO_PEDIDO" />
+          <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarFrases_Paginacion" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarFrases_Paginacion">
+          <ResultMapping>
+              <ComplexTypeMapping TypeName="MemoriesByCocoModel.PA_CONS_ConsultarFrases_Paginacion_Result1">
+                <ScalarProperty Name="paq_frase" ColumnName="paq_frase" />
+                <ScalarProperty Name="paq_descripcion" ColumnName="paq_descripcion" />
+                <ScalarProperty Name="paq_inactivo" ColumnName="paq_inactivo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarRegistrosFrases" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarRegistrosFrases" />
+          <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarFrasesLike" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarFrasesLike">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MemoriesByCocoModel.PA_CONS_ConsultarFrasesLike_Result">
+                <ScalarProperty Name="paq_frase" ColumnName="paq_frase" />
+                <ScalarProperty Name="paq_descripcion" ColumnName="paq_descripcion" />
+                <ScalarProperty Name="paq_inactivo" ColumnName="paq_inactivo" />
+                <ScalarProperty Name="paq_sticker" ColumnName="paq_sticker" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="PA_InsertarFrases" FunctionName="MemoriesByCocoModel.Store.PA_InsertarFrases" />
+          <FunctionImportMapping FunctionImportName="PA_ActivarFrase" FunctionName="MemoriesByCocoModel.Store.PA_ActivarFrase" />
+          <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarStickerxID" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarStickerxID" />
+          <FunctionImportMapping FunctionImportName="PA_ActivarVinil" FunctionName="MemoriesByCocoModel.Store.PA_ActivarVinil" />
+          <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarImgxIDVinil" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarImgxIDVinil" />
+          <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarRegistrosVinil" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarRegistrosVinil" />
+          <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarVinil_Paginacion" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarVinil_Paginacion">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MemoriesByCocoModel.PA_CONS_ConsultarVinil_Paginacion_Result">
+                <ScalarProperty Name="paq_vinil" ColumnName="paq_vinil" />
+                <ScalarProperty Name="paq_nombre" ColumnName="paq_nombre" />
+                <ScalarProperty Name="paq_descripcion" ColumnName="paq_descripcion" />
+                <ScalarProperty Name="paq_inactivo" ColumnName="paq_inactivo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarVinilLike" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarVinilLike">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MemoriesByCocoModel.PA_CONS_ConsultarVinilLike_Result">
+                <ScalarProperty Name="paq_vinil" ColumnName="paq_vinil" />
+                <ScalarProperty Name="paq_nombre" ColumnName="paq_nombre" />
+                <ScalarProperty Name="paq_descripcion" ColumnName="paq_descripcion" />
+                <ScalarProperty Name="paq_inactivo" ColumnName="paq_inactivo" />
+                <ScalarProperty Name="paq_img" ColumnName="paq_img" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="PA_InsertarVinil" FunctionName="MemoriesByCocoModel.Store.PA_InsertarVinil" />
+          <FunctionImportMapping FunctionImportName="PA_MantenimientoVinil" FunctionName="MemoriesByCocoModel.Store.PA_MantenimientoVinil" />
+          <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarEstados" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarEstados">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MemoriesByCocoModel.PA_CONS_ConsultarEstados_Result">
+                <ScalarProperty Name="paq_estado_pedido" ColumnName="paq_estado_pedido" />
+                <ScalarProperty Name="paq_descripcion" ColumnName="paq_descripcion" />
+                <ScalarProperty Name="paq_notifica" ColumnName="paq_notifica" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarFrases_Paginacion_Sticker" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarFrases_Paginacion_Sticker">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MemoriesByCocoModel.PA_CONS_ConsultarFrases_Paginacion_Sticker_Result">
+                <ScalarProperty Name="paq_frase" ColumnName="paq_frase" />
+                <ScalarProperty Name="paq_descripcion" ColumnName="paq_descripcion" />
+                <ScalarProperty Name="paq_inactivo" ColumnName="paq_inactivo" />
+                <ScalarProperty Name="paq_sticker" ColumnName="paq_sticker" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarRegistroStickers" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarRegistroStickers" />
+          <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarRegistroVinilActivo" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarRegistroVinilActivo" />
+          <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarVinil_Paginacion_Img" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarVinil_Paginacion_Img">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MemoriesByCocoModel.PA_CONS_ConsultarVinil_Paginacion_Img_Result">
+                <ScalarProperty Name="paq_vinil" ColumnName="paq_vinil" />
+                <ScalarProperty Name="paq_descripcion" ColumnName="paq_descripcion" />
+                <ScalarProperty Name="paq_inactivo" ColumnName="paq_inactivo" />
+                <ScalarProperty Name="paq_img" ColumnName="paq_img" />
+                <ScalarProperty Name="paq_nombre" ColumnName="paq_nombre" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarVinilLike_Img" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarVinilLike_Img">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MemoriesByCocoModel.PA_CONS_ConsultarVinilLike_Img_Result">
+                <ScalarProperty Name="paq_vinil" ColumnName="paq_vinil" />
+                <ScalarProperty Name="paq_nombre" ColumnName="paq_nombre" />
+                <ScalarProperty Name="paq_descripcion" ColumnName="paq_descripcion" />
+                <ScalarProperty Name="paq_inactivo" ColumnName="paq_inactivo" />
+                <ScalarProperty Name="paq_img" ColumnName="paq_img" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarFrases_Paginacion_Usuario" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarFrases_Paginacion_Usuario">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MemoriesByCocoModel.PA_CONS_ConsultarFrases_Paginacion_Usuario_Result">
+                <ScalarProperty Name="paq_frase" ColumnName="paq_frase" />
+                <ScalarProperty Name="paq_descripcion" ColumnName="paq_descripcion" />
+                <ScalarProperty Name="paq_inactivo" ColumnName="paq_inactivo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarFrasesLike_Usuario" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarFrasesLike_Usuario">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MemoriesByCocoModel.PA_CONS_ConsultarFrasesLike_Usuario_Result">
+                <ScalarProperty Name="paq_frase" ColumnName="paq_frase" />
+                <ScalarProperty Name="paq_descripcion" ColumnName="paq_descripcion" />
+                <ScalarProperty Name="paq_inactivo" ColumnName="paq_inactivo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarRegistrosFrases_Usuario" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarRegistrosFrases_Usuario" />
+          <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarFrasexID" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarFrasexID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MemoriesByCocoModel.PA_CONS_ConsultarFrasexID_Result">
+                <ScalarProperty Name="paq_frase" ColumnName="paq_frase" />
+                <ScalarProperty Name="paq_descripcion" ColumnName="paq_descripcion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="PA_MantenimientoFrases_" FunctionName="MemoriesByCocoModel.Store.PA_MantenimientoFrases_" />
+          <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarPreguntas" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarPreguntas">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MemoriesByCocoModel.PA_CONS_ConsultarPreguntas_Result">
+                <ScalarProperty Name="paq_pregunta" ColumnName="paq_pregunta" />
+                <ScalarProperty Name="paq_descripcion" ColumnName="paq_descripcion" />
+                <ScalarProperty Name="paq_inactivo" ColumnName="paq_inactivo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="PA_Mantenimiento_Preguntas" FunctionName="MemoriesByCocoModel.Store.PA_Mantenimiento_Preguntas" />
+          <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarPreguntaxID" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarPreguntaxID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MemoriesByCocoModel.PA_CONS_ConsultarPreguntaxID_Result">
+                <ScalarProperty Name="paq_pregunta" ColumnName="paq_pregunta" />
+                <ScalarProperty Name="paq_descripcion" ColumnName="paq_descripcion" />
+                <ScalarProperty Name="paq_inactivo" ColumnName="paq_inactivo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="PA_Obtener_NumeroPedido" FunctionName="MemoriesByCocoModel.Store.PA_Obtener_NumeroPedido" />
+          <FunctionImportMapping FunctionImportName="PA_Eliminar_ImagenPedido" FunctionName="MemoriesByCocoModel.Store.PA_Eliminar_ImagenPedido" />
+          <FunctionImportMapping FunctionImportName="PA_INS_InsertarImagenPedidoUsuario" FunctionName="MemoriesByCocoModel.Store.PA_INS_InsertarImagenPedidoUsuario" />
+          <FunctionImportMapping FunctionImportName="PA_INS_InsertarRespuestasUsuario" FunctionName="MemoriesByCocoModel.Store.PA_INS_InsertarRespuestasUsuario" />
+          <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarPrecios" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarPrecios">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MemoriesByCocoModel.PA_CONS_ConsultarPrecios_Result">
+                <ScalarProperty Name="paq_precio" ColumnName="paq_precio" />
+                <ScalarProperty Name="paq_descripcion" ColumnName="paq_descripcion" />
+                <ScalarProperty Name="paq_valor" ColumnName="paq_valor" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="PA_MantenimientoPrecios" FunctionName="MemoriesByCocoModel.Store.PA_MantenimientoPrecios" />
+          <FunctionImportMapping FunctionImportName="PA_ActualizarInfoUsuario" FunctionName="MemoriesByCocoModel.Store.PA_ActualizarInfoUsuario" />
+          <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarUsuario" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarUsuario">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MemoriesByCocoModel.PA_CONS_ConsultarUsuario_Result">
+                <ScalarProperty Name="seg_id" ColumnName="seg_id" />
+                <ScalarProperty Name="seg_nombre" ColumnName="seg_nombre" />
+                <ScalarProperty Name="seg_apellido1" ColumnName="seg_apellido1" />
+                <ScalarProperty Name="seg_apellido2" ColumnName="seg_apellido2" />
+                <ScalarProperty Name="seg_correo" ColumnName="seg_correo" />
+                <ScalarProperty Name="seg_direccion" ColumnName="seg_direccion" />
+                <ScalarProperty Name="seg_tel" ColumnName="seg_tel" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="PA_AsignarPuntos" FunctionName="MemoriesByCocoModel.Store.PA_AsignarPuntos" />
+          <FunctionImportMapping FunctionImportName="PA_RegistrarPedido" FunctionName="MemoriesByCocoModel.Store.PA_RegistrarPedido" />
+          <FunctionImportMapping FunctionImportName="PA_ActivarCategoria" FunctionName="MemoriesByCocoModel.Store.PA_ActivarCategoria" />
+          <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarCategoria_Paginacion" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarCategoria_Paginacion">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MemoriesByCocoModel.PA_CONS_ConsultarCategoria_Paginacion_Result">
+                <ScalarProperty Name="paq_categoria" ColumnName="paq_categoria" />
+                <ScalarProperty Name="paq_nombre" ColumnName="paq_nombre" />
+                <ScalarProperty Name="paq_descripcion" ColumnName="paq_descripcion" />
+                <ScalarProperty Name="paq_inactivo" ColumnName="paq_inactivo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarCategoriaLike" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarCategoriaLike">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MemoriesByCocoModel.PA_CONS_ConsultarCategoriaLike_Result">
+                <ScalarProperty Name="paq_categoria" ColumnName="paq_categoria" />
+                <ScalarProperty Name="paq_nombre" ColumnName="paq_nombre" />
+                <ScalarProperty Name="paq_descripcion" ColumnName="paq_descripcion" />
+                <ScalarProperty Name="paq_inactivo" ColumnName="paq_inactivo" />
+                <ScalarProperty Name="paq_img" ColumnName="paq_img" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarImgxIDCategoria" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarImgxIDCategoria" />
+          <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarRegistrosCategoria" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarRegistrosCategoria" />
+          <FunctionImportMapping FunctionImportName="PA_MantenimientoCategoria" FunctionName="MemoriesByCocoModel.Store.PA_MantenimientoCategoria" />
+          <FunctionImportMapping FunctionImportName="PA_MantenimientoAlbumPredefinido" FunctionName="MemoriesByCocoModel.Store.PA_MantenimientoAlbumPredefinido" />
+          <FunctionImportMapping FunctionImportName="PA_MantenimientoImgAlbumPredefinido" FunctionName="MemoriesByCocoModel.Store.PA_MantenimientoImgAlbumPredefinido" />
+          <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarCategoria" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarCategoria">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MemoriesByCocoModel.PA_CONS_ConsultarCategoria_Result">
+                <ScalarProperty Name="paq_categoria" ColumnName="paq_categoria" />
+                <ScalarProperty Name="paq_nombre" ColumnName="paq_nombre" />
+                <ScalarProperty Name="paq_descripcion" ColumnName="paq_descripcion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarAlbum_Paginacion" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarAlbum_Paginacion">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MemoriesByCocoModel.PA_CONS_ConsultarAlbum_Paginacion_Result">
+                <ScalarProperty Name="paq_album" ColumnName="paq_album" />
+                <ScalarProperty Name="paq_categoria" ColumnName="paq_categoria" />
+                <ScalarProperty Name="paq_nombre" ColumnName="paq_nombre" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarAlbum_Paginacion_" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarAlbum_Paginacion_">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MemoriesByCocoModel.PA_CONS_ConsultarAlbum_Paginacion__Result">
+                <ScalarProperty Name="paq_album" ColumnName="paq_album" />
+                <ScalarProperty Name="paq_categoria" ColumnName="paq_categoria" />
+                <ScalarProperty Name="paq_nombre" ColumnName="paq_nombre" />
+                <ScalarProperty Name="paq_nombre_categoria" ColumnName="paq_nombre_categoria" />
+                <ScalarProperty Name="paq_descripcion" ColumnName="paq_descripcion" />
+                <ScalarProperty Name="paq_inactivo" ColumnName="paq_inactivo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarAlbumLike" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarAlbumLike">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MemoriesByCocoModel.PA_CONS_ConsultarAlbumLike_Result">
+                <ScalarProperty Name="paq_album" ColumnName="paq_album" />
+                <ScalarProperty Name="paq_categoria" ColumnName="paq_categoria" />
+                <ScalarProperty Name="paq_nombre" ColumnName="paq_nombre" />
+                <ScalarProperty Name="paq_nombre_categoria" ColumnName="paq_nombre_categoria" />
+                <ScalarProperty Name="paq_descripcion" ColumnName="paq_descripcion" />
+                <ScalarProperty Name="paq_inactivo" ColumnName="paq_inactivo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarRegistrosAlbum" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarRegistrosAlbum" />
+          <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarImagenesAlbumPredefinido_V2" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarImagenesAlbumPredefinido_V2">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MemoriesByCocoModel.PA_CONS_ConsultarImagenesAlbumPredefinido_V2_Result">
+                <ScalarProperty Name="paq_img" ColumnName="paq_img" />
+                <ScalarProperty Name="paq_img_predefinido" ColumnName="paq_img_predefinido" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarCategoriaImgs" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarCategoriaImgs">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MemoriesByCocoModel.PA_CONS_ConsultarCategoriaImgs_Result">
+                <ScalarProperty Name="paq_categoria" ColumnName="paq_categoria" />
+                <ScalarProperty Name="paq_nombre" ColumnName="paq_nombre" />
+                <ScalarProperty Name="paq_descripcion" ColumnName="paq_descripcion" />
+                <ScalarProperty Name="paq_inactivo" ColumnName="paq_inactivo" />
+                <ScalarProperty Name="paq_img" ColumnName="paq_img" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarAlbumxCategoria" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarAlbumxCategoria">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MemoriesByCocoModel.PA_CONS_ConsultarAlbumxCategoria_Result">
+                <ScalarProperty Name="paq_album" ColumnName="paq_album" />
+                <ScalarProperty Name="paq_nombre" ColumnName="paq_nombre" />
+                <ScalarProperty Name="paq_categoria" ColumnName="paq_categoria" />
+                <ScalarProperty Name="paq_img" ColumnName="paq_img" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarPuntosxUsuario" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarPuntosxUsuario" />
+          <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarPedidos_Paginados" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarPedidos_Paginados">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MemoriesByCocoModel.PA_CONS_ConsultarPedidos_Paginados_Result">
+                <ScalarProperty Name="paq_pedido" ColumnName="paq_pedido" />
+                <ScalarProperty Name="paq_personalizado" ColumnName="paq_personalizado" />
+                <ScalarProperty Name="paq_nombre_album" ColumnName="paq_nombre_album" />
+                <ScalarProperty Name="paq_categoria" ColumnName="paq_categoria" />
+                <ScalarProperty Name="paq_tipo_album" ColumnName="paq_tipo_album" />
+                <ScalarProperty Name="paq_tipo_vinil" ColumnName="paq_tipo_vinil" />
+                <ScalarProperty Name="paq_nombre_vinil" ColumnName="paq_nombre_vinil" />
+                <ScalarProperty Name="paq_numero_transferencia" ColumnName="paq_numero_transferencia" />
+                <ScalarProperty Name="paq_monto" ColumnName="paq_monto" />
+                <ScalarProperty Name="paq_estado" ColumnName="paq_estado" />
+                <ScalarProperty Name="paq_descripcion_estado" ColumnName="paq_descripcion_estado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarPedidos_Paginados_v2" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarPedidos_Paginados_v2">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MemoriesByCocoModel.PA_CONS_ConsultarPedidos_Paginados_v2_Result">
+                <ScalarProperty Name="paq_pedido" ColumnName="paq_pedido" />
+                <ScalarProperty Name="paq_personalizado" ColumnName="paq_personalizado" />
+                <ScalarProperty Name="paq_fecha" ColumnName="paq_fecha" />
+                <ScalarProperty Name="paq_nombre_album" ColumnName="paq_nombre_album" />
+                <ScalarProperty Name="paq_categoria" ColumnName="paq_categoria" />
+                <ScalarProperty Name="paq_tipo_album" ColumnName="paq_tipo_album" />
+                <ScalarProperty Name="paq_tipo_vinil" ColumnName="paq_tipo_vinil" />
+                <ScalarProperty Name="paq_nombre_vinil" ColumnName="paq_nombre_vinil" />
+                <ScalarProperty Name="paq_numero_transferencia" ColumnName="paq_numero_transferencia" />
+                <ScalarProperty Name="paq_monto" ColumnName="paq_monto" />
+                <ScalarProperty Name="paq_estado" ColumnName="paq_estado" />
+                <ScalarProperty Name="paq_descripcion_estado" ColumnName="paq_descripcion_estado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="PA_RegistrarPedido_V2" FunctionName="MemoriesByCocoModel.Store.PA_RegistrarPedido_V2" />
+          <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarPedidos_Paginados_v3" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarPedidos_Paginados_v3">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MemoriesByCocoModel.PA_CONS_ConsultarPedidos_Paginados_v3_Result">
+                <ScalarProperty Name="paq_pedido" ColumnName="paq_pedido" />
+                <ScalarProperty Name="paq_personalizado" ColumnName="paq_personalizado" />
+                <ScalarProperty Name="paq_fecha" ColumnName="paq_fecha" />
+                <ScalarProperty Name="paq_nombre_album" ColumnName="paq_nombre_album" />
+                <ScalarProperty Name="paq_categoria" ColumnName="paq_categoria" />
+                <ScalarProperty Name="paq_tipo_album" ColumnName="paq_tipo_album" />
+                <ScalarProperty Name="paq_tipo_vinil" ColumnName="paq_tipo_vinil" />
+                <ScalarProperty Name="paq_nombre_vinil" ColumnName="paq_nombre_vinil" />
+                <ScalarProperty Name="paq_numero_transferencia" ColumnName="paq_numero_transferencia" />
+                <ScalarProperty Name="paq_monto" ColumnName="paq_monto" />
+                <ScalarProperty Name="paq_estado" ColumnName="paq_estado" />
+                <ScalarProperty Name="paq_descripcion_estado" ColumnName="paq_descripcion_estado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarRegistrosPedido" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarRegistrosPedido" />
+          <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarPedidos_Paginados_v4" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarPedidos_Paginados_v4">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MemoriesByCocoModel.PA_CONS_ConsultarPedidos_Paginados_v4_Result">
+                <ScalarProperty Name="paq_pedido" ColumnName="paq_pedido" />
+                <ScalarProperty Name="paq_personalizado" ColumnName="paq_personalizado" />
+                <ScalarProperty Name="paq_fecha" ColumnName="paq_fecha" />
+                <ScalarProperty Name="seg_usuario" ColumnName="seg_usuario" />
+                <ScalarProperty Name="seg_nombre_completo" ColumnName="seg_nombre_completo" />
+                <ScalarProperty Name="paq_nombre_album" ColumnName="paq_nombre_album" />
+                <ScalarProperty Name="paq_categoria" ColumnName="paq_categoria" />
+                <ScalarProperty Name="paq_tipo_album" ColumnName="paq_tipo_album" />
+                <ScalarProperty Name="paq_tipo_vinil" ColumnName="paq_tipo_vinil" />
+                <ScalarProperty Name="paq_nombre_vinil" ColumnName="paq_nombre_vinil" />
+                <ScalarProperty Name="paq_numero_transferencia" ColumnName="paq_numero_transferencia" />
+                <ScalarProperty Name="paq_monto" ColumnName="paq_monto" />
+                <ScalarProperty Name="paq_estado" ColumnName="paq_estado" />
+                <ScalarProperty Name="paq_descripcion_estado" ColumnName="paq_descripcion_estado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarPedidoxId" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarPedidoxId">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MemoriesByCocoModel.PA_CONS_ConsultarPedidoxId_Result">
+                <ScalarProperty Name="paq_pedido" ColumnName="paq_pedido" />
+                <ScalarProperty Name="paq_personalizado" ColumnName="paq_personalizado" />
+                <ScalarProperty Name="seg_usuario" ColumnName="seg_usuario" />
+                <ScalarProperty Name="seg_nombre_completo" ColumnName="seg_nombre_completo" />
+                <ScalarProperty Name="paq_fecha" ColumnName="paq_fecha" />
+                <ScalarProperty Name="paq_nombre_album" ColumnName="paq_nombre_album" />
+                <ScalarProperty Name="paq_categoria" ColumnName="paq_categoria" />
+                <ScalarProperty Name="paq_tipo_album" ColumnName="paq_tipo_album" />
+                <ScalarProperty Name="paq_tipo_vinil" ColumnName="paq_tipo_vinil" />
+                <ScalarProperty Name="paq_nombre_vinil" ColumnName="paq_nombre_vinil" />
+                <ScalarProperty Name="paq_numero_transferencia" ColumnName="paq_numero_transferencia" />
+                <ScalarProperty Name="paq_monto" ColumnName="paq_monto" />
+                <ScalarProperty Name="paq_estado" ColumnName="paq_estado" />
+                <ScalarProperty Name="paq_descripcion_estado" ColumnName="paq_descripcion_estado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarFotosxPedido" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarFotosxPedido" />
+          <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarFrasesxPedido" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarFrasesxPedido" />
+          <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarRespuestasxPedido" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarRespuestasxPedido">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MemoriesByCocoModel.PA_CONS_ConsultarRespuestasxPedido_Result">
+                <ScalarProperty Name="paq_respuesta" ColumnName="paq_respuesta" />
+                <ScalarProperty Name="paq_descripcion" ColumnName="paq_descripcion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="PA_InsertarFrasesxPedido" FunctionName="MemoriesByCocoModel.Store.PA_InsertarFrasesxPedido" />
+          <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarFotosxPedido_" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarFotosxPedido_">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MemoriesByCocoModel.PA_CONS_ConsultarFotosxPedido__Result">
+                <ScalarProperty Name="paq_imagen" ColumnName="paq_imagen" />
+                <ScalarProperty Name="paq_fotos_pedido" ColumnName="paq_fotos_pedido" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="PA_ActualizarEstadoPedido" FunctionName="MemoriesByCocoModel.Store.PA_ActualizarEstadoPedido" />
+          <FunctionImportMapping FunctionImportName="PA_Actualizar_Parametro" FunctionName="MemoriesByCocoModel.Store.PA_Actualizar_Parametro" />
+          <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarCantidadProyectos" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarCantidadProyectos" />
+          <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarColor" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarColor">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MemoriesByCocoModel.PA_CONS_ConsultarColor_Result">
+                <ScalarProperty Name="paq_parametro" ColumnName="paq_parametro" />
+                <ScalarProperty Name="paq_titulo" ColumnName="paq_titulo" />
+                <ScalarProperty Name="paq_descripcion" ColumnName="paq_descripcion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarImgxProyecto" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarImgxProyecto" />
+          <FunctionImportMapping FunctionImportName="PA_ConsultarParametros" FunctionName="MemoriesByCocoModel.Store.PA_ConsultarParametros">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MemoriesByCocoModel.PA_ConsultarParametros_Result">
+                <ScalarProperty Name="paq_parametro" ColumnName="paq_parametro" />
+                <ScalarProperty Name="paq_titulo" ColumnName="paq_titulo" />
+                <ScalarProperty Name="paq_descripcion" ColumnName="paq_descripcion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="PA_ConsultarProyecto" FunctionName="MemoriesByCocoModel.Store.PA_ConsultarProyecto">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MemoriesByCocoModel.PA_ConsultarProyecto_Result">
+                <ScalarProperty Name="paq_proyecto" ColumnName="paq_proyecto" />
+                <ScalarProperty Name="paq_nombre" ColumnName="paq_nombre" />
+                <ScalarProperty Name="paq_descripcion" ColumnName="paq_descripcion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="PA_ConsultarProyectoImg" FunctionName="MemoriesByCocoModel.Store.PA_ConsultarProyectoImg">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MemoriesByCocoModel.PA_ConsultarProyectoImg_Result">
+                <ScalarProperty Name="paq_proyecto" ColumnName="paq_proyecto" />
+                <ScalarProperty Name="paq_nombre" ColumnName="paq_nombre" />
+                <ScalarProperty Name="paq_descripcion" ColumnName="paq_descripcion" />
+                <ScalarProperty Name="paq_img" ColumnName="paq_img" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="PA_MantenimientoProyecto" FunctionName="MemoriesByCocoModel.Store.PA_MantenimientoProyecto" />
+          <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarUsuarioAdmin" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarUsuarioAdmin">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MemoriesByCocoModel.PA_CONS_ConsultarUsuarioAdmin_Result">
+                <ScalarProperty Name="seg_nombre" ColumnName="seg_nombre" />
+                <ScalarProperty Name="seg_apellido1" ColumnName="seg_apellido1" />
+                <ScalarProperty Name="seg_apellido2" ColumnName="seg_apellido2" />
+                <ScalarProperty Name="seg_correo" ColumnName="seg_correo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarEstadoxId" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarEstadoxId">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MemoriesByCocoModel.PA_CONS_ConsultarEstadoxId_Result">
+                <ScalarProperty Name="paq_estado_pedido" ColumnName="paq_estado_pedido" />
+                <ScalarProperty Name="paq_descripcion" ColumnName="paq_descripcion" />
+                <ScalarProperty Name="paq_notifica" ColumnName="paq_notifica" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarFrasesLike_V2" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarFrasesLike_V2">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MemoriesByCocoModel.PA_CONS_ConsultarFrasesLike_V2_Result">
+                <ScalarProperty Name="paq_frase" ColumnName="paq_frase" />
+                <ScalarProperty Name="paq_descripcion" ColumnName="paq_descripcion" />
+                <ScalarProperty Name="paq_inactivo" ColumnName="paq_inactivo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarFrasesxPedido_V2" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarFrasesxPedido_V2">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MemoriesByCocoModel.PA_CONS_ConsultarFrasesxPedido_V2_Result">
+                <ScalarProperty Name="paq_descripcion" ColumnName="paq_descripcion" />
+                <ScalarProperty Name="paq_frase" ColumnName="paq_frase" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarTelMemories" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarTelMemories">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MemoriesByCocoModel.PA_CONS_ConsultarTelMemories_Result">
+                <ScalarProperty Name="paq_parametro" ColumnName="paq_parametro" />
+                <ScalarProperty Name="paq_titulo" ColumnName="paq_titulo" />
+                <ScalarProperty Name="paq_descripcion" ColumnName="paq_descripcion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="PA_EliminarPuntos" FunctionName="MemoriesByCocoModel.Store.PA_EliminarPuntos" />
+          <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarCorreo" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarCorreo">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MemoriesByCocoModel.PA_CONS_ConsultarCorreo_Result">
+                <ScalarProperty Name="paq_parametro" ColumnName="paq_parametro" />
+                <ScalarProperty Name="paq_titulo" ColumnName="paq_titulo" />
+                <ScalarProperty Name="paq_descripcion" ColumnName="paq_descripcion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarCuentaBancaria" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarCuentaBancaria">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MemoriesByCocoModel.PA_CONS_ConsultarCuentaBancaria_Result">
+                <ScalarProperty Name="paq_parametro" ColumnName="paq_parametro" />
+                <ScalarProperty Name="paq_titulo" ColumnName="paq_titulo" />
+                <ScalarProperty Name="paq_descripcion" ColumnName="paq_descripcion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="PA_EliminarPuntos_Cantidad" FunctionName="MemoriesByCocoModel.Store.PA_EliminarPuntos_Cantidad" />
+          <FunctionImportMapping FunctionImportName="PA_CONS_CantidadImgsxPedido" FunctionName="MemoriesByCocoModel.Store.PA_CONS_CantidadImgsxPedido" />
+          <FunctionImportMapping FunctionImportName="PA_InsertarBitacora" FunctionName="MemoriesByCocoModel.Store.PA_InsertarBitacora" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

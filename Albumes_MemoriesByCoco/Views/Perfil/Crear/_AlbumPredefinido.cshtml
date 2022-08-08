@@ -1,0 +1,199 @@
+﻿
+
+
+<div id="modalMostrarImgAlbumUsuario" style="display:none" class="modal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 id="TituloAlbumUsuario" class="modal-title"></h5>
+                <button onclick="MostrarImagenPreviaAlbumUsuario(-1)" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div id="ContenedorImagenesAlbumUsuario" class="modal-body d-flex justify-content-center align-items-center flex-column">
+
+
+            </div>
+            <div class="modal-footer">
+
+
+            </div>
+        </div>
+    </div>
+</div>
+<div id="ContenedorAlbumPreUs">
+    <h1 class="text-center">Álbumes</h1>
+    <div class="row">
+        <div class="col-lg-4 col-md-4 col-sm-12">
+            <button onclick="VolverAlbumPredefinidoUsuario()" class="btn btn-info mt-0"><i class="fa-solid fa-angle-left"></i></button>
+
+            <button onclick="CancelarPedido()" class="btn btn-danger mt-0">Salir</button>
+        </div>
+    </div>
+    <div id="ContainerAlbumPredefinidoUsuario">
+
+
+    </div>
+</div>
+
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script>
+
+    var listaAlbum = [];
+    function MostrarAlbumxCategoria(id) {
+
+
+
+        CargaAlbumPre = '<div id="CargaAlbumPreUsuario" class="col-lg-12 col-md-12 col-sm-12 mt-4 ">' +
+            '<div style="display:none" class="d-flex justify-content-center align-items-center mt-2">' +
+            '<progress class="pure-material-progress-circular" />' +
+            '</div>' +
+            '</div>';
+
+        $("#ContainerAlbumPredefinidoUsuario").html(CargaAlbumPre);
+
+
+          $.ajax({
+            url: '@Url.Action("ConsultarAlbumxCategoria", "Album")',
+              type: "POST",
+              data: {idCategoria:id},
+
+
+             success: function (result) {
+                 var Fila = "";
+
+
+                 for (i = 0; i < result.length; i++) {
+                     listaAlbum.push(result[i].nombre);
+
+                     Fila = Fila + '<div class="col-lg-4 col-md-6 col-sm-12 d-flex justify-content-center align-items-center flex-column">' +
+                         '<div class="d-flex flex-column justify-content-center p-2 align-items-center mt-2 contenedorImgCategoria">' +
+                         '<img class="imgCategoria" src="data:image/png;base64,' + result[i].strImagen + '" >' +
+                         '<p style="font-size:25px" class="text-center mt-2">' + result[i].nombre + '</p>' +
+                     '<button onclick = "MostrarImagenPreviaAlbumUsuario(' + result[i].idAlbum + ',' + i + ')" class="btn btn-success mt-0">Detalles</button>' +
+                         '<button onclick="SeleccionAlbumPredefinido(' + result[i].idAlbum+')"  class="btn btn-primary mt-2">Elegir</button>' +
+                         '</div><hr>' +
+
+
+
+                         '</div>';
+                 }
+
+
+                 if (result.length == 0) {
+                     var empty = '<div class="text-center text-danger">Lo sentimos no hay álbumes de esta categoría disponibles...</div>';
+                     $("#ContainerAlbumPredefinidoUsuario").html(empty);
+                 } else {
+                     $("#ContainerAlbumPredefinidoUsuario").html(Fila);
+                 }
+
+              
+
+
+                 $("#CargaAlbumPreUsuario").hide();
+
+             }, error: function (error) {
+
+
+             }
+        })
+    }
+
+
+
+      async function MostrarImagenPreviaAlbumUsuario(img, nombreAlbum) {
+
+        if (img == "-1") {
+            $("#modalMostrarImgAlbumUsuario").hide();
+        } else {
+            $("#TituloAlbumUsuario").html(listaAlbum[nombreAlbum]);
+            $("#modalMostrarImgAlbumUsuario").show();
+
+            CargaConsulta = '<div id="CargaFotoAlbumConsultaAlbumUsuario" class="col-lg-4 col-md-6 col-sm-12 mt-4 ">' +
+                '<div style="display:none" class="d-flex justify-content-center align-items-center mt-2">' +
+                '<progress class="pure-material-progress-circular" />' +
+                '</div>' +
+                '</div>';
+
+            $("#ContenedorImagenesAlbumUsuario").html(CargaConsulta);
+
+
+            await $.ajax({
+            url: '@Url.Action("ConsultarImagenesXAlbum", "Album")',
+            type: "POST",
+            data: {id:img},
+                success: function (result) {
+
+
+                    var fila = "";
+                    if (result.length > 0) {
+
+                        var strNombrePag = "";
+
+                        for (i = 0; i < result.length; i++) {
+
+
+                            if (i == 0) {
+                                strNombrePag = "Portada";
+                            } else {
+                                strNombrePag = "Página "+i;
+                            }
+
+                            fila = fila + '<div class="d-flex justify-content-center align-items-center flex-column">' +
+                                '<b style="font-size:20px" class="text-left mt-2">' + strNombrePag + ' </b>' +
+                                '<img width="300" src="data:image/png;base64,' + result[i].strImagen + '" />' +
+                                '</div>';
+                        }
+
+                    } else {
+                        fila = '<b class="text-center text-danger">No existen imagenes para este álbum</b>'
+                    }
+
+                        $('#CargaFotoAlbumConsultaAlbumUsuario').remove();
+                        $("#ContenedorImagenesAlbumUsuario").html(fila);
+
+
+            },
+            error: function (r) {
+
+                $("#AlertError").show();
+            }
+        })
+        }
+
+
+
+
+
+    }
+
+    function VolverAlbumPredefinidoUsuario() {
+        $("#ContenedorAlbumPreUs").hide();
+        $("#ContainerCategoriaPredefinido").show();
+        AnteriorStep();
+    }
+
+    function SeleccionAlbumPredefinido(id) {
+
+          $.ajax({
+            url: '@Url.Action("SeleccionAlbumPredefinido", "Album")',
+              type: "POST",
+              data: {idAlbum:id},
+
+
+             success: function (result) {
+                 CantidadPaginasFraseUsuario();
+                 CargarFrasesUsuario(1);
+                 SiguienteStep();
+              
+                 $("#ContenedorAlbumPreUs").hide();
+                 $("#ElegirFraseUsuarioContainer").show();
+
+
+             }, error: function (error) {
+
+
+             }
+        })
+    }
+
+</script>

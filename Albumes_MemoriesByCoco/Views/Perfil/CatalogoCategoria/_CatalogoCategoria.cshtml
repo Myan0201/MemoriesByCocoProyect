@@ -1,0 +1,656 @@
+﻿
+@model Albumes_MemoriesByCoco.Models.CategoriaModel
+
+<div id="modalCategoriaBorrar" style="display:none" class="modal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Ventana Emergente</h5>
+                <button onclick="MostrarEliminarCategoria(-1)" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>¿Estas seguro de borrar esta Categoria?</p>
+            </div>
+            <div class="modal-footer">
+                <button onclick="MostrarEliminarCategoria(-1)" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button id="btnAceptarEliminarCategoria" type="button" class="btn btn-primary">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="modalMostrarImgCategoria" style="display:none" class="modal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Ventana Emergente</h5>
+                <button onclick="OcultarMostrarImgCategoria()" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body d-flex justify-content-center align-items-center">
+                <img id="imgVistaPreviaCategoria" />
+
+            </div>
+            <div class="modal-footer">
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="ContainerCategoria" class="row">
+    <a style="font-size:40px" onclick="OcultarContenedorCategoria()"><i class="fa-solid fa-circle-arrow-left text-info"></i></a>
+
+    <h1 class="text-center">Categoria</h1>
+    <button id="btnAgregarCategoria" onclick="MostrarAgregarCategoria()" class="btn btn-primary mb-2">Crear Nuevo</button>
+    <div class="row">
+        <div class="col-lg-2 col-md-4 ">
+
+        </div>
+        <form id="frmFormularioCategoria" enctype="multipart/form-data" class="col-lg-8 col-md-8 col-sm-12 d-flex justify-content-center">
+            <div id="ContainerAgregarCategoria" style="display:none" class="card p-2 mb-2 w-75">
+                <div class="card-header">
+                    <h1 class="text-center ">Formulario</h1>
+
+                </div>
+
+                <div class="d-flex justify-content-center align-items-center flex-column">
+
+
+                    @Html.EditorFor(Model => Model.nombre, "", new { htmlAttributes = new { @class = "form-control mt-2", id = "txtNombreCategoria", placeholder = "Nombre..." } })
+                    @Html.ValidationMessageFor(Model => Model.nombre, "", new { htmlAttributes = new { @class = "text-danger" } })
+                </div>
+                <div class="d-flex justify-content-center align-items-center flex-column">
+
+
+                    @Html.EditorFor(Model => Model.descripcion, "", new { htmlAttributes = new { @class = "form-control mt-2", id = "txtDescripcionCategoria", placeholder = "Descripción..." } })
+                    @Html.ValidationMessageFor(Model => Model.descripcion, "", new { htmlAttributes = new { @class = "text-danger" } })
+                </div>
+                <hr />
+                <div class="d-flex justify-content-center align-items-center  flex-column w-100">
+                    <div class="row">
+
+                        <div class="col-6 d-flex justify-content-start align-items-center">
+                            <div class="d-flex justify-content-start align-items-start ">
+                                @Html.TextBoxFor(Model => Model.strImagen, new { type = "file", onchange = "MostrarImagenCategoria()", oncancel = "SeleccionarArchivoCanceladoCategoria()", id = "InputCargaImagenCategoria", htmlAttributes = new { id = "InputCargaImagenCategoria", @class = "w-100" } })
+                            </div>
+
+                        </div>
+                        <div class="col-6">
+                            <img class="mt-2" id="ImgSubidaCategoria" width="100" height="100" />
+                        </div>
+
+                    </div>
+
+                </div>
+                <hr />
+                <br />
+                <div class="d-flex justify-content-center align-items-center flex-column">
+
+                    <div class="form-check">
+                        @Html.CheckBoxFor(Model => Model.Inactivo, new { id = "cbInactivoCategoria", htmlAttributes = new { id = "InputCargaImagenCategoria", @class = "form-check-input" } })
+                        <label class="form-check-label" for="flexCheckDefault">
+                            @Html.LabelFor(Model => Model.Inactivo)
+                        </label>
+
+
+
+
+
+
+                    </div>
+                    <div class="d-flex justify-content-center align-items-center flex-column">
+                        <button id="btnAgregarFinalCategoria" class="btn btn-primary mt-2 form-control">Agregar</button>
+                        <div style="display:none" id="AlertIngresadoCategoria" class="alert alert-success w-100 mt-2" role="alert">
+                            Acción realizada correctamente.
+                        </div>
+                        <div style="display:none" class="alert alert-danger w-100 mt-2" role="alert">
+                            Ha ocurrido un error.
+                        </div>
+                    </div>
+
+
+
+
+                </div>
+            </div>
+        </form>
+        <div class="col-lg-2 col-md-4 ">
+
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-lg-4 col-md-4  col-sm-12">
+            <div class="input-group mb-2">
+                <label class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></label>
+                <input placeholder="Buscar..." id="txtBuscarCategoria" class="form-control" />
+                <button id="btnCancelarBusquedaCategoria" style="display:none" class="btn btn-danger m-0 ">X</button>
+            </div>
+
+
+        </div>
+        <div class="col-lg-4 col-md-4">
+
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-12">
+
+        </div>
+
+    </div>
+    <table class="table table-dark table-hover  TablaSombra">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th colspan="4">Descripción</th>
+                <th>Inactivo</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody id="bodyTablaCategoria">
+        </tbody>
+
+    </table>
+    <div id="PaginationCategoria" class="d-flex justify-content-center align-items-center">
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+                <li class="page-item">
+                    <button style="display:none" onclick="CambiarPaginaCategoria(-1)" id="AtrasPaginadoCategoria" class="page-link PaginationCategoria" href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </button>
+                </li>
+
+                <li class="page-item PaginationCategoria"><a id="ActualPaginadoCategoria" class="page-link" href="#">1</a></li>
+
+                <li class="page-item">
+                    <button onclick="CambiarPaginaCategoria(1)" id="AdelantePaginadoCategoria" class="page-link PaginationCategoria" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </button>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+</div>
+
+
+<style>
+    .TablaSombra {
+        box-shadow: 2px 4px 16px black;
+    }
+
+
+    [type="file"] {
+        /* Style the color of the message that says 'No file chosen' */
+        color: #878787;
+    }
+
+        [type="file"]::-webkit-file-upload-button {
+            background: #ED1C1B;
+            border: 2px solid #ED1C1B;
+            border-radius: 4px;
+            color: #fff;
+            cursor: pointer;
+            font-size: 12px;
+            outline: none;
+            padding: 10px 25px;
+            text-transform: uppercase;
+            transition: all 1s ease;
+        }
+
+            [type="file"]::-webkit-file-upload-button:hover {
+                background: #fff;
+                border: 2px solid #535353;
+                color: #000;
+            }
+</style>
+
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script>
+
+
+    var AgregaCategoria = 0;
+    var PagTablaCategoria = 1;
+    var TotalPagsCategoria = 1;
+    var MinCat = 0;
+    var MaxCat = 0;
+
+
+
+
+    async function CambiarPaginaCategoria(pagina) {
+
+
+      
+
+        if (pagina == 0) {
+            await CantidadPaginasCategoria()
+        }
+
+        if (pagina == 1 ) {
+            PagTablaCategoria = PagTablaCategoria + pagina;
+        }
+        if (pagina == -1) {
+            PagTablaCategoria = PagTablaCategoria - 1;
+            $("#AdelantePaginadoAlbum").show();
+        }
+
+
+        if (PagTablaCategoria == MinCat) {
+            $("#AtrasPaginadoCategoria").hide();
+           
+        } else {
+            $("#AtrasPaginadoCategoria").show();
+        }
+
+        if (PagTablaCategoria == MaxCat) {
+            $("#AdelantePaginadoCategoria").hide();
+        } else {
+            $("#AdelantePaginadoCategoria").show();
+        }
+
+
+
+
+        document.getElementById('ActualPaginadoCategoria').innerHTML = PagTablaCategoria;
+
+        TraerDatosTablaCategoria(PagTablaCategoria);
+
+
+
+    }
+
+
+
+     async function MinMaxPagCategoria() {
+        await $.ajax({
+            url: '@Url.Action("ConsultarRegistroCategoria", "Categoria")',
+            type: "POST",
+
+
+
+            success: function (result) {
+
+                TotalPagsCategoria = result;
+
+
+            }
+        })
+    }
+
+
+
+
+
+    function MostrarAgregarCategoria() {
+        $("#AlertIngresadoCategoria").hide();
+        $("#AlertError").hide();
+
+        if (AgregaCategoria == 0) {
+            document.getElementById("ContainerAgregarCategoria").style.display = "block";
+            document.getElementById("btnAgregarCategoria").className = "btn btn-danger mb-2";
+            document.getElementById("btnAgregarCategoria").innerHTML = "Cerrar";
+
+            AgregaCategoria++;
+        } else {
+
+            document.getElementById("btnAgregarCategoria").innerHTML = "Agregar";
+            document.getElementById("btnAgregarCategoria").className = "btn btn-primary mb-2";
+            document.getElementById("ContainerAgregarCategoria").style.display = "none";
+            AgregaCategoria = 0;
+        }
+
+    }
+
+
+     function MostrarImagenCategoria() {
+
+
+        var archivo = document.getElementById("InputCargaImagenCategoria").files[0];
+        var reader = new FileReader();
+        if (archivo) {
+            reader.readAsDataURL(archivo);
+            reader.onloadend = function () {
+                document.getElementById("ImgSubidaCategoria").src = reader.result;
+                $("#ImgSubidaCategoria").show();
+            }
+        }
+    }
+
+    $("#frmFormularioCategoria").submit(function (e) {
+
+        e.preventDefault();
+
+
+
+        var InputDescripcion = $("#txtDescripcionCategoria").val();
+        var ImagenExiste = $("#InputCargaImagenCategoria").val();
+        var NombreExiste = $("#txtNombreCategoria").val();
+
+
+        if (InputDescripcion == "" || ImagenExiste == "" || NombreExiste=="") {
+            $("#AlertError").show()
+            alert("Debe rellenar todos los campos");
+        } else {
+
+            var parametros = new FormData($("#frmFormularioCategoria")[0])
+
+            $.ajax({
+                url: '@Url.Action("AgregarCategoria", "Categoria")',
+                type: "POST",
+                data: parametros ,
+            contentType: false,
+            processData: false,
+            success: function (result) {
+                $("#AlertIngresadoCategoria").show()
+                $("#txtDescripcionCategoria").val('')
+
+                $('#cbInactivoCategoria').prop('checked', false);
+                $("#InputCargaImagenCategoria").val("")
+                $("#txtNombreCategoria").val("")
+                $("#ImgSubidaCategoria").hide();
+                TraerDatosTablaCategoria(PagTablaCategoria);
+
+
+
+            },
+            error: function (r) {
+
+                $("#AlertError").show();
+            }
+        })
+        }
+
+
+
+
+
+
+
+    })
+
+
+
+
+
+
+
+    async function CantidadPaginasCategoria() {
+        await $.ajax({
+            url: '@Url.Action("ConsultarRegistroCategoria", "Categoria")',
+            type: "POST",
+
+
+
+            success: function (result) {
+                console.log(result);
+                MinCat = result.nMin;
+                MaxCat = result.nMax;
+
+
+            }
+        })
+    }
+
+
+
+
+   async function MostrarImagenPreviaCategoria(img) {
+
+        if (img == "-1") {
+            $("#modalMostrarImgCategoria").hide();
+        } else {
+
+
+            await $.ajax({
+            url: '@Url.Action("ConsultarImgCategoria", "Categoria")',
+            type: "POST",
+            data: {id:img},
+                success: function (result) {
+
+                     document.getElementById("imgVistaPreviaCategoria").src = "data:image/png;base64," + result;
+                     $("#modalMostrarImgCategoria").show();
+
+            },
+            error: function (r) {
+
+                $("#AlertError").show();
+            }
+        })
+        }
+
+
+
+
+
+    }
+
+
+    function TraerDatosTablaCategoria(pag){
+
+
+
+        var Fila = "";
+
+             $.ajax({
+            url: '@Url.Action("MostrarCategoria", "Categoria")',
+            type: "POST",
+             data: { pagina: pag },
+
+
+                 success: function (result) {
+
+                     for (i = 0; i < result.length; i++) {
+                         var EsInactivo = result[i].Inactivo ? 'Si' : 'No';
+                         Fila = Fila +
+                             '<tr>' +
+                             '<td>' +
+                             result[i].idCategoria +
+                             '</td>' +
+                             '<td>' +
+                             result[i].nombre +
+                             '</td>' +
+                             '<td colspan="4">' +
+                             result[i].descripcion +
+                             '</td>' +
+                             '<td>' +
+                             EsInactivo +
+                             ' </td>' +
+                             '<td><a onclick="MostrarEliminarCategoria(' + result[i].idCategoria + ')" class="btn btn-danger m-2">Eliminar</a>' +
+                             '<a onclick = "MostrarImagenPreviaCategoria(' + result[i].idCategoria + ')" class="btn btn-success m-2" > Ver imagen</a>';
+                         if (result[i].Inactivo) {
+                             Fila = Fila + '<a onclick="CambiarInactivoCategoria(' + result[i].idCategoria + ',false)" class="m-2 btn btn-info">Activar</td>';
+                         } else {
+                             Fila = Fila + '<a onclick="CambiarInactivoCategoria(' + result[i].idCategoria + ',true)" class="btn btn-warning m-2">Inactivar</a>';
+                         }
+
+
+
+                     Fila=Fila+'</tr>';
+
+
+             }
+
+                     $("#bodyTablaCategoria").html(Fila);
+                     $("#ContainerProgressBar").hide();
+
+
+            },
+            error: function (r) {
+
+
+            }
+        })
+
+
+
+    }
+
+    $("#btnMostrarCategoria").click(function (e) {
+
+        e.preventDefault();
+        TraerDatosTablaCategoria(1);
+
+    })
+
+
+    var IdEliminarCategoria = 0;
+    var MuestraEliminarCategoria = 0;
+
+
+    $("#btnAceptarEliminarCategoria").click(function (e) {
+
+         $.ajax({
+            url: '@Url.Action("EliminarRegistroCategoria", "Categoria")',
+            type: "POST",
+            data: { id: IdEliminarCategoria },
+            success: function (result) {
+
+                MostrarEliminarCategoria(-1);
+                TraerDatosTablaCategoria(PagTablaCategoria);
+
+            }
+        })
+    })
+
+    function MostrarEliminarCategoria(id) {
+        if (id > 0) {
+            IdEliminarCategoria=id
+        }
+        if (MuestraEliminarCategoria == 0) {
+            $("#modalCategoriaBorrar").show();
+            MuestraEliminarCategoria++;
+        } else {
+            $("#modalCategoriaBorrar").hide();
+            MuestraEliminarCategoria=0;
+        }
+
+
+
+    }
+
+
+    function ConsultarCategoriaLike(str) {
+
+        var Fila = "";
+          $.ajax({
+            url: '@Url.Action("ConsultarCategoriaLike", "Categoria")',
+              type: "POST",
+              data: { strCategoria: str },
+
+
+                 success: function (result) {
+
+
+                     for (i = 0; i < result.length; i++) {
+                         var EsInactivo = result[i].Inactivo ? 'Si' : 'No';
+                         Fila = Fila +
+                             '<tr>' +
+                             '<td>' +
+                             result[i].idCategoria +
+                             '</td>' +
+                             '<td>' +
+                             result[i].nombre +
+                             '</td>' +
+                             '<td colspan="4">' +
+                             result[i].descripcion +
+                             '</td>' +
+                             '<td>' +
+                             EsInactivo +
+                             ' </td>' +
+                             '<td><a onclick="MostrarEliminarCategoria(' + result[i].idCategoria + ')" class="btn btn-danger m-2">Eliminar</a>' +
+                             '<a onclick = "MostrarImagenPreviaCategoria(' + result[i].idCategoria + ')" class="btn btn-success m-2" > Ver imagen</a>';
+                         if (result[i].Inactivo) {
+                             Fila = Fila + '<a onclick="CambiarInactivoCategoria(' + result[i].idCategoria + ',false)" class="m-2 btn btn-info">Activar</td>';
+                         } else {
+                             Fila = Fila + '<a onclick="CambiarInactivoCategoria(' + result[i].idCategoria + ',true)" class="btn btn-warning m-2">Inactivar</a>';
+                         }
+
+
+
+                         Fila = Fila + '</tr>';
+
+
+                     }
+
+                $("#bodyTablaCategoria").html(Fila);
+
+
+            }
+        })
+    }
+
+    $("#txtBuscarCategoria").keyup(function(){
+        $("#btnCancelarBusquedaCategoria").show();
+
+        var Categoria = $("#txtBuscarCategoria").val()
+
+        if (Categoria == "") {
+            $("#btnCancelarBusquedaCategoria").hide();
+
+            $(".PaginationCategoria").show()
+            $("#AtrasPaginadoCategoria").hide();
+            TraerDatosTablaCategoria(1);
+
+        } else {
+            $(".PaginationCategoria").hide()
+
+            ConsultarCategoriaLike(Categoria);
+        }
+
+
+
+
+    })
+
+
+    $("#btnCancelarBusquedaCategoria").click(function () {
+        $("#txtBuscarCategoria").val("")
+        $("#btnCancelarBusquedaCategoria").hide();
+        $("#AtrasPaginadoCategoria").hide();
+        $(".PaginationCategoria").show();
+        TraerDatosTablaCategoria(1);
+        $("#PaginationCategoria").show();
+    })
+
+
+    $("#ImgSubidaCategoria").hide();
+
+    function OcultarMostrarImgCategoria() {
+        $("#modalMostrarImgCategoria").hide();
+    }
+
+    function CambiarInactivoCategoria(ids, estados) {
+
+          $.ajax({
+            url: '@Url.Action("CambiarInactivoCategoria", "Categoria")',
+              type: "POST",
+              data: { id: ids, estado: estados },
+
+
+                 success: function (result) {
+
+                     TraerDatosTablaCategoria(PagTablaCategoria);
+
+            },
+            error: function (r) {
+
+
+            }
+        })
+    }
+
+    function OcultarContenedorCategoria() {
+        $("#ContainerCategoria").hide();
+        $("#PaginaAlbum").show();
+    }
+    function SeleccionarArchivoCanceladoCategoria() {
+        $("#InputCargaImagenCategoria").val("")
+        $("#ImgSubidaCategoria").hide();
+    }
+
+
+</script>

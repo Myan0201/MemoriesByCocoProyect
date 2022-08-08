@@ -1,0 +1,66 @@
+﻿body {
+}
+@media screen and (max-width:700px) {
+    .SacaBoxIzquierda {
+        left: 0vw;
+    }
+
+    .ContainerColeccion {
+        width: 100%;
+        height: 60vh;
+        background-color: #F5E5D6;
+        position:center;
+      
+    }
+
+    .ImagenAjustadaColeccion {
+        width: 80%;
+        height: 40vh;
+        border: 8px solid white;
+    }
+
+    .sm-alinear-centro{
+      text-align:center;
+    }
+
+    .letraGrandeCuerpoInicio{
+        font-size:70px;
+    }
+
+    .marginLeftCarousel {
+        position: absolute;
+        left: 0vw;
+        width: 100%;
+    }
+        .marginLeftCarousel::before {
+            
+            border:none;
+           
+        }
+
+        .FondoGris{
+            padding:100px;
+        }
+
+    .FondoGrisUp{
+        display:none;
+    }
+
+    .SacaBoxDerecha {
+        left: 0vw;
+        top: 0vh;
+        background-color: #bdf2ff;
+    }
+    .ImagenAjustadaColeccion{
+       
+    }
+    .ImagenAjustadaLove {
+        width:70vw;
+        height: 40vh;
+        margin-top: 50px;
+    }
+    .ContainerColeccionLove {
+        margin-top: 0vh;
+        box-shadow: 2px 4px 16px black;
+    }
+}

@@ -1,0 +1,20 @@
+﻿body {
+}
+
+.btnPrueba{
+    box-shadow:2px 4px 16px black;
+}
+
+@keyframes rebotar{
+    from
+    {
+        background-color:red;
+        margin-top:0px;
+
+    }
+
+    to {
+        background-color: blue;
+        margin-top: 3px;
+    }
+}

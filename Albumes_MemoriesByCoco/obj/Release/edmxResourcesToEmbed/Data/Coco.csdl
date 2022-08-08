@@ -1,0 +1,673 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MemoriesByCocoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="MemoriesByCocoEntities" annotation:LazyLoadingEnabled="true">
+    <FunctionImport Name="PA_INS_RegistrarUsuario">
+      <Parameter Name="strNombre" Mode="In" Type="String" />
+      <Parameter Name="strApellido1" Mode="In" Type="String" />
+      <Parameter Name="strApellido2" Mode="In" Type="String" />
+      <Parameter Name="strCorreo" Mode="In" Type="String" />
+      <Parameter Name="strTelefono" Mode="In" Type="String" />
+      <Parameter Name="strDireccion" Mode="In" Type="String" />
+      <Parameter Name="strUsuario" Mode="In" Type="String" />
+      <Parameter Name="strPass" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PA_CONS_ConsultarEmailRegistrado" ReturnType="Collection(String)">
+      <Parameter Name="strCorreo" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PA_CambiosPassword">
+      <Parameter Name="strCorreo" Mode="In" Type="String" />
+      <Parameter Name="strPass" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PA_INS_SolicitaCambio">
+      <Parameter Name="strUsuario" Mode="In" Type="String" />
+      <Parameter Name="nCambio" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="PA_CONS_Consultar_Solicita_Password" ReturnType="Collection(Int32)">
+      <Parameter Name="strUsuario" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PA_CONS_ConsultarInicioSesion" ReturnType="Collection(MemoriesByCocoModel.PA_CONS_ConsultarInicioSesion_Result)">
+      <Parameter Name="strUsuario" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PA_Mantenimiento_PAQ_ESTADO_PEDIDO">
+      <Parameter Name="nOperacion" Mode="In" Type="Int32" />
+      <Parameter Name="bNotifica" Mode="In" Type="Boolean" />
+      <Parameter Name="nCodigo" Mode="In" Type="Int32" />
+      <Parameter Name="strDescripcion" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PA_CONS_ConsultarFrases_Paginacion" ReturnType="Collection(MemoriesByCocoModel.PA_CONS_ConsultarFrases_Paginacion_Result1)">
+      <Parameter Name="nPagina" Mode="In" Type="Int32" />
+      <Parameter Name="nDatos" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="PA_CONS_ConsultarRegistrosFrases" ReturnType="Collection(Int32)" />
+    <FunctionImport Name="PA_CONS_ConsultarFrasesLike" ReturnType="Collection(MemoriesByCocoModel.PA_CONS_ConsultarFrasesLike_Result)">
+      <Parameter Name="strNombre" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PA_InsertarFrases">
+      <Parameter Name="nAccion" Mode="In" Type="Int32" />
+      <Parameter Name="nCodigo" Mode="In" Type="Int32" />
+      <Parameter Name="strDescripcion" Mode="In" Type="String" />
+      <Parameter Name="bInactivo" Mode="In" Type="Boolean" />
+      <Parameter Name="bySticker" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="PA_ActivarFrase">
+      <Parameter Name="nCodigo" Mode="In" Type="Int32" />
+      <Parameter Name="bBool" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="PA_CONS_ConsultarStickerxID" ReturnType="Collection(Binary)">
+      <Parameter Name="nCodigo" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="PA_ActivarVinil">
+      <Parameter Name="nCodigo" Mode="In" Type="Int32" />
+      <Parameter Name="bBool" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="PA_CONS_ConsultarImgxIDVinil" ReturnType="Collection(Binary)">
+      <Parameter Name="nCodigo" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="PA_CONS_ConsultarRegistrosVinil" ReturnType="Collection(Int32)" />
+    <FunctionImport Name="PA_CONS_ConsultarVinil_Paginacion" ReturnType="Collection(MemoriesByCocoModel.PA_CONS_ConsultarVinil_Paginacion_Result)">
+      <Parameter Name="nPagina" Mode="In" Type="Int32" />
+      <Parameter Name="nDatos" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="PA_CONS_ConsultarVinilLike" ReturnType="Collection(MemoriesByCocoModel.PA_CONS_ConsultarVinilLike_Result)">
+      <Parameter Name="strNombre" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PA_InsertarVinil">
+      <Parameter Name="nCodigo" Mode="In" Type="Int32" />
+      <Parameter Name="strNombre" Mode="In" Type="String" />
+      <Parameter Name="strDescripcion" Mode="In" Type="String" />
+      <Parameter Name="bInactivo" Mode="In" Type="Boolean" />
+      <Parameter Name="byImg" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="PA_MantenimientoVinil">
+      <Parameter Name="nAccion" Mode="In" Type="Int32" />
+      <Parameter Name="nCodigo" Mode="In" Type="Int32" />
+      <Parameter Name="strNombre" Mode="In" Type="String" />
+      <Parameter Name="strDescripcion" Mode="In" Type="String" />
+      <Parameter Name="bInactivo" Mode="In" Type="Boolean" />
+      <Parameter Name="bySticker" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="PA_CONS_ConsultarEstados" ReturnType="Collection(MemoriesByCocoModel.PA_CONS_ConsultarEstados_Result)" />
+    <FunctionImport Name="PA_CONS_ConsultarFrases_Paginacion_Sticker" ReturnType="Collection(MemoriesByCocoModel.PA_CONS_ConsultarFrases_Paginacion_Sticker_Result)">
+      <Parameter Name="nPagina" Mode="In" Type="Int32" />
+      <Parameter Name="nDatos" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="PA_CONS_ConsultarRegistroStickers" ReturnType="Collection(Int32)" />
+    <FunctionImport Name="PA_CONS_ConsultarFrasesLike_Sticker" ReturnType="Collection(MemoriesByCocoModel.PA_CONS_ConsultarFrasesLike_Sticker_Result)">
+      <Parameter Name="strNombre" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PA_CONS_ConsultarRegistroVinilActivo" ReturnType="Collection(Int32)" />
+    <FunctionImport Name="PA_CONS_ConsultarVinil_Paginacion_Img" ReturnType="Collection(MemoriesByCocoModel.PA_CONS_ConsultarVinil_Paginacion_Img_Result)">
+      <Parameter Name="nPagina" Mode="In" Type="Int32" />
+      <Parameter Name="nDatos" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="PA_CONS_ConsultarVinilLike_Img" ReturnType="Collection(MemoriesByCocoModel.PA_CONS_ConsultarVinilLike_Img_Result)">
+      <Parameter Name="strNombre" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PA_CONS_ConsultarFrases_Paginacion_Usuario" ReturnType="Collection(MemoriesByCocoModel.PA_CONS_ConsultarFrases_Paginacion_Usuario_Result)">
+      <Parameter Name="nPagina" Mode="In" Type="Int32" />
+      <Parameter Name="nDatos" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="PA_CONS_ConsultarFrasesLike_Usuario" ReturnType="Collection(MemoriesByCocoModel.PA_CONS_ConsultarFrasesLike_Usuario_Result)">
+      <Parameter Name="strNombre" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PA_CONS_ConsultarRegistrosFrases_Usuario" ReturnType="Collection(Int32)" />
+    <FunctionImport Name="PA_CONS_ConsultarFrasexID" ReturnType="Collection(MemoriesByCocoModel.PA_CONS_ConsultarFrasexID_Result)">
+      <Parameter Name="nCodigo" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="PA_MantenimientoFrases_" ReturnType="Collection(Int32)">
+      <Parameter Name="nAccion" Mode="In" Type="Int32" />
+      <Parameter Name="nCodigo" Mode="In" Type="Int32" />
+      <Parameter Name="strDescripcion" Mode="In" Type="String" />
+      <Parameter Name="bInactivo" Mode="In" Type="Boolean" />
+      <Parameter Name="bySticker" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="PA_CONS_ConsultarPreguntas" ReturnType="Collection(MemoriesByCocoModel.PA_CONS_ConsultarPreguntas_Result)" />
+    <FunctionImport Name="PA_Mantenimiento_Preguntas">
+      <Parameter Name="nOperacion" Mode="In" Type="Int32" />
+      <Parameter Name="bInactivo" Mode="In" Type="Boolean" />
+      <Parameter Name="nCodigo" Mode="In" Type="Int32" />
+      <Parameter Name="strDescripcion" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PA_CONS_ConsultarPreguntaxID" ReturnType="Collection(MemoriesByCocoModel.PA_CONS_ConsultarPreguntaxID_Result)">
+      <Parameter Name="nCodigo" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="PA_Obtener_NumeroPedido" ReturnType="Collection(Int32)" />
+    <FunctionImport Name="PA_INS_InsertarImagenPedido" ReturnType="Collection(MemoriesByCocoModel.PA_INS_InsertarImagenPedido_Result)">
+      <Parameter Name="nCodigo" Mode="In" Type="Int32" />
+      <Parameter Name="byImagen" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="PA_Eliminar_ImagenPedido">
+      <Parameter Name="nCodigo" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="PA_INS_InsertarImagenPedidoUsuario" ReturnType="Collection(Int32)">
+      <Parameter Name="nCodigo" Mode="In" Type="Int32" />
+      <Parameter Name="byImagen" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="PA_INS_InsertarRespuestasUsuario">
+      <Parameter Name="nPregunta" Mode="In" Type="Int32" />
+      <Parameter Name="strRespuesta" Mode="In" Type="String" />
+      <Parameter Name="nPedido" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="PA_CONS_ConsultarPrecios" ReturnType="Collection(MemoriesByCocoModel.PA_CONS_ConsultarPrecios_Result)" />
+    <FunctionImport Name="PA_MantenimientoPrecios">
+      <Parameter Name="nOperacion" Mode="In" Type="Int32" />
+      <Parameter Name="nCodigo" Mode="In" Type="Int32" />
+      <Parameter Name="strDescripcion" Mode="In" Type="String" />
+      <Parameter Name="nValor" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="PA_ActualizarInfoUsuario">
+      <Parameter Name="nCodicion" Mode="In" Type="Int32" />
+      <Parameter Name="nCodigo" Mode="In" Type="Int32" />
+      <Parameter Name="strNombre" Mode="In" Type="String" />
+      <Parameter Name="strApellido1" Mode="In" Type="String" />
+      <Parameter Name="strApellido2" Mode="In" Type="String" />
+      <Parameter Name="strCorreo" Mode="In" Type="String" />
+      <Parameter Name="strTel" Mode="In" Type="String" />
+      <Parameter Name="strDireccion" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PA_CONS_ConsultarUsuario" ReturnType="Collection(MemoriesByCocoModel.PA_CONS_ConsultarUsuario_Result)">
+      <Parameter Name="nCodigo" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="PA_AsignarPuntos">
+      <Parameter Name="nUsuario" Mode="In" Type="Int32" />
+      <Parameter Name="nCantidad" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="PA_RegistrarPedido">
+      <Parameter Name="nCodigo" Mode="In" Type="Int32" />
+      <Parameter Name="nUsuario" Mode="In" Type="Int32" />
+      <Parameter Name="nPersonalizado" Mode="In" Type="Int32" />
+      <Parameter Name="strTipoAlbum" Mode="In" Type="String" />
+      <Parameter Name="nVinil" Mode="In" Type="Int32" />
+      <Parameter Name="strNumeroTransferencia" Mode="In" Type="String" />
+      <Parameter Name="nMonto" Mode="In" Type="Decimal" />
+      <Parameter Name="nEstado" Mode="In" Type="Int32" />
+      <Parameter Name="date" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="PA_ActivarCategoria">
+      <Parameter Name="nCodigo" Mode="In" Type="Int32" />
+      <Parameter Name="bBool" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="PA_CONS_ConsultarCategoria_Paginacion" ReturnType="Collection(MemoriesByCocoModel.PA_CONS_ConsultarCategoria_Paginacion_Result)">
+      <Parameter Name="nPagina" Mode="In" Type="Int32" />
+      <Parameter Name="nDatos" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="PA_CONS_ConsultarCategoriaLike" ReturnType="Collection(MemoriesByCocoModel.PA_CONS_ConsultarCategoriaLike_Result)">
+      <Parameter Name="strNombre" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PA_CONS_ConsultarImgxIDCategoria" ReturnType="Collection(Binary)">
+      <Parameter Name="nCodigo" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="PA_CONS_ConsultarRegistrosCategoria" ReturnType="Collection(Int32)" />
+    <FunctionImport Name="PA_MantenimientoCategoria">
+      <Parameter Name="nAccion" Mode="In" Type="Int32" />
+      <Parameter Name="nCodigo" Mode="In" Type="Int32" />
+      <Parameter Name="strNombre" Mode="In" Type="String" />
+      <Parameter Name="strDescripcion" Mode="In" Type="String" />
+      <Parameter Name="bInactivo" Mode="In" Type="Boolean" />
+      <Parameter Name="bySticker" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="PA_MantenimientoAlbumPredefinido" ReturnType="Collection(Int32)">
+      <Parameter Name="nOperacion" Mode="In" Type="Int32" />
+      <Parameter Name="nCodigo" Mode="In" Type="Int32" />
+      <Parameter Name="strNombre" Mode="In" Type="String" />
+      <Parameter Name="nCategoria" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="PA_MantenimientoImgAlbumPredefinido" ReturnType="Collection(Int32)">
+      <Parameter Name="nOperacion" Mode="In" Type="Int32" />
+      <Parameter Name="nAlbum" Mode="In" Type="Int32" />
+      <Parameter Name="nCodigo" Mode="In" Type="Int32" />
+      <Parameter Name="byImg" Mode="In" Type="Binary" />
+      <Parameter Name="bPortada" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="PA_CONS_ConsultarCategoria" ReturnType="Collection(MemoriesByCocoModel.PA_CONS_ConsultarCategoria_Result)">
+      <Parameter Name="nCodigo" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="PA_CONS_ConsultarAlbum_Paginacion" ReturnType="Collection(MemoriesByCocoModel.PA_CONS_ConsultarAlbum_Paginacion_Result)">
+      <Parameter Name="nPagina" Mode="In" Type="Int32" />
+      <Parameter Name="nDatos" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="PA_CONS_ConsultarAlbum_Paginacion_" ReturnType="Collection(MemoriesByCocoModel.PA_CONS_ConsultarAlbum_Paginacion__Result)">
+      <Parameter Name="nPagina" Mode="In" Type="Int32" />
+      <Parameter Name="nDatos" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="PA_CONS_ConsultarAlbumLike" ReturnType="Collection(MemoriesByCocoModel.PA_CONS_ConsultarAlbumLike_Result)">
+      <Parameter Name="strNombre" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PA_CONS_ConsultarRegistrosAlbum" ReturnType="Collection(Int32)" />
+    <FunctionImport Name="PA_CONS_ConsultarImagenesAlbumPredefinido_V2" ReturnType="Collection(MemoriesByCocoModel.PA_CONS_ConsultarImagenesAlbumPredefinido_V2_Result)">
+      <Parameter Name="nCodigo" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="PA_CONS_ConsultarCategoriaImgs" ReturnType="Collection(MemoriesByCocoModel.PA_CONS_ConsultarCategoriaImgs_Result)">
+      <Parameter Name="nCodigo" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="PA_CONS_ConsultarAlbumxCategoria" ReturnType="Collection(MemoriesByCocoModel.PA_CONS_ConsultarAlbumxCategoria_Result)">
+      <Parameter Name="nCategoria" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="PA_CONS_ConsultarPuntosxUsuario" ReturnType="Collection(Int32)">
+      <Parameter Name="nUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="PA_CONS_ConsultarPedidos_Paginados" ReturnType="Collection(MemoriesByCocoModel.PA_CONS_ConsultarPedidos_Paginados_Result)">
+      <Parameter Name="nCodigo" Mode="In" Type="Int32" />
+      <Parameter Name="nPagina" Mode="In" Type="Int32" />
+      <Parameter Name="nDatos" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="PA_CONS_ConsultarPedidos_Paginados_v2" ReturnType="Collection(MemoriesByCocoModel.PA_CONS_ConsultarPedidos_Paginados_v2_Result)">
+      <Parameter Name="nCodigo" Mode="In" Type="Int32" />
+      <Parameter Name="nPagina" Mode="In" Type="Int32" />
+      <Parameter Name="nDatos" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="PA_RegistrarPedido_V2">
+      <Parameter Name="nCodigo" Mode="In" Type="Int32" />
+      <Parameter Name="nUsuario" Mode="In" Type="Int32" />
+      <Parameter Name="nPersonalizado" Mode="In" Type="Int32" />
+      <Parameter Name="strTipoAlbum" Mode="In" Type="String" />
+      <Parameter Name="nVinil" Mode="In" Type="Int32" />
+      <Parameter Name="strNumeroTransferencia" Mode="In" Type="String" />
+      <Parameter Name="nMonto" Mode="In" Type="Decimal" />
+      <Parameter Name="nEstado" Mode="In" Type="Int32" />
+      <Parameter Name="date" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="PA_CONS_ConsultarPedidos_Paginados_v3" ReturnType="Collection(MemoriesByCocoModel.PA_CONS_ConsultarPedidos_Paginados_v3_Result)">
+      <Parameter Name="nCodigo" Mode="In" Type="Int32" />
+      <Parameter Name="nPagina" Mode="In" Type="Int32" />
+      <Parameter Name="nDatos" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="PA_CONS_ConsultarRegistrosPedido" ReturnType="Collection(Int32)">
+      <Parameter Name="nCodigo" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="PA_CONS_ConsultarPedidos_Paginados_v4" ReturnType="Collection(MemoriesByCocoModel.PA_CONS_ConsultarPedidos_Paginados_v4_Result)">
+      <Parameter Name="nCodigo" Mode="In" Type="Int32" />
+      <Parameter Name="nPagina" Mode="In" Type="Int32" />
+      <Parameter Name="nDatos" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="PA_CONS_ConsultarPedidoxId" ReturnType="Collection(MemoriesByCocoModel.PA_CONS_ConsultarPedidoxId_Result)">
+      <Parameter Name="nCodigo" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="PA_CONS_ConsultarFotosxPedido" ReturnType="Collection(Binary)">
+      <Parameter Name="nCodigo" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="PA_CONS_ConsultarFrasesxPedido" ReturnType="Collection(String)">
+      <Parameter Name="nCodigo" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="PA_CONS_ConsultarRespuestasxPedido" ReturnType="Collection(MemoriesByCocoModel.PA_CONS_ConsultarRespuestasxPedido_Result)">
+      <Parameter Name="nCodigo" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="PA_InsertarFrasesxPedido">
+      <Parameter Name="nPedido" Mode="In" Type="Int32" />
+      <Parameter Name="nFrase" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="PA_CONS_ConsultarFotosxPedido_" ReturnType="Collection(MemoriesByCocoModel.PA_CONS_ConsultarFotosxPedido__Result)">
+      <Parameter Name="nCodigo" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="PA_ActualizarEstadoPedido">
+      <Parameter Name="nPedido" Mode="In" Type="Int32" />
+      <Parameter Name="nEstado" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="PA_Actualizar_Parametro">
+      <Parameter Name="nCodigo" Mode="In" Type="Int32" />
+      <Parameter Name="strDescripcion" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PA_CONS_ConsultarCantidadProyectos" ReturnType="Collection(Int32)" />
+    <FunctionImport Name="PA_CONS_ConsultarColor" ReturnType="Collection(MemoriesByCocoModel.PA_CONS_ConsultarColor_Result)" />
+    <FunctionImport Name="PA_CONS_ConsultarImgxProyecto" ReturnType="Collection(Binary)">
+      <Parameter Name="nCodigo" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="PA_ConsultarParametros" ReturnType="Collection(MemoriesByCocoModel.PA_ConsultarParametros_Result)">
+      <Parameter Name="nCodigo" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="PA_ConsultarProyecto" ReturnType="Collection(MemoriesByCocoModel.PA_ConsultarProyecto_Result)">
+      <Parameter Name="nCodigo" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="PA_ConsultarProyectoImg" ReturnType="Collection(MemoriesByCocoModel.PA_ConsultarProyectoImg_Result)">
+      <Parameter Name="nCodigo" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="PA_MantenimientoProyecto">
+      <Parameter Name="nOperacion" Mode="In" Type="Int32" />
+      <Parameter Name="nCodigo" Mode="In" Type="Int32" />
+      <Parameter Name="strNombre" Mode="In" Type="String" />
+      <Parameter Name="strCategoria" Mode="In" Type="String" />
+      <Parameter Name="byImg" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="PA_CONS_ConsultarUsuarioAdmin" ReturnType="Collection(MemoriesByCocoModel.PA_CONS_ConsultarUsuarioAdmin_Result)" />
+    <FunctionImport Name="PA_CONS_ConsultarEstadoxId" ReturnType="Collection(MemoriesByCocoModel.PA_CONS_ConsultarEstadoxId_Result)">
+      <Parameter Name="nCodigo" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="PA_CONS_ConsultarFrasesLike_V2" ReturnType="Collection(MemoriesByCocoModel.PA_CONS_ConsultarFrasesLike_V2_Result)">
+      <Parameter Name="strNombre" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PA_CONS_ConsultarFrasesxPedido_V2" ReturnType="Collection(MemoriesByCocoModel.PA_CONS_ConsultarFrasesxPedido_V2_Result)">
+      <Parameter Name="nCodigo" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="PA_CONS_ConsultarTelMemories" ReturnType="Collection(MemoriesByCocoModel.PA_CONS_ConsultarTelMemories_Result)">
+      <Parameter Name="nTel" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="PA_EliminarPuntos">
+      <Parameter Name="nUsuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="PA_CONS_ConsultarCorreo" ReturnType="Collection(MemoriesByCocoModel.PA_CONS_ConsultarCorreo_Result)">
+      <Parameter Name="nCorreo" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="PA_CONS_ConsultarCuentaBancaria" ReturnType="Collection(MemoriesByCocoModel.PA_CONS_ConsultarCuentaBancaria_Result)">
+      <Parameter Name="nCuenta" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="PA_EliminarPuntos_Cantidad">
+      <Parameter Name="nUsuario" Mode="In" Type="Int32" />
+      <Parameter Name="nCantidad" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="PA_CONS_CantidadImgsxPedido" ReturnType="Collection(Int32)">
+      <Parameter Name="nId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="PA_InsertarBitacora">
+      <Parameter Name="error" Mode="In" Type="String" />
+      <Parameter Name="fecha" Mode="In" Type="DateTime" />
+      <Parameter Name="usuario" Mode="In" Type="Int32" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="PA_CONS_ConsultarInicioSesion_Result">
+    <Property Type="Int32" Name="seg_id" Nullable="false" />
+    <Property Type="String" Name="seg_nombre" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="seg_apellido1" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="seg_apellido2" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="seg_correo" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="seg_tel" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="seg_direccion" Nullable="false" />
+    <Property Type="String" Name="seg_usuario" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="seg_pass" Nullable="false" MaxLength="100" />
+    <Property Type="Int32" Name="paq_tipo_usuario" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="PA_CONS_ConsultarFrases_Paginacion_Result">
+    <Property Type="Int32" Name="paq_frase" Nullable="false" />
+    <Property Type="String" Name="paq_descripcion" Nullable="true" MaxLength="200" />
+    <Property Type="Boolean" Name="paq_inactivo" Nullable="true" />
+    <Property Type="Binary" Name="paq_sticker" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="PA_CONS_ConsultarFrasesLike_Result">
+    <Property Type="Int32" Name="paq_frase" Nullable="false" />
+    <Property Type="String" Name="paq_descripcion" Nullable="true" MaxLength="200" />
+    <Property Type="Boolean" Name="paq_inactivo" Nullable="true" />
+    <Property Type="Binary" Name="paq_sticker" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="PA_CONS_ConsultarFrases_Paginacion_Result1">
+    <Property Type="Int32" Name="paq_frase" Nullable="false" />
+    <Property Type="String" Name="paq_descripcion" Nullable="true" MaxLength="200" />
+    <Property Type="Boolean" Name="paq_inactivo" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="PA_CONS_ConsultarVinil_Paginacion_Result">
+    <Property Type="Int32" Name="paq_vinil" Nullable="false" />
+    <Property Type="String" Name="paq_nombre" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="paq_descripcion" Nullable="true" MaxLength="400" />
+    <Property Type="Boolean" Name="paq_inactivo" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="PA_CONS_ConsultarVinilLike_Result">
+    <Property Type="Int32" Name="paq_vinil" Nullable="false" />
+    <Property Type="String" Name="paq_nombre" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="paq_descripcion" Nullable="true" MaxLength="400" />
+    <Property Type="Boolean" Name="paq_inactivo" Nullable="true" />
+    <Property Type="Binary" Name="paq_img" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="PA_CONS_ConsultarEstados_Result">
+    <Property Type="Int32" Name="paq_estado_pedido" Nullable="false" />
+    <Property Type="String" Name="paq_descripcion" Nullable="true" MaxLength="200" />
+    <Property Type="Boolean" Name="paq_notifica" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="PA_CONS_ConsultarFrases_Paginacion_Sticker_Result">
+    <Property Type="Int32" Name="paq_frase" Nullable="false" />
+    <Property Type="String" Name="paq_descripcion" Nullable="true" MaxLength="200" />
+    <Property Type="Boolean" Name="paq_inactivo" Nullable="true" />
+    <Property Type="Binary" Name="paq_sticker" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="PA_CONS_ConsultarFrasesLike_Sticker_Result">
+    <Property Type="Int32" Name="paq_frase" Nullable="false" />
+    <Property Type="String" Name="paq_descripcion" Nullable="true" MaxLength="200" />
+    <Property Type="Boolean" Name="paq_inactivo" Nullable="true" />
+    <Property Type="Binary" Name="paq_sticker" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="PA_CONS_ConsultarVinil_Paginacion_Img_Result">
+    <Property Type="Int32" Name="paq_vinil" Nullable="false" />
+    <Property Type="String" Name="paq_descripcion" Nullable="true" MaxLength="400" />
+    <Property Type="Boolean" Name="paq_inactivo" Nullable="true" />
+    <Property Type="Binary" Name="paq_img" Nullable="true" />
+    <Property Type="String" Name="paq_nombre" Nullable="true" MaxLength="200" />
+  </ComplexType>
+  <ComplexType Name="PA_CONS_ConsultarVinilLike_Img_Result">
+    <Property Type="Int32" Name="paq_vinil" Nullable="false" />
+    <Property Type="String" Name="paq_nombre" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="paq_descripcion" Nullable="true" MaxLength="400" />
+    <Property Type="Boolean" Name="paq_inactivo" Nullable="true" />
+    <Property Type="Binary" Name="paq_img" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="PA_CONS_ConsultarFrases_Paginacion_Usuario_Result">
+    <Property Type="Int32" Name="paq_frase" Nullable="false" />
+    <Property Type="String" Name="paq_descripcion" Nullable="true" MaxLength="200" />
+    <Property Type="Boolean" Name="paq_inactivo" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="PA_CONS_ConsultarFrasesLike_Usuario_Result">
+    <Property Type="Int32" Name="paq_frase" Nullable="false" />
+    <Property Type="String" Name="paq_descripcion" Nullable="true" MaxLength="200" />
+    <Property Type="Boolean" Name="paq_inactivo" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="PA_CONS_ConsultarFrasexID_Result">
+    <Property Type="Int32" Name="paq_frase" Nullable="false" />
+    <Property Type="String" Name="paq_descripcion" Nullable="true" MaxLength="200" />
+  </ComplexType>
+  <ComplexType Name="PA_CONS_ConsultarPreguntas_Result">
+    <Property Type="Int32" Name="paq_pregunta" Nullable="false" />
+    <Property Type="String" Name="paq_descripcion" Nullable="true" MaxLength="400" />
+    <Property Type="Boolean" Name="paq_inactivo" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="PA_CONS_ConsultarPreguntaxID_Result">
+    <Property Type="Int32" Name="paq_pregunta" Nullable="false" />
+    <Property Type="String" Name="paq_descripcion" Nullable="true" MaxLength="400" />
+    <Property Type="Boolean" Name="paq_inactivo" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="PA_INS_InsertarImagenPedido_Result">
+    <Property Type="Int32" Name="Column1" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="PA_CONS_ConsultarPrecios_Result">
+    <Property Type="Int32" Name="paq_precio" Nullable="false" />
+    <Property Type="String" Name="paq_descripcion" Nullable="true" MaxLength="200" />
+    <Property Type="Decimal" Name="paq_valor" Nullable="true" Precision="18" Scale="0" />
+  </ComplexType>
+  <ComplexType Name="PA_CONS_ConsultarUsuario_Result">
+    <Property Type="Int32" Name="seg_id" Nullable="false" />
+    <Property Type="String" Name="seg_nombre" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="seg_apellido1" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="seg_apellido2" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="seg_correo" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="seg_direccion" Nullable="false" />
+    <Property Type="String" Name="seg_tel" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="PA_CONS_ConsultarCategoria_Paginacion_Result">
+    <Property Type="Int32" Name="paq_categoria" Nullable="false" />
+    <Property Type="String" Name="paq_nombre" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="paq_descripcion" Nullable="true" MaxLength="500" />
+    <Property Type="Boolean" Name="paq_inactivo" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="PA_CONS_ConsultarCategoriaLike_Result">
+    <Property Type="Int32" Name="paq_categoria" Nullable="false" />
+    <Property Type="String" Name="paq_nombre" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="paq_descripcion" Nullable="true" MaxLength="500" />
+    <Property Type="Boolean" Name="paq_inactivo" Nullable="true" />
+    <Property Type="Binary" Name="paq_img" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="PA_CONS_ConsultarCategoria_Result">
+    <Property Type="Int32" Name="paq_categoria" Nullable="false" />
+    <Property Type="String" Name="paq_nombre" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="paq_descripcion" Nullable="true" MaxLength="500" />
+  </ComplexType>
+  <ComplexType Name="PA_CONS_ConsultarAlbum_Paginacion_Result">
+    <Property Type="Int32" Name="paq_album" Nullable="false" />
+    <Property Type="Int32" Name="paq_categoria" Nullable="true" />
+    <Property Type="String" Name="paq_nombre" Nullable="true" MaxLength="200" />
+  </ComplexType>
+  <ComplexType Name="PA_CONS_ConsultarAlbum_Paginacion__Result">
+    <Property Type="Int32" Name="paq_album" Nullable="false" />
+    <Property Type="Int32" Name="paq_categoria" Nullable="true" />
+    <Property Type="String" Name="paq_nombre" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="paq_nombre_categoria" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="paq_descripcion" Nullable="true" MaxLength="500" />
+    <Property Type="Boolean" Name="paq_inactivo" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="PA_CONS_ConsultarAlbumLike_Result">
+    <Property Type="Int32" Name="paq_album" Nullable="false" />
+    <Property Type="Int32" Name="paq_categoria" Nullable="true" />
+    <Property Type="String" Name="paq_nombre" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="paq_nombre_categoria" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="paq_descripcion" Nullable="true" MaxLength="500" />
+    <Property Type="Boolean" Name="paq_inactivo" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="PA_CONS_ConsultarImagenesAlbumPredefinido_V2_Result">
+    <Property Type="Binary" Name="paq_img" Nullable="true" />
+    <Property Type="Int32" Name="paq_img_predefinido" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="PA_CONS_ConsultarCategoriaImgs_Result">
+    <Property Type="Int32" Name="paq_categoria" Nullable="false" />
+    <Property Type="String" Name="paq_nombre" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="paq_descripcion" Nullable="true" MaxLength="500" />
+    <Property Type="Boolean" Name="paq_inactivo" Nullable="true" />
+    <Property Type="Binary" Name="paq_img" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="PA_CONS_ConsultarAlbumxCategoria_Result">
+    <Property Type="Int32" Name="paq_album" Nullable="false" />
+    <Property Type="String" Name="paq_nombre" Nullable="true" MaxLength="200" />
+    <Property Type="Int32" Name="paq_categoria" Nullable="true" />
+    <Property Type="Binary" Name="paq_img" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="PA_CONS_ConsultarPedidos_Paginados_Result">
+    <Property Type="Int32" Name="paq_pedido" Nullable="false" />
+    <Property Type="Int32" Name="paq_personalizado" Nullable="true" />
+    <Property Type="String" Name="paq_nombre_album" Nullable="true" MaxLength="200" />
+    <Property Type="Int32" Name="paq_categoria" Nullable="true" />
+    <Property Type="String" Name="paq_tipo_album" Nullable="true" MaxLength="200" />
+    <Property Type="Int32" Name="paq_tipo_vinil" Nullable="true" />
+    <Property Type="String" Name="paq_nombre_vinil" Nullable="true" MaxLength="200" />
+    <Property Type="Int32" Name="paq_numero_transferencia" Nullable="true" />
+    <Property Type="Decimal" Name="paq_monto" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Int32" Name="paq_estado" Nullable="true" />
+    <Property Type="String" Name="paq_descripcion_estado" Nullable="true" MaxLength="200" />
+  </ComplexType>
+  <ComplexType Name="PA_CONS_ConsultarPedidos_Paginados_v2_Result">
+    <Property Type="Int32" Name="paq_pedido" Nullable="false" />
+    <Property Type="Int32" Name="paq_personalizado" Nullable="true" />
+    <Property Type="DateTime" Name="paq_fecha" Nullable="true" Precision="23" />
+    <Property Type="String" Name="paq_nombre_album" Nullable="true" MaxLength="200" />
+    <Property Type="Int32" Name="paq_categoria" Nullable="true" />
+    <Property Type="String" Name="paq_tipo_album" Nullable="true" MaxLength="200" />
+    <Property Type="Int32" Name="paq_tipo_vinil" Nullable="true" />
+    <Property Type="String" Name="paq_nombre_vinil" Nullable="true" MaxLength="200" />
+    <Property Type="Int32" Name="paq_numero_transferencia" Nullable="true" />
+    <Property Type="Decimal" Name="paq_monto" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Int32" Name="paq_estado" Nullable="true" />
+    <Property Type="String" Name="paq_descripcion_estado" Nullable="true" MaxLength="200" />
+  </ComplexType>
+  <ComplexType Name="PA_CONS_ConsultarPedidos_Paginados_v3_Result">
+    <Property Type="Int32" Name="paq_pedido" Nullable="false" />
+    <Property Type="Int32" Name="paq_personalizado" Nullable="true" />
+    <Property Type="DateTime" Name="paq_fecha" Nullable="true" Precision="23" />
+    <Property Type="String" Name="paq_nombre_album" Nullable="true" MaxLength="200" />
+    <Property Type="Int32" Name="paq_categoria" Nullable="true" />
+    <Property Type="String" Name="paq_tipo_album" Nullable="true" MaxLength="200" />
+    <Property Type="Int32" Name="paq_tipo_vinil" Nullable="true" />
+    <Property Type="String" Name="paq_nombre_vinil" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="paq_numero_transferencia" Nullable="true" MaxLength="200" />
+    <Property Type="Decimal" Name="paq_monto" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Int32" Name="paq_estado" Nullable="true" />
+    <Property Type="String" Name="paq_descripcion_estado" Nullable="true" MaxLength="200" />
+  </ComplexType>
+  <ComplexType Name="PA_CONS_ConsultarPedidos_Paginados_v4_Result">
+    <Property Type="Int32" Name="paq_pedido" Nullable="false" />
+    <Property Type="Int32" Name="paq_personalizado" Nullable="true" />
+    <Property Type="DateTime" Name="paq_fecha" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="seg_usuario" Nullable="true" />
+    <Property Type="String" Name="seg_nombre_completo" Nullable="false" MaxLength="302" />
+    <Property Type="String" Name="paq_nombre_album" Nullable="true" MaxLength="200" />
+    <Property Type="Int32" Name="paq_categoria" Nullable="true" />
+    <Property Type="String" Name="paq_tipo_album" Nullable="true" MaxLength="200" />
+    <Property Type="Int32" Name="paq_tipo_vinil" Nullable="true" />
+    <Property Type="String" Name="paq_nombre_vinil" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="paq_numero_transferencia" Nullable="true" MaxLength="200" />
+    <Property Type="Decimal" Name="paq_monto" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Int32" Name="paq_estado" Nullable="true" />
+    <Property Type="String" Name="paq_descripcion_estado" Nullable="true" MaxLength="200" />
+  </ComplexType>
+  <ComplexType Name="PA_CONS_ConsultarPedidoxId_Result">
+    <Property Type="Int32" Name="paq_pedido" Nullable="false" />
+    <Property Type="Int32" Name="paq_personalizado" Nullable="true" />
+    <Property Type="Int32" Name="seg_usuario" Nullable="true" />
+    <Property Type="String" Name="seg_nombre_completo" Nullable="false" MaxLength="302" />
+    <Property Type="DateTime" Name="paq_fecha" Nullable="true" Precision="23" />
+    <Property Type="String" Name="paq_nombre_album" Nullable="true" MaxLength="200" />
+    <Property Type="Int32" Name="paq_categoria" Nullable="true" />
+    <Property Type="String" Name="paq_tipo_album" Nullable="true" MaxLength="200" />
+    <Property Type="Int32" Name="paq_tipo_vinil" Nullable="true" />
+    <Property Type="String" Name="paq_nombre_vinil" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="paq_numero_transferencia" Nullable="true" MaxLength="200" />
+    <Property Type="Decimal" Name="paq_monto" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Int32" Name="paq_estado" Nullable="true" />
+    <Property Type="String" Name="paq_descripcion_estado" Nullable="true" MaxLength="200" />
+  </ComplexType>
+  <ComplexType Name="PA_CONS_ConsultarRespuestasxPedido_Result">
+    <Property Type="String" Name="paq_respuesta" Nullable="true" />
+    <Property Type="String" Name="paq_descripcion" Nullable="true" MaxLength="400" />
+  </ComplexType>
+  <ComplexType Name="PA_CONS_ConsultarFotosxPedido__Result">
+    <Property Type="Binary" Name="paq_imagen" Nullable="true" />
+    <Property Type="Int32" Name="paq_fotos_pedido" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="PA_CONS_ConsultarColor_Result">
+    <Property Type="Int32" Name="paq_parametro" Nullable="false" />
+    <Property Type="String" Name="paq_titulo" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="paq_descripcion" Nullable="true" MaxLength="500" />
+  </ComplexType>
+  <ComplexType Name="PA_ConsultarParametros_Result">
+    <Property Type="Int32" Name="paq_parametro" Nullable="false" />
+    <Property Type="String" Name="paq_titulo" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="paq_descripcion" Nullable="true" MaxLength="500" />
+  </ComplexType>
+  <ComplexType Name="PA_ConsultarProyecto_Result">
+    <Property Type="Int32" Name="paq_proyecto" Nullable="false" />
+    <Property Type="String" Name="paq_nombre" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="paq_descripcion" Nullable="true" MaxLength="200" />
+  </ComplexType>
+  <ComplexType Name="PA_ConsultarProyectoImg_Result">
+    <Property Type="Int32" Name="paq_proyecto" Nullable="false" />
+    <Property Type="String" Name="paq_nombre" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="paq_descripcion" Nullable="true" MaxLength="200" />
+    <Property Type="Binary" Name="paq_img" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="PA_CONS_ConsultarUsuarioAdmin_Result">
+    <Property Type="String" Name="seg_nombre" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="seg_apellido1" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="seg_apellido2" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="seg_correo" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="PA_CONS_ConsultarEstadoxId_Result">
+    <Property Type="Int32" Name="paq_estado_pedido" Nullable="false" />
+    <Property Type="String" Name="paq_descripcion" Nullable="true" MaxLength="200" />
+    <Property Type="Boolean" Name="paq_notifica" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="PA_CONS_ConsultarFrasesLike_V2_Result">
+    <Property Type="Int32" Name="paq_frase" Nullable="false" />
+    <Property Type="String" Name="paq_descripcion" Nullable="true" MaxLength="200" />
+    <Property Type="Boolean" Name="paq_inactivo" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="PA_CONS_ConsultarFrasesxPedido_V2_Result">
+    <Property Type="String" Name="paq_descripcion" Nullable="true" MaxLength="200" />
+    <Property Type="Int32" Name="paq_frase" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="PA_CONS_ConsultarTelMemories_Result">
+    <Property Type="Int32" Name="paq_parametro" Nullable="false" />
+    <Property Type="String" Name="paq_titulo" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="paq_descripcion" Nullable="true" MaxLength="500" />
+  </ComplexType>
+  <ComplexType Name="PA_CONS_ConsultarCorreo_Result">
+    <Property Type="Int32" Name="paq_parametro" Nullable="false" />
+    <Property Type="String" Name="paq_titulo" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="paq_descripcion" Nullable="true" MaxLength="500" />
+  </ComplexType>
+  <ComplexType Name="PA_CONS_ConsultarCuentaBancaria_Result">
+    <Property Type="Int32" Name="paq_parametro" Nullable="false" />
+    <Property Type="String" Name="paq_titulo" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="paq_descripcion" Nullable="true" MaxLength="500" />
+  </ComplexType>
+</Schema>

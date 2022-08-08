@@ -1,0 +1,519 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MemoriesByCocoModelStoreContainer" CdmEntityContainer="MemoriesByCocoEntities">
+    <FunctionImportMapping FunctionImportName="PA_INS_RegistrarUsuario" FunctionName="MemoriesByCocoModel.Store.PA_INS_RegistrarUsuario" />
+    <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarEmailRegistrado" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarEmailRegistrado" />
+    <FunctionImportMapping FunctionImportName="PA_CambiosPassword" FunctionName="MemoriesByCocoModel.Store.PA_CambiosPassword" />
+    <FunctionImportMapping FunctionImportName="PA_INS_SolicitaCambio" FunctionName="MemoriesByCocoModel.Store.PA_INS_SolicitaCambio" />
+    <FunctionImportMapping FunctionImportName="PA_CONS_Consultar_Solicita_Password" FunctionName="MemoriesByCocoModel.Store.PA_CONS_Consultar_Solicita_Password" />
+    <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarInicioSesion" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarInicioSesion">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MemoriesByCocoModel.PA_CONS_ConsultarInicioSesion_Result">
+          <ScalarProperty Name="seg_id" ColumnName="seg_id" />
+          <ScalarProperty Name="seg_nombre" ColumnName="seg_nombre" />
+          <ScalarProperty Name="seg_apellido1" ColumnName="seg_apellido1" />
+          <ScalarProperty Name="seg_apellido2" ColumnName="seg_apellido2" />
+          <ScalarProperty Name="seg_correo" ColumnName="seg_correo" />
+          <ScalarProperty Name="seg_tel" ColumnName="seg_tel" />
+          <ScalarProperty Name="seg_direccion" ColumnName="seg_direccion" />
+          <ScalarProperty Name="seg_usuario" ColumnName="seg_usuario" />
+          <ScalarProperty Name="seg_pass" ColumnName="seg_pass" />
+          <ScalarProperty Name="paq_tipo_usuario" ColumnName="paq_tipo_usuario" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PA_Mantenimiento_PAQ_ESTADO_PEDIDO" FunctionName="MemoriesByCocoModel.Store.PA_Mantenimiento_PAQ_ESTADO_PEDIDO" />
+    <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarFrases_Paginacion" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarFrases_Paginacion">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MemoriesByCocoModel.PA_CONS_ConsultarFrases_Paginacion_Result1">
+          <ScalarProperty Name="paq_frase" ColumnName="paq_frase" />
+          <ScalarProperty Name="paq_descripcion" ColumnName="paq_descripcion" />
+          <ScalarProperty Name="paq_inactivo" ColumnName="paq_inactivo" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarRegistrosFrases" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarRegistrosFrases" />
+    <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarFrasesLike" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarFrasesLike">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MemoriesByCocoModel.PA_CONS_ConsultarFrasesLike_Result">
+          <ScalarProperty Name="paq_frase" ColumnName="paq_frase" />
+          <ScalarProperty Name="paq_descripcion" ColumnName="paq_descripcion" />
+          <ScalarProperty Name="paq_inactivo" ColumnName="paq_inactivo" />
+          <ScalarProperty Name="paq_sticker" ColumnName="paq_sticker" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PA_InsertarFrases" FunctionName="MemoriesByCocoModel.Store.PA_InsertarFrases" />
+    <FunctionImportMapping FunctionImportName="PA_ActivarFrase" FunctionName="MemoriesByCocoModel.Store.PA_ActivarFrase" />
+    <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarStickerxID" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarStickerxID" />
+    <FunctionImportMapping FunctionImportName="PA_ActivarVinil" FunctionName="MemoriesByCocoModel.Store.PA_ActivarVinil" />
+    <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarImgxIDVinil" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarImgxIDVinil" />
+    <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarRegistrosVinil" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarRegistrosVinil" />
+    <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarVinil_Paginacion" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarVinil_Paginacion">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MemoriesByCocoModel.PA_CONS_ConsultarVinil_Paginacion_Result">
+          <ScalarProperty Name="paq_vinil" ColumnName="paq_vinil" />
+          <ScalarProperty Name="paq_nombre" ColumnName="paq_nombre" />
+          <ScalarProperty Name="paq_descripcion" ColumnName="paq_descripcion" />
+          <ScalarProperty Name="paq_inactivo" ColumnName="paq_inactivo" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarVinilLike" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarVinilLike">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MemoriesByCocoModel.PA_CONS_ConsultarVinilLike_Result">
+          <ScalarProperty Name="paq_vinil" ColumnName="paq_vinil" />
+          <ScalarProperty Name="paq_nombre" ColumnName="paq_nombre" />
+          <ScalarProperty Name="paq_descripcion" ColumnName="paq_descripcion" />
+          <ScalarProperty Name="paq_inactivo" ColumnName="paq_inactivo" />
+          <ScalarProperty Name="paq_img" ColumnName="paq_img" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PA_InsertarVinil" FunctionName="MemoriesByCocoModel.Store.PA_InsertarVinil" />
+    <FunctionImportMapping FunctionImportName="PA_MantenimientoVinil" FunctionName="MemoriesByCocoModel.Store.PA_MantenimientoVinil" />
+    <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarEstados" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarEstados">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MemoriesByCocoModel.PA_CONS_ConsultarEstados_Result">
+          <ScalarProperty Name="paq_estado_pedido" ColumnName="paq_estado_pedido" />
+          <ScalarProperty Name="paq_descripcion" ColumnName="paq_descripcion" />
+          <ScalarProperty Name="paq_notifica" ColumnName="paq_notifica" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarFrases_Paginacion_Sticker" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarFrases_Paginacion_Sticker">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MemoriesByCocoModel.PA_CONS_ConsultarFrases_Paginacion_Sticker_Result">
+          <ScalarProperty Name="paq_frase" ColumnName="paq_frase" />
+          <ScalarProperty Name="paq_descripcion" ColumnName="paq_descripcion" />
+          <ScalarProperty Name="paq_inactivo" ColumnName="paq_inactivo" />
+          <ScalarProperty Name="paq_sticker" ColumnName="paq_sticker" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarRegistroStickers" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarRegistroStickers" />
+    <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarRegistroVinilActivo" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarRegistroVinilActivo" />
+    <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarVinil_Paginacion_Img" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarVinil_Paginacion_Img">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MemoriesByCocoModel.PA_CONS_ConsultarVinil_Paginacion_Img_Result">
+          <ScalarProperty Name="paq_vinil" ColumnName="paq_vinil" />
+          <ScalarProperty Name="paq_descripcion" ColumnName="paq_descripcion" />
+          <ScalarProperty Name="paq_inactivo" ColumnName="paq_inactivo" />
+          <ScalarProperty Name="paq_img" ColumnName="paq_img" />
+          <ScalarProperty Name="paq_nombre" ColumnName="paq_nombre" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarVinilLike_Img" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarVinilLike_Img">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MemoriesByCocoModel.PA_CONS_ConsultarVinilLike_Img_Result">
+          <ScalarProperty Name="paq_vinil" ColumnName="paq_vinil" />
+          <ScalarProperty Name="paq_nombre" ColumnName="paq_nombre" />
+          <ScalarProperty Name="paq_descripcion" ColumnName="paq_descripcion" />
+          <ScalarProperty Name="paq_inactivo" ColumnName="paq_inactivo" />
+          <ScalarProperty Name="paq_img" ColumnName="paq_img" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarFrases_Paginacion_Usuario" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarFrases_Paginacion_Usuario">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MemoriesByCocoModel.PA_CONS_ConsultarFrases_Paginacion_Usuario_Result">
+          <ScalarProperty Name="paq_frase" ColumnName="paq_frase" />
+          <ScalarProperty Name="paq_descripcion" ColumnName="paq_descripcion" />
+          <ScalarProperty Name="paq_inactivo" ColumnName="paq_inactivo" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarFrasesLike_Usuario" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarFrasesLike_Usuario">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MemoriesByCocoModel.PA_CONS_ConsultarFrasesLike_Usuario_Result">
+          <ScalarProperty Name="paq_frase" ColumnName="paq_frase" />
+          <ScalarProperty Name="paq_descripcion" ColumnName="paq_descripcion" />
+          <ScalarProperty Name="paq_inactivo" ColumnName="paq_inactivo" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarRegistrosFrases_Usuario" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarRegistrosFrases_Usuario" />
+    <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarFrasexID" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarFrasexID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MemoriesByCocoModel.PA_CONS_ConsultarFrasexID_Result">
+          <ScalarProperty Name="paq_frase" ColumnName="paq_frase" />
+          <ScalarProperty Name="paq_descripcion" ColumnName="paq_descripcion" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PA_MantenimientoFrases_" FunctionName="MemoriesByCocoModel.Store.PA_MantenimientoFrases_" />
+    <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarPreguntas" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarPreguntas">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MemoriesByCocoModel.PA_CONS_ConsultarPreguntas_Result">
+          <ScalarProperty Name="paq_pregunta" ColumnName="paq_pregunta" />
+          <ScalarProperty Name="paq_descripcion" ColumnName="paq_descripcion" />
+          <ScalarProperty Name="paq_inactivo" ColumnName="paq_inactivo" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PA_Mantenimiento_Preguntas" FunctionName="MemoriesByCocoModel.Store.PA_Mantenimiento_Preguntas" />
+    <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarPreguntaxID" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarPreguntaxID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MemoriesByCocoModel.PA_CONS_ConsultarPreguntaxID_Result">
+          <ScalarProperty Name="paq_pregunta" ColumnName="paq_pregunta" />
+          <ScalarProperty Name="paq_descripcion" ColumnName="paq_descripcion" />
+          <ScalarProperty Name="paq_inactivo" ColumnName="paq_inactivo" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PA_Obtener_NumeroPedido" FunctionName="MemoriesByCocoModel.Store.PA_Obtener_NumeroPedido" />
+    <FunctionImportMapping FunctionImportName="PA_Eliminar_ImagenPedido" FunctionName="MemoriesByCocoModel.Store.PA_Eliminar_ImagenPedido" />
+    <FunctionImportMapping FunctionImportName="PA_INS_InsertarImagenPedidoUsuario" FunctionName="MemoriesByCocoModel.Store.PA_INS_InsertarImagenPedidoUsuario" />
+    <FunctionImportMapping FunctionImportName="PA_INS_InsertarRespuestasUsuario" FunctionName="MemoriesByCocoModel.Store.PA_INS_InsertarRespuestasUsuario" />
+    <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarPrecios" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarPrecios">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MemoriesByCocoModel.PA_CONS_ConsultarPrecios_Result">
+          <ScalarProperty Name="paq_precio" ColumnName="paq_precio" />
+          <ScalarProperty Name="paq_descripcion" ColumnName="paq_descripcion" />
+          <ScalarProperty Name="paq_valor" ColumnName="paq_valor" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PA_MantenimientoPrecios" FunctionName="MemoriesByCocoModel.Store.PA_MantenimientoPrecios" />
+    <FunctionImportMapping FunctionImportName="PA_ActualizarInfoUsuario" FunctionName="MemoriesByCocoModel.Store.PA_ActualizarInfoUsuario" />
+    <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarUsuario" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarUsuario">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MemoriesByCocoModel.PA_CONS_ConsultarUsuario_Result">
+          <ScalarProperty Name="seg_id" ColumnName="seg_id" />
+          <ScalarProperty Name="seg_nombre" ColumnName="seg_nombre" />
+          <ScalarProperty Name="seg_apellido1" ColumnName="seg_apellido1" />
+          <ScalarProperty Name="seg_apellido2" ColumnName="seg_apellido2" />
+          <ScalarProperty Name="seg_correo" ColumnName="seg_correo" />
+          <ScalarProperty Name="seg_direccion" ColumnName="seg_direccion" />
+          <ScalarProperty Name="seg_tel" ColumnName="seg_tel" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PA_AsignarPuntos" FunctionName="MemoriesByCocoModel.Store.PA_AsignarPuntos" />
+    <FunctionImportMapping FunctionImportName="PA_RegistrarPedido" FunctionName="MemoriesByCocoModel.Store.PA_RegistrarPedido" />
+    <FunctionImportMapping FunctionImportName="PA_ActivarCategoria" FunctionName="MemoriesByCocoModel.Store.PA_ActivarCategoria" />
+    <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarCategoria_Paginacion" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarCategoria_Paginacion">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MemoriesByCocoModel.PA_CONS_ConsultarCategoria_Paginacion_Result">
+          <ScalarProperty Name="paq_categoria" ColumnName="paq_categoria" />
+          <ScalarProperty Name="paq_nombre" ColumnName="paq_nombre" />
+          <ScalarProperty Name="paq_descripcion" ColumnName="paq_descripcion" />
+          <ScalarProperty Name="paq_inactivo" ColumnName="paq_inactivo" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarCategoriaLike" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarCategoriaLike">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MemoriesByCocoModel.PA_CONS_ConsultarCategoriaLike_Result">
+          <ScalarProperty Name="paq_categoria" ColumnName="paq_categoria" />
+          <ScalarProperty Name="paq_nombre" ColumnName="paq_nombre" />
+          <ScalarProperty Name="paq_descripcion" ColumnName="paq_descripcion" />
+          <ScalarProperty Name="paq_inactivo" ColumnName="paq_inactivo" />
+          <ScalarProperty Name="paq_img" ColumnName="paq_img" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarImgxIDCategoria" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarImgxIDCategoria" />
+    <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarRegistrosCategoria" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarRegistrosCategoria" />
+    <FunctionImportMapping FunctionImportName="PA_MantenimientoCategoria" FunctionName="MemoriesByCocoModel.Store.PA_MantenimientoCategoria" />
+    <FunctionImportMapping FunctionImportName="PA_MantenimientoAlbumPredefinido" FunctionName="MemoriesByCocoModel.Store.PA_MantenimientoAlbumPredefinido" />
+    <FunctionImportMapping FunctionImportName="PA_MantenimientoImgAlbumPredefinido" FunctionName="MemoriesByCocoModel.Store.PA_MantenimientoImgAlbumPredefinido" />
+    <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarCategoria" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarCategoria">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MemoriesByCocoModel.PA_CONS_ConsultarCategoria_Result">
+          <ScalarProperty Name="paq_categoria" ColumnName="paq_categoria" />
+          <ScalarProperty Name="paq_nombre" ColumnName="paq_nombre" />
+          <ScalarProperty Name="paq_descripcion" ColumnName="paq_descripcion" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarAlbum_Paginacion" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarAlbum_Paginacion">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MemoriesByCocoModel.PA_CONS_ConsultarAlbum_Paginacion_Result">
+          <ScalarProperty Name="paq_album" ColumnName="paq_album" />
+          <ScalarProperty Name="paq_categoria" ColumnName="paq_categoria" />
+          <ScalarProperty Name="paq_nombre" ColumnName="paq_nombre" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarAlbum_Paginacion_" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarAlbum_Paginacion_">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MemoriesByCocoModel.PA_CONS_ConsultarAlbum_Paginacion__Result">
+          <ScalarProperty Name="paq_album" ColumnName="paq_album" />
+          <ScalarProperty Name="paq_categoria" ColumnName="paq_categoria" />
+          <ScalarProperty Name="paq_nombre" ColumnName="paq_nombre" />
+          <ScalarProperty Name="paq_nombre_categoria" ColumnName="paq_nombre_categoria" />
+          <ScalarProperty Name="paq_descripcion" ColumnName="paq_descripcion" />
+          <ScalarProperty Name="paq_inactivo" ColumnName="paq_inactivo" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarAlbumLike" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarAlbumLike">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MemoriesByCocoModel.PA_CONS_ConsultarAlbumLike_Result">
+          <ScalarProperty Name="paq_album" ColumnName="paq_album" />
+          <ScalarProperty Name="paq_categoria" ColumnName="paq_categoria" />
+          <ScalarProperty Name="paq_nombre" ColumnName="paq_nombre" />
+          <ScalarProperty Name="paq_nombre_categoria" ColumnName="paq_nombre_categoria" />
+          <ScalarProperty Name="paq_descripcion" ColumnName="paq_descripcion" />
+          <ScalarProperty Name="paq_inactivo" ColumnName="paq_inactivo" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarRegistrosAlbum" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarRegistrosAlbum" />
+    <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarImagenesAlbumPredefinido_V2" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarImagenesAlbumPredefinido_V2">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MemoriesByCocoModel.PA_CONS_ConsultarImagenesAlbumPredefinido_V2_Result">
+          <ScalarProperty Name="paq_img" ColumnName="paq_img" />
+          <ScalarProperty Name="paq_img_predefinido" ColumnName="paq_img_predefinido" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarCategoriaImgs" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarCategoriaImgs">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MemoriesByCocoModel.PA_CONS_ConsultarCategoriaImgs_Result">
+          <ScalarProperty Name="paq_categoria" ColumnName="paq_categoria" />
+          <ScalarProperty Name="paq_nombre" ColumnName="paq_nombre" />
+          <ScalarProperty Name="paq_descripcion" ColumnName="paq_descripcion" />
+          <ScalarProperty Name="paq_inactivo" ColumnName="paq_inactivo" />
+          <ScalarProperty Name="paq_img" ColumnName="paq_img" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarAlbumxCategoria" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarAlbumxCategoria">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MemoriesByCocoModel.PA_CONS_ConsultarAlbumxCategoria_Result">
+          <ScalarProperty Name="paq_album" ColumnName="paq_album" />
+          <ScalarProperty Name="paq_nombre" ColumnName="paq_nombre" />
+          <ScalarProperty Name="paq_categoria" ColumnName="paq_categoria" />
+          <ScalarProperty Name="paq_img" ColumnName="paq_img" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarPuntosxUsuario" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarPuntosxUsuario" />
+    <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarPedidos_Paginados" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarPedidos_Paginados">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MemoriesByCocoModel.PA_CONS_ConsultarPedidos_Paginados_Result">
+          <ScalarProperty Name="paq_pedido" ColumnName="paq_pedido" />
+          <ScalarProperty Name="paq_personalizado" ColumnName="paq_personalizado" />
+          <ScalarProperty Name="paq_nombre_album" ColumnName="paq_nombre_album" />
+          <ScalarProperty Name="paq_categoria" ColumnName="paq_categoria" />
+          <ScalarProperty Name="paq_tipo_album" ColumnName="paq_tipo_album" />
+          <ScalarProperty Name="paq_tipo_vinil" ColumnName="paq_tipo_vinil" />
+          <ScalarProperty Name="paq_nombre_vinil" ColumnName="paq_nombre_vinil" />
+          <ScalarProperty Name="paq_numero_transferencia" ColumnName="paq_numero_transferencia" />
+          <ScalarProperty Name="paq_monto" ColumnName="paq_monto" />
+          <ScalarProperty Name="paq_estado" ColumnName="paq_estado" />
+          <ScalarProperty Name="paq_descripcion_estado" ColumnName="paq_descripcion_estado" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarPedidos_Paginados_v2" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarPedidos_Paginados_v2">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MemoriesByCocoModel.PA_CONS_ConsultarPedidos_Paginados_v2_Result">
+          <ScalarProperty Name="paq_pedido" ColumnName="paq_pedido" />
+          <ScalarProperty Name="paq_personalizado" ColumnName="paq_personalizado" />
+          <ScalarProperty Name="paq_fecha" ColumnName="paq_fecha" />
+          <ScalarProperty Name="paq_nombre_album" ColumnName="paq_nombre_album" />
+          <ScalarProperty Name="paq_categoria" ColumnName="paq_categoria" />
+          <ScalarProperty Name="paq_tipo_album" ColumnName="paq_tipo_album" />
+          <ScalarProperty Name="paq_tipo_vinil" ColumnName="paq_tipo_vinil" />
+          <ScalarProperty Name="paq_nombre_vinil" ColumnName="paq_nombre_vinil" />
+          <ScalarProperty Name="paq_numero_transferencia" ColumnName="paq_numero_transferencia" />
+          <ScalarProperty Name="paq_monto" ColumnName="paq_monto" />
+          <ScalarProperty Name="paq_estado" ColumnName="paq_estado" />
+          <ScalarProperty Name="paq_descripcion_estado" ColumnName="paq_descripcion_estado" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PA_RegistrarPedido_V2" FunctionName="MemoriesByCocoModel.Store.PA_RegistrarPedido_V2" />
+    <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarPedidos_Paginados_v3" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarPedidos_Paginados_v3">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MemoriesByCocoModel.PA_CONS_ConsultarPedidos_Paginados_v3_Result">
+          <ScalarProperty Name="paq_pedido" ColumnName="paq_pedido" />
+          <ScalarProperty Name="paq_personalizado" ColumnName="paq_personalizado" />
+          <ScalarProperty Name="paq_fecha" ColumnName="paq_fecha" />
+          <ScalarProperty Name="paq_nombre_album" ColumnName="paq_nombre_album" />
+          <ScalarProperty Name="paq_categoria" ColumnName="paq_categoria" />
+          <ScalarProperty Name="paq_tipo_album" ColumnName="paq_tipo_album" />
+          <ScalarProperty Name="paq_tipo_vinil" ColumnName="paq_tipo_vinil" />
+          <ScalarProperty Name="paq_nombre_vinil" ColumnName="paq_nombre_vinil" />
+          <ScalarProperty Name="paq_numero_transferencia" ColumnName="paq_numero_transferencia" />
+          <ScalarProperty Name="paq_monto" ColumnName="paq_monto" />
+          <ScalarProperty Name="paq_estado" ColumnName="paq_estado" />
+          <ScalarProperty Name="paq_descripcion_estado" ColumnName="paq_descripcion_estado" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarRegistrosPedido" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarRegistrosPedido" />
+    <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarPedidos_Paginados_v4" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarPedidos_Paginados_v4">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MemoriesByCocoModel.PA_CONS_ConsultarPedidos_Paginados_v4_Result">
+          <ScalarProperty Name="paq_pedido" ColumnName="paq_pedido" />
+          <ScalarProperty Name="paq_personalizado" ColumnName="paq_personalizado" />
+          <ScalarProperty Name="paq_fecha" ColumnName="paq_fecha" />
+          <ScalarProperty Name="seg_usuario" ColumnName="seg_usuario" />
+          <ScalarProperty Name="seg_nombre_completo" ColumnName="seg_nombre_completo" />
+          <ScalarProperty Name="paq_nombre_album" ColumnName="paq_nombre_album" />
+          <ScalarProperty Name="paq_categoria" ColumnName="paq_categoria" />
+          <ScalarProperty Name="paq_tipo_album" ColumnName="paq_tipo_album" />
+          <ScalarProperty Name="paq_tipo_vinil" ColumnName="paq_tipo_vinil" />
+          <ScalarProperty Name="paq_nombre_vinil" ColumnName="paq_nombre_vinil" />
+          <ScalarProperty Name="paq_numero_transferencia" ColumnName="paq_numero_transferencia" />
+          <ScalarProperty Name="paq_monto" ColumnName="paq_monto" />
+          <ScalarProperty Name="paq_estado" ColumnName="paq_estado" />
+          <ScalarProperty Name="paq_descripcion_estado" ColumnName="paq_descripcion_estado" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarPedidoxId" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarPedidoxId">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MemoriesByCocoModel.PA_CONS_ConsultarPedidoxId_Result">
+          <ScalarProperty Name="paq_pedido" ColumnName="paq_pedido" />
+          <ScalarProperty Name="paq_personalizado" ColumnName="paq_personalizado" />
+          <ScalarProperty Name="seg_usuario" ColumnName="seg_usuario" />
+          <ScalarProperty Name="seg_nombre_completo" ColumnName="seg_nombre_completo" />
+          <ScalarProperty Name="paq_fecha" ColumnName="paq_fecha" />
+          <ScalarProperty Name="paq_nombre_album" ColumnName="paq_nombre_album" />
+          <ScalarProperty Name="paq_categoria" ColumnName="paq_categoria" />
+          <ScalarProperty Name="paq_tipo_album" ColumnName="paq_tipo_album" />
+          <ScalarProperty Name="paq_tipo_vinil" ColumnName="paq_tipo_vinil" />
+          <ScalarProperty Name="paq_nombre_vinil" ColumnName="paq_nombre_vinil" />
+          <ScalarProperty Name="paq_numero_transferencia" ColumnName="paq_numero_transferencia" />
+          <ScalarProperty Name="paq_monto" ColumnName="paq_monto" />
+          <ScalarProperty Name="paq_estado" ColumnName="paq_estado" />
+          <ScalarProperty Name="paq_descripcion_estado" ColumnName="paq_descripcion_estado" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarFotosxPedido" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarFotosxPedido" />
+    <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarFrasesxPedido" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarFrasesxPedido" />
+    <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarRespuestasxPedido" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarRespuestasxPedido">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MemoriesByCocoModel.PA_CONS_ConsultarRespuestasxPedido_Result">
+          <ScalarProperty Name="paq_respuesta" ColumnName="paq_respuesta" />
+          <ScalarProperty Name="paq_descripcion" ColumnName="paq_descripcion" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PA_InsertarFrasesxPedido" FunctionName="MemoriesByCocoModel.Store.PA_InsertarFrasesxPedido" />
+    <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarFotosxPedido_" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarFotosxPedido_">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MemoriesByCocoModel.PA_CONS_ConsultarFotosxPedido__Result">
+          <ScalarProperty Name="paq_imagen" ColumnName="paq_imagen" />
+          <ScalarProperty Name="paq_fotos_pedido" ColumnName="paq_fotos_pedido" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PA_ActualizarEstadoPedido" FunctionName="MemoriesByCocoModel.Store.PA_ActualizarEstadoPedido" />
+    <FunctionImportMapping FunctionImportName="PA_Actualizar_Parametro" FunctionName="MemoriesByCocoModel.Store.PA_Actualizar_Parametro" />
+    <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarCantidadProyectos" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarCantidadProyectos" />
+    <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarColor" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarColor">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MemoriesByCocoModel.PA_CONS_ConsultarColor_Result">
+          <ScalarProperty Name="paq_parametro" ColumnName="paq_parametro" />
+          <ScalarProperty Name="paq_titulo" ColumnName="paq_titulo" />
+          <ScalarProperty Name="paq_descripcion" ColumnName="paq_descripcion" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarImgxProyecto" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarImgxProyecto" />
+    <FunctionImportMapping FunctionImportName="PA_ConsultarParametros" FunctionName="MemoriesByCocoModel.Store.PA_ConsultarParametros">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MemoriesByCocoModel.PA_ConsultarParametros_Result">
+          <ScalarProperty Name="paq_parametro" ColumnName="paq_parametro" />
+          <ScalarProperty Name="paq_titulo" ColumnName="paq_titulo" />
+          <ScalarProperty Name="paq_descripcion" ColumnName="paq_descripcion" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PA_ConsultarProyecto" FunctionName="MemoriesByCocoModel.Store.PA_ConsultarProyecto">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MemoriesByCocoModel.PA_ConsultarProyecto_Result">
+          <ScalarProperty Name="paq_proyecto" ColumnName="paq_proyecto" />
+          <ScalarProperty Name="paq_nombre" ColumnName="paq_nombre" />
+          <ScalarProperty Name="paq_descripcion" ColumnName="paq_descripcion" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PA_ConsultarProyectoImg" FunctionName="MemoriesByCocoModel.Store.PA_ConsultarProyectoImg">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MemoriesByCocoModel.PA_ConsultarProyectoImg_Result">
+          <ScalarProperty Name="paq_proyecto" ColumnName="paq_proyecto" />
+          <ScalarProperty Name="paq_nombre" ColumnName="paq_nombre" />
+          <ScalarProperty Name="paq_descripcion" ColumnName="paq_descripcion" />
+          <ScalarProperty Name="paq_img" ColumnName="paq_img" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PA_MantenimientoProyecto" FunctionName="MemoriesByCocoModel.Store.PA_MantenimientoProyecto" />
+    <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarUsuarioAdmin" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarUsuarioAdmin">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MemoriesByCocoModel.PA_CONS_ConsultarUsuarioAdmin_Result">
+          <ScalarProperty Name="seg_nombre" ColumnName="seg_nombre" />
+          <ScalarProperty Name="seg_apellido1" ColumnName="seg_apellido1" />
+          <ScalarProperty Name="seg_apellido2" ColumnName="seg_apellido2" />
+          <ScalarProperty Name="seg_correo" ColumnName="seg_correo" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarEstadoxId" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarEstadoxId">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MemoriesByCocoModel.PA_CONS_ConsultarEstadoxId_Result">
+          <ScalarProperty Name="paq_estado_pedido" ColumnName="paq_estado_pedido" />
+          <ScalarProperty Name="paq_descripcion" ColumnName="paq_descripcion" />
+          <ScalarProperty Name="paq_notifica" ColumnName="paq_notifica" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarFrasesLike_V2" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarFrasesLike_V2">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MemoriesByCocoModel.PA_CONS_ConsultarFrasesLike_V2_Result">
+          <ScalarProperty Name="paq_frase" ColumnName="paq_frase" />
+          <ScalarProperty Name="paq_descripcion" ColumnName="paq_descripcion" />
+          <ScalarProperty Name="paq_inactivo" ColumnName="paq_inactivo" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarFrasesxPedido_V2" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarFrasesxPedido_V2">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MemoriesByCocoModel.PA_CONS_ConsultarFrasesxPedido_V2_Result">
+          <ScalarProperty Name="paq_descripcion" ColumnName="paq_descripcion" />
+          <ScalarProperty Name="paq_frase" ColumnName="paq_frase" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarTelMemories" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarTelMemories">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MemoriesByCocoModel.PA_CONS_ConsultarTelMemories_Result">
+          <ScalarProperty Name="paq_parametro" ColumnName="paq_parametro" />
+          <ScalarProperty Name="paq_titulo" ColumnName="paq_titulo" />
+          <ScalarProperty Name="paq_descripcion" ColumnName="paq_descripcion" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PA_EliminarPuntos" FunctionName="MemoriesByCocoModel.Store.PA_EliminarPuntos" />
+    <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarCorreo" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarCorreo">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MemoriesByCocoModel.PA_CONS_ConsultarCorreo_Result">
+          <ScalarProperty Name="paq_parametro" ColumnName="paq_parametro" />
+          <ScalarProperty Name="paq_titulo" ColumnName="paq_titulo" />
+          <ScalarProperty Name="paq_descripcion" ColumnName="paq_descripcion" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PA_CONS_ConsultarCuentaBancaria" FunctionName="MemoriesByCocoModel.Store.PA_CONS_ConsultarCuentaBancaria">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MemoriesByCocoModel.PA_CONS_ConsultarCuentaBancaria_Result">
+          <ScalarProperty Name="paq_parametro" ColumnName="paq_parametro" />
+          <ScalarProperty Name="paq_titulo" ColumnName="paq_titulo" />
+          <ScalarProperty Name="paq_descripcion" ColumnName="paq_descripcion" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PA_EliminarPuntos_Cantidad" FunctionName="MemoriesByCocoModel.Store.PA_EliminarPuntos_Cantidad" />
+    <FunctionImportMapping FunctionImportName="PA_CONS_CantidadImgsxPedido" FunctionName="MemoriesByCocoModel.Store.PA_CONS_CantidadImgsxPedido" />
+    <FunctionImportMapping FunctionImportName="PA_InsertarBitacora" FunctionName="MemoriesByCocoModel.Store.PA_InsertarBitacora" />
+  </EntityContainerMapping>
+</Mapping>

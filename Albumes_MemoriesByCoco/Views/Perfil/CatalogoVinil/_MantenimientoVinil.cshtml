@@ -1,0 +1,629 @@
+﻿@model Albumes_MemoriesByCoco.Models.VinilModel
+
+<div id="modalVinilBorrar" style="display:none" class="modal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Ventana Emergente</h5>
+                <button onclick="MostrarEliminarVinil(-1)" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>¿Estas seguro de borrar esta Vinil?</p>
+            </div>
+            <div class="modal-footer">
+                <button onclick="MostrarEliminarVinil(-1)" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button id="btnAceptarEliminarVinil" type="button" class="btn btn-primary">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="modalMostrarImgVinil" style="display:none" class="modal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Ventana Emergente</h5>
+                <button onclick="OcultarMostrarImgVinil()" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body d-flex justify-content-center align-items-center">
+                <img id="imgVistaPreviaVinil" />
+
+            </div>
+            <div class="modal-footer">
+                
+               
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div id="ContainerVinil" class="row">
+    <a style="font-size:40px" onclick="OcultarContenedorVinil()"><i class="fa-solid fa-angle-left"></i></a>
+
+    <h1 class="text-center">Vinil</h1>
+    <button id="btnAgregarVinil" onclick="MostrarAgregarVinil()" class="btn btn-primary mb-2">Crear Nuevo</button>
+    <div class="row">
+        <div class="col-lg-2 col-md-4 ">
+
+        </div>
+        <form id="frmFormularioVinil" enctype="multipart/form-data" class="col-lg-8 col-md-8 col-sm-12 d-flex justify-content-center">
+            <div id="ContainerAgregarVinil" style="display:none" class="card p-2 mb-2 w-75">
+                <div class="card-header">
+                    <h1 class="text-center ">Formulario</h1>
+
+                </div>
+
+                <div class="d-flex justify-content-center align-items-center flex-column">
+
+
+                    @Html.EditorFor(Model => Model.nombre, "", new { htmlAttributes = new { @class = "form-control mt-2", id = "txtNombreVinil", placeholder = "Nombre..." } })
+                    @Html.ValidationMessageFor(Model => Model.nombre, "", new { htmlAttributes = new { @class = "text-danger" } })
+                </div>
+                <div class="d-flex justify-content-center align-items-center flex-column">
+
+
+                    @Html.EditorFor(Model => Model.descripcion, "", new { htmlAttributes = new { @class = "form-control mt-2", id = "txtDescripcionVinil", placeholder = "Descripción..." } })
+                    @Html.ValidationMessageFor(Model => Model.descripcion, "", new { htmlAttributes = new { @class = "text-danger" } })
+                </div>
+                <hr />
+                <div class="d-flex justify-content-center align-items-center  flex-column w-100">
+                    <div class="row">
+
+                        <div class="col-6 d-flex justify-content-start align-items-center">
+                            <div class="d-flex justify-content-start align-items-start ">
+                                @Html.TextBoxFor(Model => Model.strImagen, new { type = "file", onchange = "MostrarImagenVinil()", oncancel="SeleccionarArchivoCanceladoVinil()", id = "InputCargaImagenVinil", htmlAttributes = new { id = "InputCargaImagenVinil", @class = "w-100" } })
+                            </div>
+
+                        </div>
+                        <div class="col-6">
+                            <img class="mt-2" id="ImgSubidaVinil" width="100" height="100" />
+                        </div>
+
+                    </div>
+
+                </div>
+                <hr />
+                <br />
+                <div class="d-flex justify-content-center align-items-center">
+
+                    <div class="form-check">
+                        @Html.CheckBoxFor(Model => Model.Inactivo, new { id = "cbInactivoVinil", htmlAttributes = new { id = "InputCargaImagenVinil", @class = "form-check-input" } })
+                        <label class="form-check-label" for="flexCheckDefault">
+                            @Html.LabelFor(Model => Model.Inactivo)
+                        </label>
+
+
+
+
+
+
+                    </div>
+                    <div class="d-flex justify-content-center align-items-center flex-column">
+                        <button id="btnAgregarFinalVinil" class="btn btn-primary mt-2 form-control">Agregar</button>
+                        <div style="display:none" id="AlertIngresadoVinil" class="alert alert-success w-100 mt-2" role="alert">
+                            Acción realizada correctamente.
+                        </div>
+                        <div style="display:none" class="alert alert-danger w-100 mt-2" role="alert">
+                            Ha ocurrido un error.
+                        </div>
+                    </div>
+
+
+
+
+                </div>
+                </div>
+        </form>
+        <div class="col-lg-2 col-md-4 ">
+
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-lg-4 col-md-4  col-sm-12">
+            <div class="input-group mb-2">
+                <label class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></label>
+                <input placeholder="Buscar..." id="txtBuscarVinil" class="form-control" />
+                <button id="btnCancelarBusquedaVinil" style="display:none" class="btn btn-danger m-0 ">X</button>
+            </div>
+
+
+        </div>
+        <div class="col-lg-4 col-md-4">
+
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-12">
+
+        </div>
+
+    </div>
+    <table class="table table-dark table-hover  TablaSombra">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th colspan="4">Descripción</th>
+                <th>Inactivo</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody id="bodyTablaVinil">
+        </tbody>
+
+    </table>
+    <div id="PaginationVinil" class="d-flex justify-content-center align-items-center">
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+                <li class="page-item">
+                    <button style="display:none" onclick="CambiarPaginaVinil(-1)" id="AtrasPaginadoVinil" class="page-link PaginationVinil" href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </button>
+                </li>
+
+                <li class="page-item PaginationVinil"><a id="ActualPaginadoVinil" class="page-link" href="#">1</a></li>
+
+                <li class="page-item">
+                    <button onclick="CambiarPaginaVinil(1)" id="AdelantePaginadoVinil" class="page-link PaginationVinil" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </button>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+</div>
+
+
+<style>
+    .TablaSombra {
+        box-shadow: 2px 4px 16px black;
+    }
+
+
+    [type="file"] {
+        /* Style the color of the message that says 'No file chosen' */
+        color: #878787;
+    }
+
+        [type="file"]::-webkit-file-upload-button {
+            background: #ED1C1B;
+            border: 2px solid #ED1C1B;
+            border-radius: 4px;
+            color: #fff;
+            cursor: pointer;
+            font-size: 12px;
+            outline: none;
+            padding: 10px 25px;
+            text-transform: uppercase;
+            transition: all 1s ease;
+        }
+
+            [type="file"]::-webkit-file-upload-button:hover {
+                background: #fff;
+                border: 2px solid #535353;
+                color: #000;
+            }
+</style>
+
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script>
+
+
+    var AgregaVinil = 0;
+    var PagTablaVinil = 1;
+    var maxVinil = 0;
+    var minVinil = 0;
+
+
+
+    function MostrarAgregarVinil() {
+
+        $("#AlertIngresadoVinil").hide()
+        $("#AlertError").hide();
+        if (AgregaVinil == 0) {
+            document.getElementById("ContainerAgregarVinil").style.display = "block";
+            document.getElementById("btnAgregarVinil").className = "btn btn-danger mb-2";
+            document.getElementById("btnAgregarVinil").innerHTML = "Cerrar";
+
+            AgregaVinil++;
+        } else {
+
+            document.getElementById("btnAgregarVinil").innerHTML = "Agregar";
+            document.getElementById("btnAgregarVinil").className = "btn btn-primary mb-2";
+            document.getElementById("ContainerAgregarVinil").style.display = "none";
+            AgregaVinil = 0;
+        }
+
+    }
+
+
+    function MostrarImagenVinil() {
+        
+        $("#ImgSubidaVinil").show();
+        var archivo = document.getElementById("InputCargaImagenVinil").files[0];
+        var reader = new FileReader();
+        if (archivo) {
+            reader.readAsDataURL(archivo);
+            reader.onloadend = function () {
+                document.getElementById("ImgSubidaVinil").src = reader.result;
+            }
+        }
+    }
+
+    $("#frmFormularioVinil").submit(function (e) {
+
+        e.preventDefault();
+
+
+
+        var InputDescripcion = $("#txtDescripcionVinil").val();
+        var ImagenExiste = $("#InputCargaImagenVinil").val();
+        var NombreExiste = $("#txtNombreVinil").val();
+
+
+        if (InputDescripcion == "" || ImagenExiste == "" || NombreExiste=="") {
+            $("#AlertError").show()
+            alert("Debe rellenar todos los campos");
+        } else {
+
+            var parametros = new FormData($("#frmFormularioVinil")[0])
+           
+            $.ajax({
+                url: '@Url.Action("AgregarVinil", "Perfil")',
+                type: "POST",
+                data: parametros ,
+            contentType: false,
+            processData: false,
+            success: function (result) {
+                $("#AlertIngresadoVinil").show()
+                $("#txtNombreVinil").val("")
+                $('#cbInactivoVinil').prop('checked', false);
+                $("#txtDescripcionVinil").val('')
+                $("#cbInactivoVinil").val('')
+                $("#InputCargaImagenVinil").val("")
+                $("#ImgSubidaVinil").hide();
+                CambiarPaginaVinil(0)
+
+
+            },
+            error: function (r) {
+
+                $("#AlertError").show();
+            }
+        })
+        }
+
+
+
+
+
+
+
+    })
+
+
+    
+  
+
+
+
+    async function CantidadPaginasVinil() {
+        await $.ajax({
+            url: '@Url.Action("ConsultarRegistroVinil", "Perfil")',
+            type: "POST",
+
+
+
+            success: function (result) {
+              
+                maxVinil = result.nMax;
+                minVinil = result.nMin;
+
+
+            }
+        })
+    }
+    async function  CambiarPaginaVinil(pagina) {
+
+        if (pagina == 0) {
+            await CantidadPaginasVinil()
+        }
+
+
+        if (pagina == 1 ) {
+            PagTablaVinil = PagTablaVinil + pagina;
+        }
+        if (pagina == -1) {
+            PagTablaVinil = PagTablaVinil - 1;
+            $("#AdelantePaginadoVinil").show();
+        }
+
+     
+        if (PagTablaVinil == minVinil) {
+            $("#AtrasPaginadoVinil").hide();
+
+        } else {
+            $("#AtrasPaginadoVinil").show();
+        }
+
+        if (PagTablaVinil == maxVinil) {
+            $("#AdelantePaginadoVinil").hide();
+        } else {
+            $("#AdelantePaginadoVinil").show();
+        }
+
+
+
+        document.getElementById('ActualPaginadoVinil').innerHTML = PagTablaVinil;
+
+        TraerDatosTablaVinil(PagTablaVinil);
+
+
+
+    }
+
+
+
+   async function MostrarImagenPreviaVinil(img) {
+       
+        if (img == "-1") {
+            $("#modalMostrarImgVinil").hide();
+        } else {
+
+
+            await $.ajax({
+            url: '@Url.Action("ConsultarImgVinil", "Perfil")',
+            type: "POST",
+            data: {id:img},
+                success: function (result) {
+                 
+                     document.getElementById("imgVistaPreviaVinil").src = "data:image/png;base64," + result;
+                     $("#modalMostrarImgVinil").show();
+
+            },
+            error: function (r) {
+
+                $("#AlertError").show();
+            }
+        })
+        }
+
+
+
+
+
+    }
+
+
+    function TraerDatosTablaVinil(pag){
+
+
+
+        var Fila = "";
+
+             $.ajax({
+            url: '@Url.Action("MostrarVinil", "Perfil")',
+            type: "POST",
+             data: { pagina: pag },
+
+
+                 success: function (result) {
+
+                     for (i = 0; i < result.length; i++) {
+                         var EsInactivo = result[i].Inactivo ? 'Si' : 'No';
+                         Fila = Fila +
+                             '<tr>' +
+                             '<td>' +
+                             result[i].idVinil +
+                             '</td>' +
+                             '<td>' +
+                             result[i].nombre +
+                             '</td>' +
+                             '<td colspan="4">' +
+                             result[i].descripcion +
+                             '</td>' +
+                             '<td>' +
+                             EsInactivo +
+                             ' </td>' +
+                             '<td><a onclick="MostrarEliminarVinil(' + result[i].idVinil + ')" class="btn btn-danger m-2">Eliminar</a>' +
+                             '<a onclick = "MostrarImagenPreviaVinil(' + result[i].idVinil + ')" class="btn btn-success m-2" > Ver imagen</a>';
+                         if (result[i].Inactivo) {
+                             Fila = Fila + '<a onclick="CambiarInactivoVinil(' + result[i].idVinil + ',false)" class="m-2 btn btn-info">Activar</td>';
+                         } else {
+                             Fila = Fila + '<a onclick="CambiarInactivoVinil(' + result[i].idVinil + ',true)" class="btn btn-warning m-2">Inactivar</a>';
+                         }
+
+
+
+                     Fila=Fila+'</tr>';
+
+
+             }
+
+                     $("#bodyTablaVinil").html(Fila);
+                     $("#ContainerProgressBar").hide();
+
+
+            },
+            error: function (r) {
+
+
+            }
+        })
+
+
+
+    }
+
+    $("#btnMostrarVinil").click(function (e) {
+
+        e.preventDefault();
+        TraerDatosTablaVinil(1);
+
+    })
+
+
+    var IdEliminarVinil = 0;
+    var MuestraEliminarVinil = 0;
+
+
+    $("#btnAceptarEliminarVinil").click(function (e) {
+
+         $.ajax({
+            url: '@Url.Action("EliminarRegistroVinil", "Perfil")',
+            type: "POST",
+            data: { id: IdEliminarVinil },
+            success: function (result) {
+
+                MostrarEliminarVinil(-1);
+                TraerDatosTablaVinil(PagTablaVinil);
+
+            }
+        })
+    })
+
+    function MostrarEliminarVinil(id) {
+        if (id > 0) {
+            IdEliminarVinil=id
+        }
+        if (MuestraEliminarVinil == 0) {
+            $("#modalVinilBorrar").show();
+            MuestraEliminarVinil++;
+        } else {
+            $("#modalVinilBorrar").hide();
+            MuestraEliminarVinil=0;
+        }
+
+
+
+    }
+
+
+    function ConsultarVinilLike(str) {
+
+        var Fila = "";
+          $.ajax({
+            url: '@Url.Action("ConsultarVinilLike", "Perfil")',
+              type: "POST",
+              data: { strVinil: str },
+
+
+                 success: function (result) {
+                   
+                 
+                     for (i = 0; i < result.length; i++) {
+                         var EsInactivo = result[i].Inactivo ? 'Si' : 'No';
+                         Fila = Fila +
+                             '<tr>' +
+                             '<td>' +
+                             result[i].idVinil +
+                             '</td>' +
+                             '<td>' +
+                             result[i].nombre +
+                             '</td>' +
+                             '<td colspan="4">' +
+                             result[i].descripcion +
+                             '</td>' +
+                             '<td>' +
+                             EsInactivo +
+                             ' </td>' +
+                             '<td><a onclick="MostrarEliminarVinil(' + result[i].idVinil + ')" class="btn btn-danger m-2">Eliminar</a>' +
+                             '<a onclick = "MostrarImagenPreviaVinil(' + result[i].idVinil + ')" class="btn btn-success m-2" > Ver imagen</a>';
+                         if (result[i].Inactivo) {
+                             Fila = Fila + '<a onclick="CambiarInactivoVinil(' + result[i].idVinil + ',false)" class="m-2 btn btn-info">Activar</td>';
+                         } else {
+                             Fila = Fila + '<a onclick="CambiarInactivoVinil(' + result[i].idVinil + ',true)" class="btn btn-warning m-2">Inactivar</a>';
+                         }
+
+
+
+                         Fila = Fila + '</tr>';
+
+
+                     }
+
+                $("#bodyTablaVinil").html(Fila);
+
+
+            }
+        })
+    }
+
+    function OcultarMostrarImgVinil() {
+        $("#modalMostrarImgVinil").hide();
+    }
+
+    $("#txtBuscarVinil").keyup(function(){
+        $("#btnCancelarBusquedaVinil").show();
+
+        var Vinil = $("#txtBuscarVinil").val()
+
+        if (Vinil == "") {
+            $("#btnCancelarBusquedaVinil").hide();
+          
+            $(".PaginationVinil").show()
+            $("#AtrasPaginadoVinil").hide();
+            TraerDatosTablaVinil(1);
+
+        } else {
+            $(".PaginationVinil").hide()
+           
+            ConsultarVinilLike(Vinil);
+        }
+
+
+
+
+    })
+
+
+    $("#btnCancelarBusquedaVinil").click(function () {
+        $("#txtBuscarVinil").val("")
+        $("#btnCancelarBusquedaVinil").hide();
+        $("#AtrasPaginadoVinil").hide();
+        $(".PaginationVinil").show();
+        TraerDatosTablaVinil(1);
+        $("#PaginationVinil").show();
+    })
+
+
+    $("#ImgSubidaVinil").hide();
+
+
+
+    function CambiarInactivoVinil(ids, estados) {
+        
+          $.ajax({
+            url: '@Url.Action("CambiarInactivoVinil", "Perfil")',
+              type: "POST",
+              data: { id: ids, estado: estados },
+
+
+                 success: function (result) {
+
+                     TraerDatosTablaVinil(PagTablaVinil);
+
+            },
+            error: function (r) {
+
+
+            }
+        })
+    }
+
+    function OcultarContenedorVinil() {
+        $("#ContainerVinil").hide();
+        $(".PaginaMantenimientos").show();
+    }
+    function SeleccionarArchivoCanceladoVinil() {
+        $("#InputCargaImagenVinil").val("")
+        $("#ImgSubidaVinil").hide();
+    }
+
+
+</script>

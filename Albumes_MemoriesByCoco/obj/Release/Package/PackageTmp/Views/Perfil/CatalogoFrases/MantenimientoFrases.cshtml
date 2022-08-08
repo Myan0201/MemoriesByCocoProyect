@@ -1,0 +1,569 @@
+﻿@model Albumes_MemoriesByCoco.Models.FrasesModel
+
+
+
+<div id="modalFraseBorrar" style="display:none" class="modal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Ventana Emergente</h5>
+                <button onclick="MostrarEliminarFrase(-1)" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>¿Estas seguro de borrar esta frase?</p>
+            </div>
+            <div class="modal-footer">
+                <button onclick="MostrarEliminarFrase(-1)" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button id="btnAceptarEliminarFrase" type="button" class="btn btn-primary">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="modalMostrarSticker" style="display:none" class="modal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-center">Sticker</h5>
+
+                <button onclick="MostrarImagenPreviaFrase('-1')" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body d-flex justify-content-center align-items-center">
+                <img id="imgVistaPreviaFrase" width="200" height="200" />
+            </div>
+            <div class="modal-footer">
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="ContainerFrases" class="row">
+    <a style="font-size:40px" onclick="OcultarContenedorFrases()"><i class="fa-solid fa-circle-arrow-left text-info"></i></a>
+
+    <h1 class="text-center">Frases</h1>
+    <button id="btnAgregar" onclick="MostrarAgregarFrase()" class="btn btn-primary mb-2">Crear Nuevo</button>
+    <div class="row">
+        <div class="col-lg-2 col-md-4 ">
+
+        </div>
+        <form id="frmFormularioFrase" enctype="multipart/form-data" class="col-lg-8 col-md-8 col-sm-12 d-flex justify-content-center">
+            <div id="ContainerAgregarFrase" style="display:none" class="card p-2 mb-2 w-75">
+                <div class="card-header">
+                    <h1 class="text-center ">Formulario</h1>
+
+                </div>
+
+
+                <div class="d-flex justify-content-center align-items-center flex-column">
+
+
+                    @Html.EditorFor(Model => Model.DescripcionFrase, "", new { htmlAttributes = new { @class = "form-control mt-2", id = "txtDescripcion", placeholder = "Frase..." } })
+                    @Html.ValidationMessageFor(Model => Model.DescripcionFrase, "", new { htmlAttributes = new { @class = "text-danger" } })
+                </div>
+               
+                <hr />
+                <br />
+                <div class="d-flex justify-content-center align-items-center">
+                    <b> @Html.LabelFor(Model => Model.Inactivo)</b>
+                    @Html.CheckBoxFor(Model => Model.Inactivo, new { id = "cbInactivo" })
+
+
+                </div>
+                <div class="d-flex justify-content-center align-items-center flex-column">
+                    <button id="btnAgregarFinal" class="btn btn-primary mt-2 form-control">Agregar</button>
+                    <div style="display:none" id="AlertIngresado" class="alert alert-success w-100 mt-2" role="alert">
+                        Acción realizada correctamente.
+                    </div>
+                    <div style="display:none" class="alert alert-danger w-100 mt-2" role="alert">
+                        Ha ocurrido un error.
+                    </div>
+                </div>
+
+
+
+
+            </div>
+        </form>
+        <div class="col-lg-2 col-md-4 ">
+
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-lg-4 col-md-4  col-sm-12">
+            <div class="input-group mb-2">
+                <label class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></label>
+                <input placeholder="Buscar..." id="txtBuscarFrase" class="form-control" />
+                <button id="btnCancelarBusquedaFrase" style="display:none" class="btn btn-danger m-0 ">X</button>
+            </div>
+
+
+        </div>
+        <div class="col-lg-4 col-md-4">
+
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-12">
+
+        </div>
+
+    </div>
+    <table class="table table-dark table-hover  TablaSombra">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th colspan="4">Descripción</th>
+                <th>Inactivo</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody id="bodyTablaFrases">
+        </tbody>
+
+    </table>
+    <div id="PaginationFrases" class="d-flex justify-content-center align-items-center">
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+                <li class="page-item">
+                    <button style="display:none" onclick="CambiarPaginaFrases(-1)" id="AtrasPaginadoFrase" class="page-link PaginationFrases" href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </button>
+                </li>
+
+                <li class="page-item "><a id="ActualPaginadoFrase" class="page-link PaginationFrases" href="#">1</a></li>
+
+                <li class="page-item">
+                    <button onclick="CambiarPaginaFrases(1)" id="AdelantePaginadoFrase" class="page-link PaginationFrases" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </button>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+</div>
+
+
+<style>
+    .TablaSombra {
+        box-shadow: 2px 4px 16px black;
+    }
+
+
+    [type="file"] {
+        /* Style the color of the message that says 'No file chosen' */
+        color: #878787;
+    }
+
+        [type="file"]::-webkit-file-upload-button {
+            background: #ED1C1B;
+            border: 2px solid #ED1C1B;
+            border-radius: 4px;
+            color: #fff;
+            cursor: pointer;
+            font-size: 12px;
+            outline: none;
+            padding: 10px 25px;
+            text-transform: uppercase;
+            transition: all 1s ease;
+        }
+
+            [type="file"]::-webkit-file-upload-button:hover {
+                background: #fff;
+                border: 2px solid #535353;
+                color: #000;
+            }
+</style>
+
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script>
+
+
+    var AgregaFrase = 0;
+    var minFrase = 0;
+    var maxFrase = 0;
+    var PagTablaFrases = 1;
+
+    function MostrarAgregarFrase() {
+        $("#AlertError").hide()
+        $("#AlertIngresado").hide()
+
+        if (AgregaFrase == 0) {
+            document.getElementById("ContainerAgregarFrase").style.display = "block";
+            document.getElementById("btnAgregar").className = "btn btn-danger mb-2";
+            document.getElementById("btnAgregar").innerHTML = "Cerrar";
+
+            AgregaFrase++;
+        } else {
+
+            document.getElementById("btnAgregar").innerHTML = "Agregar";
+            document.getElementById("btnAgregar").className = "btn btn-primary mb-2";
+            document.getElementById("ContainerAgregarFrase").style.display = "none";
+            AgregaFrase = 0;
+        }
+
+    }
+
+
+   
+
+    $("#frmFormularioFrase").submit(function (e) {
+
+        e.preventDefault();
+
+
+      
+
+        var InputDescripcion = $("#txtDescripcion").val();
+      
+
+
+        if (InputDescripcion == "") {
+            $("#AlertError").show()
+            alert("Debe rellenar todos los campos");
+        } else {
+
+            var parametros = new FormData($("#frmFormularioFrase")[0])
+            
+             $.ajax({
+            url: '@Url.Action("AgregarFrase", "Perfil")',
+            type: "POST",
+            data: parametros,
+            contentType: false,
+            processData: false,
+            success: function (result) {
+                $("#AlertIngresado").show()
+                $("#txtDescripcion").val('')
+                $('#cbInactivo').prop('checked', false);
+        
+                $("#ImgSubida").hide();
+                TraerDatosTablaFrase(PagTablaFrases);
+                CambiarPaginaFrases(0)
+
+
+            },
+            error: function (r) {
+
+                $("#AlertError").show();
+            }
+        })
+        }
+
+
+
+
+
+
+
+    })
+
+
+
+
+    
+
+
+    async function CantidadPaginasFrases() {
+        await $.ajax({
+            url: '@Url.Action("ConsultarRegistroFrase", "Perfil")',
+            type: "POST",
+
+
+
+            success: function (result) {
+                console.log(result);
+                minFrase = result.nMin;
+                maxFrase = result.nMax;
+
+
+            }
+        })
+    }
+    
+    async function  CambiarPaginaFrases(pagina) {
+
+        if (pagina == 0) {
+            console.log(pagina)
+            await CantidadPaginasFrases()
+        }
+
+
+        if (pagina == 1 && pagina) {
+            PagTablaFrases = PagTablaFrases + pagina;
+        }
+        if (pagina == -1) {
+            PagTablaFrases = PagTablaFrases - 1;
+            $("#AdelantePaginadoFrase").show();
+        }
+        if (PagTablaFrases == minFrase) {
+            $("#AtrasPaginadoFrase").hide();
+
+        } else {
+            $("#AtrasPaginadoFrase").show();
+        }
+
+        if (PagTablaFrases == maxFrase) {
+            $("#AdelantePaginadoFrase").hide();
+        } else {
+            $("#AdelantePaginadoFrase").show();
+        }
+
+
+
+
+
+        document.getElementById('ActualPaginadoFrase').innerHTML = PagTablaFrases;
+
+        TraerDatosTablaFrase(PagTablaFrases);
+
+
+
+    }
+
+
+
+   async function MostrarImagenPreviaFrase(img) {
+        console.log(img);
+        if (img == "-1") {
+            $("#modalMostrarSticker").hide();
+        } else {
+
+
+            await $.ajax({
+            url: '@Url.Action("ConsultarImgFrase", "Perfil")',
+            type: "POST",
+            data: {id:img},
+                 success: function (result) {
+                     console.log(result);
+                     document.getElementById("imgVistaPreviaFrase").src = "data:image/png;base64," + result;
+                     $("#modalMostrarSticker").show();
+
+            },
+            error: function (r) {
+
+                $("#AlertError").show();
+            }
+        })
+        }
+
+
+
+
+
+    }
+
+
+    function TraerDatosTablaFrase(pag){
+
+
+
+        var Fila = "";
+
+             $.ajax({
+            url: '@Url.Action("MostrarFrases", "Perfil")',
+            type: "POST",
+             data: { pagina: pag },
+
+
+                 success: function (result) {
+
+                     for (i = 0; i < result.length; i++) {
+                         var EsInactivo = result[i].Inactivo ? 'Si' : 'No';
+                         Fila = Fila +
+                             '<tr>' +
+                             '<td>' +
+                             result[i].IdFrase +
+                             '</td>' +
+                             '<td colspan="4">' +
+                             result[i].DescripcionFrase +
+                             '</td>' +
+                             '<td>' +
+                             EsInactivo +
+                             ' </td>' +
+                             '<td><a onclick="MostrarEliminarFrase(' + result[i].IdFrase + ')" class="btn btn-danger m-2">Eliminar</a>';
+                          
+                         if (result[i].Inactivo) {
+                             Fila = Fila + '<a onclick="CambiarInactivoFrase(' + result[i].IdFrase + ',false)" class="m-2 btn btn-info">Activar</td>';
+                         } else {
+                             Fila = Fila + '<a onclick="CambiarInactivoFrase(' + result[i].IdFrase + ',true)" class="btn btn-warning m-2">Inactivar</a>';
+                         }
+
+
+
+                     Fila=Fila+'</tr>';
+
+
+             }
+
+                     $("#bodyTablaFrases").html(Fila);
+                     $("#ContainerProgressBar").hide();
+
+
+            },
+            error: function (r) {
+
+
+            }
+        })
+
+
+
+    }
+
+    $("#btnMostrarFrases").click(function (e) {
+
+        e.preventDefault();
+        TraerDatosTablaFrase(1);
+
+    })
+
+
+    var IdEliminarFrase = 0;
+    var MuestraEliminarFrase = 0;
+
+
+    $("#btnAceptarEliminarFrase").click(function (e) {
+
+         $.ajax({
+            url: '@Url.Action("EliminarRegistroFrase", "Perfil")',
+            type: "POST",
+            data: { id: IdEliminarFrase },
+            success: function (result) {
+
+                MostrarEliminarFrase(-1);
+                TraerDatosTablaFrase(PagTablaFrases);
+
+            }
+        })
+    })
+
+    function MostrarEliminarFrase(id) {
+        if (id > 0) {
+            IdEliminarFrase=id
+        }
+        if (MuestraEliminarFrase == 0) {
+            $("#modalFraseBorrar").show();
+            MuestraEliminarFrase++;
+        } else {
+            $("#modalFraseBorrar").hide();
+            MuestraEliminarFrase=0;
+        }
+
+
+
+    }
+
+
+    function ConsultarFraseLike(str) {
+
+        var Fila = "";
+          $.ajax({
+            url: '@Url.Action("ConsultarFraseLike", "Perfil")',
+              type: "POST",
+              data: { strFrase: str },
+
+
+                 success: function (result) {
+
+                     for (i = 0; i < result.length; i++) {
+                         var EsInactivo = result[i].Inactivo ? 'Si' : 'No';
+                         Fila = Fila +
+                             '<tr>' +
+                             '<td>' +
+                             result[i].IdFrase +
+                             '</td>' +
+                             '<td colspan="4">' +
+                             result[i].DescripcionFrase +
+                             '</td>' +
+                             '<td>' +
+                             EsInactivo +
+                             ' </td>' +
+                             '<td><a onclick="MostrarEliminarFrase(' + result[i].IdFrase + ')" class="btn btn-danger m-2">Eliminar</a>';
+                            
+                         if (result[i].Inactivo) {
+                             Fila = Fila + '<a onclick="CambiarInactivoFrase(' + result[i].IdFrase + ',false)" class="m-2 btn btn-info">Activar</td>';
+                         } else {
+                             Fila = Fila + '<a onclick="CambiarInactivoFrase(' + result[i].IdFrase + ',true)" class="btn btn-warning m-2">Inactivar</a>';
+                         }
+
+
+
+                         Fila = Fila + '</tr>';
+
+
+                     }
+
+                $("#bodyTablaFrases").html(Fila);
+
+
+            }
+        })
+    }
+
+    $("#txtBuscarFrase").keyup(function(){
+        $("#btnCancelarBusquedaFrase").show();
+
+        var frase = $("#txtBuscarFrase").val()
+
+        if (frase == "") {
+            $("#btnCancelarBusquedaFrase").hide();
+            $(".PaginationFrases").show();
+            TraerDatosTablaFrase(1);
+            $("#AtrasPaginadoFrase").hide();
+      
+
+        } else {
+            $(".PaginationFrases").hide();
+            ConsultarFraseLike(frase);
+        }
+
+
+
+
+    })
+
+
+    $("#btnCancelarBusquedaFrase").click(function () {
+        $("#txtBuscarFrase").val("")
+        $("#btnCancelarBusquedaFrase").hide();
+        TraerDatosTablaFrase(1);
+        $("#PaginationFrases").show();
+        $("#AtrasPaginadoFrase").hide();
+        $(".PaginationFrases").show();
+    })
+
+
+    $("#ImgSubida").hide();
+
+
+
+    function CambiarInactivoFrase(ids, estados) {
+          $.ajax({
+            url: '@Url.Action("CambiarInactivoFrase", "Perfil")',
+              type: "POST",
+              data: { id: ids, estado: estados },
+
+
+                 success: function (result) {
+
+                     TraerDatosTablaFrase(PagTablaFrases);
+
+            },
+            error: function (r) {
+
+
+            }
+        })
+    }
+
+    function OcultarContenedorFrases() {
+        $("#ContainerFrases").hide();
+        $(".PaginaMantenimientos").show();
+    }
+
+
+
+</script>

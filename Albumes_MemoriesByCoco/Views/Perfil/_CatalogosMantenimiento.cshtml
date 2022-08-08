@@ -1,0 +1,261 @@
+﻿
+
+<div class="row PaginaMantenimientos">
+    <div class="col-lg-4 col-md-12 col-sm-12 d-flex justify-content-center align-items-center">
+        <div class=container>
+            <div class=cardM>
+                <div class="image CartaUp">
+                    <h2 class="text-center textoInfo">Estados</h2>
+                    <div class="d-flex justify-content-center align-items-center">
+
+                        <i class="fa-solid fa-bell NegroToBlanco text-center" style="font-size:60px"></i>
+
+                    </div>
+                </div>
+                <div class=content>
+
+                    <p>Agrega estado para llevar transabilidad de los pedidos. </p>
+
+                    <button onclick="MostrarCatalogoEstado()" class="btnCarta">Ver</button>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="col-lg-4 col-md-12 col-sm-12 d-flex justify-content-center align-items-center">
+        <div class=container>
+            <div class=cardM>
+                <div class="image CartaUp">
+                    <h2 class="text-center textoInfo">Vinil</h2>
+                    <div class="d-flex justify-content-center align-items-center">
+
+
+
+                        <i class="fa-solid fa-crop-simple" style="font-size:60px "></i>
+
+                    </div>
+                </div>
+                <div class=content>
+
+                    <p>Lleva el control de los tipos de vinil para la elección del cliente.</p>
+                    <button onclick="MostrarCatalogoVinil()" class="btnCarta">Ver</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="col-lg-4 col-md-12 col-sm-12 d-flex justify-content-center align-items-center">
+
+        <div class=container>
+            <div class=cardM>
+                <div class="image CartaUp">
+                    <h2 class="text-center textoInfo">Frases</h2>
+                    <div class="d-flex justify-content-center align-items-center">
+
+                        <i class="fa-solid fa-align-center NegroToBlanco" style="font-size:60px"></i>
+
+
+                    </div>
+                </div>
+                <div class=content>
+                    <p>Lleva el control de las frases para la elección del cliente.</p>
+                    <div class="d-flex justify-content-center align-items-center ">
+                        <button id="btnMostrarFrases" onclick="MantenimientoFrases()" class="btnCarta">Ver</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-12 col-sm-12 d-flex justify-content-center align-items-center">
+
+        <div class=container>
+            <div class=cardM>
+                <div class="image CartaUp">
+                    <h2 class="text-center textoInfo">Preguntas</h2>
+                    <div class="d-flex justify-content-center align-items-center">
+                        <i class="fa-solid fa-circle-question" style="font-size:60px"></i>
+
+
+
+                    </div>
+                </div>
+                <div class=content>
+                    <p>Agrega preguntas para que el cliente las conteste al realizar su pedido.</p>
+                    <div class="d-flex justify-content-center align-items-center ">
+                        <button id="btnMostrarFrases" onclick="MostrarPreguntas()" class="btnCarta">Ver</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-12 col-sm-12 d-flex justify-content-center align-items-center">
+
+        <div class=container>
+            <div class=cardM>
+                <div class="image CartaUp">
+                    <h2 class="text-center textoInfo">Precios</h2>
+                    <div class="d-flex justify-content-center align-items-center">
+
+                        <i class="fa-solid fa-colon-sign" style="font-size:60px"></i>
+
+
+                    </div>
+                </div>
+                <div class=content>
+                    <p>Llevá el control de los precios en general.</p>
+                    <div class="d-flex justify-content-center align-items-center ">
+                        <button id="btnMostrarFrases" onclick="AbrirMantenimientoPrecios()" class="btnCarta">Ver</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-12 col-sm-12 d-flex justify-content-center align-items-center">
+
+        <div class=container>
+            <div class=cardM>
+                <div class="image CartaUp">
+                    <h2 class="text-center textoInfo">Parametros</h2>
+                    <div class="d-flex justify-content-center align-items-center">
+                        <i class="fa-solid fa-code" style="font-size:60px"></i>
+                      
+
+
+
+                    </div>
+                </div>
+                <div class=content>
+                    <p>Modifica la página principal de la aplicación.</p>
+                    <div class="d-flex justify-content-center align-items-center ">
+                        <button id="btnMostrarFrases" onclick="AbrirMantenimientoParametros()" class="btnCarta">Ver</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+<!--Catalogos -->
+<!--Catalogo de frases-->
+<div>
+    @Html.Partial("CatalogoFrases/MantenimientoFrases", (Albumes_MemoriesByCoco.Models.FrasesModel)ViewBag.Frases)
+</div>
+
+<!--Catalogo de Vinil-->
+<div>
+    @Html.Partial("CatalogoVinil/_MantenimientoVinil", (Albumes_MemoriesByCoco.Models.VinilModel)ViewBag.Vinil)
+</div>
+
+<!--Catalogo de Estado-->
+<div>
+    @Html.Partial("CatalogoEstado/_CatalogoEstado", (Albumes_MemoriesByCoco.Models.VinilModel)ViewBag.Vinil)
+</div>
+
+<!--Catalogo de Preguntas-->
+<div>
+    @Html.Partial("CatalogoPreguntas/_CatalogoPreguntas", (Albumes_MemoriesByCoco.Models.VinilModel)ViewBag.Vinil)
+</div>
+
+<!--Catalogo de Precios-->
+<div>
+    @Html.Partial("CatalogoPrecios/_CatalogoPrecios", (Albumes_MemoriesByCoco.Models.PrecioModel)ViewBag.Vinil)
+</div>
+
+
+<!--Catalogo de Parametros-->
+<div>
+    @Html.Partial("CatalogoParametros/_CatalogoParametros")
+</div>
+
+
+<script>
+
+    document.getElementById("ContainerFrases").style.display = "none";
+    $("#ContainerVinil").hide();
+    $("#ContainerEstado").hide();
+    $("#ContainerPreguntas").hide();
+    $("#ContainerPrecios").hide();
+    $("#ContenedorParametros").hide();
+    async function MantenimientoFrases() {
+        try {
+            await QuitarOpciones();
+            await MostrarFrases();
+        } catch (Exception) {
+
+        }
+    }
+
+
+    var PagTablaFrases = 1;
+    var TotalPagsFrases;
+
+    async function MostrarFrases() {
+        $("#ContainerProgressBar").show();
+        CambiarPaginaFrases(0)
+
+       
+        document.getElementById("ContainerFrases").style.display = "block";
+    }
+
+    function MostrarCatalogoVinil() {
+        $("#ContainerProgressBar").show();
+        $("#ContainerVinil").show();
+        $(".PaginaMantenimientos").hide();
+
+
+        TraerDatosTablaVinil(1)
+        CantidadPaginasVinil();
+
+    }
+
+    function MostrarCatalogoEstado() {
+        $("#ContainerProgressBar").show();
+       
+        $("#ContainerEstado").show();
+        $(".PaginaMantenimientos").hide();
+        TraerDatosTablaEstado();
+    }
+
+
+
+    async function QuitarOpciones() {
+
+        $(".PaginaMantenimientos").hide();
+
+
+
+
+    }
+
+    function MostrarPreguntas() {
+        $("#ContainerProgressBar").show();
+        $(".PaginaMantenimientos").hide();
+        TraerDatosTablaPreguntas();
+        $("#ContainerPreguntas").show();
+    }
+
+    function AbrirMantenimientoPrecios() {
+        $("#ContainerProgressBar").show();
+        $(".PaginaMantenimientos").hide();
+        TraerDatosTablaPrecios();
+        $("#ContainerPrecios").show();
+
+
+    }
+
+    function AbrirMantenimientoParametros() {
+        $("#ContainerProgressBar").show();
+        $(".PaginaMantenimientos").hide();
+        $("#ContenedorParametros").show();
+        ConsultarParametros();
+        $("#ContainerProgressBar").hide();
+    }
+
+
+
+</script>
+
+
+

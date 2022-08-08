@@ -1,0 +1,100 @@
+﻿<div id="ContainerCategoriaPredefinido">
+    <h1 class="text-center">Categoría</h1>
+    <div class="col-lg-4 col-md-4 col-sm-12">
+        <button onclick="VolverCategoriaPredefinido()" class="btn btn-info mt-0"><i class="fa-solid fa-angle-left"></i></button>
+        
+
+        <button onclick="CancelarPedido()" class="btn btn-danger mt-0">Salir</button>
+    </div>
+    <div id="ContenedorCategoriasUsuario" class="row mt-4">
+
+    </div>
+
+</div>
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script>
+
+
+    function ConsultarCategoriasUsuario() {
+
+
+        CargaCategoriaUsuario = '<div id="CargaCategoriaUsuario" class="col-lg-12 col-md-12 col-sm-12 mt-4 ">' +
+            '<div style="display:none" class="d-flex justify-content-center align-items-center mt-2">' +
+            '<progress class="pure-material-progress-circular" />' +
+            '</div>' +
+            '</div>';
+
+        $("#ContenedorCategoriasUsuario").html(CargaCategoriaUsuario);
+
+
+         $.ajax({
+            url: '@Url.Action("ConsultarCategoriaImgs", "Categoria")',
+              type: "POST",
+
+
+
+             success: function (result) {
+                 var Fila = "";
+                 for (i = 0; i < result.length; i++) {
+                    Fila= Fila+ '<div onclick="CategoriaSeleccionada('+result[i].idCategoria+')" class="col-lg-4 col-md-6 col-sm-12 d-flex justify-content-center align-items-center flex-column">' +
+                         '<div class="d-flex justify-content-center p-2 align-items-center mt-2 contenedorImgCategoria">' +
+                         '<img class="imgCategoria" src="data:image/png;base64,' + result[i].strImagen + '" >' +
+                         '</div><hr>' +
+                         '<p style="font-size:25px">' + result[i].nombre + '</p>' +
+
+                         '</div>';
+                 }
+
+
+
+                 $("#ContenedorCategoriasUsuario").html(Fila);
+                 $("#CargaCategoriaUsuario").remove();
+
+
+
+
+             }, error: function (error) {
+
+
+             }
+        })
+    }
+
+
+
+    function VolverCategoriaPredefinido() {
+        $("#ContainerCategoriaPredefinido").hide();
+        $("#ElegirTipoAlbumPre").show();
+        $("#StepContainer").hide();
+    }
+
+
+    function CategoriaSeleccionada(id) {
+        SiguienteStep();
+        MostrarAlbumxCategoria(id);
+        $("#ContenedorAlbumPreUs").show();
+        $("#ContainerCategoriaPredefinido").hide();
+        
+    }
+
+</script>
+<style>
+
+    .imgCategoria {
+        width: 230px;
+        height:160px;
+        object-fit: cover;
+    }
+    .contenedorImgCategoria {
+        box-shadow: 2px 4px 16px black;
+        border-radius: 10px;
+        width: 60%;
+        cursor: pointer;
+        background-color: white;
+    }
+
+        .contenedorImgCategoria:hover {
+            box-shadow: 2px 4px 16px orange;
+        }
+</style>

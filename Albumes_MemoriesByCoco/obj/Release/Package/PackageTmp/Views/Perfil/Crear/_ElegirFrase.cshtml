@@ -1,0 +1,529 @@
+﻿<div id="ContenedorCompletoFrase">
+
+
+    <div id="modalFraseUsuarioIngresar" style="display:none" class="modal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Ingresa una frase</h5>
+
+                </div>
+                <div class="modal-body">
+                    <textarea class="form-control" cols="5" rows="8" id="txtFraseUsuario" placeholder="Frase..."></textarea>
+                </div>
+                <div id="divErrorFraseUsuario">
+
+                </div>
+                <div class="modal-footer">
+                    <button onclick="AbrirModalIngresaFrase()" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button id="btnAgregaFraseUsuario" type="button" class="btn btn-primary">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="ContainerFrasesSeleccionadas" style="display:none" class="modal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Mis frases</h5>
+
+                </div>
+                <div class="modal-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>N°</th>
+                                <th>Frase</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tblMisFrases">
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+
+                    <button onclick="MostrarContainerMisFrases()" type="button" class="btn btn-primary">Salir</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="ElegirFraseUsuarioContainer">
+        <h1 class="text-center">Elige frases para tu álbum</h1>
+        <div class="row">
+            <div class="col-lg-4 col-md-4  col-sm-12">
+                <div class="input-group mb-2">
+                    <label class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></label>
+                    <input placeholder="Buscar..." id="txtBuscarFraseUsuario" class="form-control" />
+                    <button id="btnCancelarBusquedaFraseUsuario" style="display:none" class="btn btn-danger m-0 ">X</button>
+                </div>
+
+
+            </div>
+            <div class="col-lg-4 col-md-4">
+                <p class="text-center">Si tu frase no existe. <a onclick="AbrirModalIngresaFrase()" href="#">Crea una</a></p>
+                <div id="ContainerFrasesSeleccionadas">
+                    <p class="text-center"><a onclick="MostrarContainerMisFrases()" href="#">Ver mis frases seleccionadas.</a></p>
+                </div>
+                <hr />
+
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12">
+                <button onclick="VolverFraseUsuario()" class="btn btn-info mt-0"><i class="fa-solid fa-angle-left"></i></button>
+                <button onclick="SiguienteFraseUsuario()" class="btn btn-primary mt-0">Siguiente</button>
+                <button onclick="CancelarPedido()" class="btn btn-danger mt-0">Salir</button>
+            </div>
+
+        </div>
+
+        <div class="row" id="ContainerElegirFraseUsuario">
+
+
+        </div>
+
+        <div id="PaginationFraseUsuario" class="d-flex justify-content-center align-items-center">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    <li class="page-item">
+                        <a style="display:none" onclick="CambiarPaginaFraseUsuario(-1)" id="AtrasPaginadoFraseUsuario" class="page-link PaginationFraseUsuario" href="#ContainerFrasesSeleccionadas" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+
+                    <li class="page-item PaginationFraseUsuario"><a id="ActualPaginadoFraseUsuario" class="page-link" href="#">1</a></li>
+
+                    <li class="page-item">
+                        <a href="#ContainerFrasesSeleccionadas" onclick="CambiarPaginaFraseUsuario(1)" id="AdelantePaginadoFraseUsuario" class="page-link PaginationFraseUsuario" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+        <div>
+            <button onclick="SiguienteFraseUsuario()" class="btn btn-primary">Siguiente</button>
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script>
+    var TotalPagsFraseUsuario = 0;
+    var PagTablaFraseUsuario = 1;
+    var minFraseUsuario = 0
+    var maxFraseUsuario = 0;
+    function CargarFrasesUsuario(pag) {
+        $.ajax({
+            url: '@Url.Action("ConsultarFraseUsuario", "Perfil")',
+            type: "POST",
+            data: { pagina: pag },
+
+
+            success: function (result) {
+
+                MostrarDatosFraseUsuario(result);
+            }
+            });
+    }
+
+
+        async function CantidadPaginasFraseUsuario() {
+        await $.ajax({
+            url: '@Url.Action("ConsultarRegistroFrase_Usuario", "Perfil")',
+            type: "POST",
+
+
+
+            success: function (result) {
+
+                minFraseUsuario = result.nMin;
+                maxFraseUsuario = result.nMax;
+
+
+
+            }
+        })
+    }
+    async function  CambiarPaginaFraseUsuario(pagina) {
+
+
+        $("#ContainerProgressBar").show();
+        if (pagina == 0) {
+            await CantidadPaginasFraseUsuario()
+        }
+
+
+        if (pagina == 1) {
+            PagTablaFraseUsuario = PagTablaFraseUsuario + pagina;
+        }
+        if (pagina == -1) {
+            PagTablaFraseUsuario = PagTablaFraseUsuario - 1;
+            $("#AdelantePaginadoFraseUsuario").show();
+        }
+
+        if (PagTablaFraseUsuario == minFraseUsuario) {
+            $("#AtrasPaginadoFraseUsuario").hide();
+
+        } else {
+            $("#AtrasPaginadoFraseUsuario").show();
+        }
+
+        if (PagTablaFraseUsuario == maxFraseUsuario) {
+            $("#AdelantePaginadoFraseUsuario").hide();
+        } else {
+            $("#AdelantePaginadoFraseUsuario").show();
+        }
+
+
+
+        document.getElementById('ActualPaginadoFraseUsuario').innerHTML = PagTablaFraseUsuario;
+
+        CargarFrasesUsuario(PagTablaFraseUsuario);
+
+
+
+    }
+    $("#btnCancelarBusquedaFraseUsuario").click(function () {
+        $("#txtBuscarFraseUsuario").val("")
+        $("#btnCancelarFraseUsuario").hide();
+        CargarFrasesUsuario(PagTablaFraseUsuario);
+        $("#PaginationFraseUsuario").show();
+        $("#AtrasPaginadoFraseUsuario").hide();
+
+    })
+
+
+    $("#txtBuscarFraseUsuario").keyup(function () {
+        $("#btnCancelarBusquedaFraseUsuario").show();
+
+        var FraseUsuario = $("#txtBuscarFraseUsuario").val()
+
+        if (FraseUsuario == "") {
+            $("#btnCancelarBusquedaFraseUsuario").hide();
+            $(".PaginationFraseUsuario").show();
+            CargarFrasesUsuario(PagTablaFraseUsuario);
+            $("#AtrasPaginadoFraseUsuario").hide();
+
+
+        } else {
+            $(".PaginationFraseUsuario").hide();
+            ConsultarFraseUsuarioLike(FraseUsuario);
+        }
+
+
+
+
+    })
+
+
+    function ConsultarFraseUsuarioLike(str) {
+
+          $.ajax({
+            url: '@Url.Action("ConsultarFraseLike_Usuario", "Perfil")',
+              type: "POST",
+              data: { strFrase: str },
+
+
+                 success: function (result) {
+
+
+                     MostrarDatosFraseUsuario(result);
+
+            }
+        })
+    }
+
+    function SeleccionFraseUsuario(id) {
+         $.ajax({
+            url: '@Url.Action("SeleccionFraseUsuario", "Perfil")',
+              type: "POST",
+              data: { idFrase:id },
+
+
+                 success: function (result) {
+
+
+                     console.log("Seleccionado");
+            }
+        })
+    }
+
+    function MostrarDatosFraseUsuario(result) {
+        console.log(result);
+        var Fila = "";
+        for (i = 0; i < result.length; i++) {
+
+
+            Fila = Fila + '<div class="col-lg-6 col-md-6 col-sm-12 mb-4 mt-4 d-flex flex-column justify-content-center align-items-center">' +
+                '<div id="' + result[i].IdFrase + '" class="card FondoCorazon p-4 SombraContainerTexto w-100 ">' +
+                '<p class="text-center"><i class="fa-solid fa-quote-left ComillaCafe"></i>' +
+
+                result[i].DescripcionFrase +
+                '<i class="fa-solid fa-quote-right ComillaCafe" ></i></p>' +
+                '<hr />' +
+                '<div class="d-flex align-items-center justify-content-center">' +
+                '<input id="cb' + result[i].IdFrase + '"';
+
+            if (result[i].check == true) {
+                Fila = Fila + ' checked = "true"';
+            }
+
+            Fila=Fila+'type = "checkbox" onclick = "TocarSeleccionFrase('+ result[i].IdFrase+', this.value)" /> ' +
+
+                '</div>' +
+                '</div>' +
+                '</div>' +
+                '</div>';
+
+        }
+        $("#ContainerElegirFraseUsuario").html(Fila);
+        $("#ContainerProgressBar").hide();
+
+
+
+
+    }
+
+    var AbreModalFraseUsuario=0;
+    function AbrirModalIngresaFrase() {
+
+        $("#divErrorFraseUsuario").hide();
+
+        if (AbreModalFraseUsuario == 0) {
+            $("#modalFraseUsuarioIngresar").show();
+            AbreModalFraseUsuario++;
+        } else {
+            $("#modalFraseUsuarioIngresar").hide();
+            AbreModalFraseUsuario = 0;
+        }
+
+    }
+
+    $("#btnAgregaFraseUsuario").click(function (e) {
+        e.preventDefault();
+
+
+        var frase = $("#txtFraseUsuario").val();
+
+
+        if (frase.length > 55) {
+            $("#divErrorFraseUsuario").show();
+            $("#divErrorFraseUsuario").html("<p class='text-danger text-center'>Máximo de 55 caracteres</p>")
+        } else {
+        $.ajax({
+            url: '@Url.Action("AgregarFrase_Usuario", "Perfil")',
+              type: "POST",
+              data: { strFrase:frase },
+
+
+                 success: function (result) {
+
+
+                     $("#txtFraseUsuario").val("");
+                     $("#modalFraseUsuarioIngresar").hide();
+                     alert("Frase ingresada y seleccionada.")
+
+             }, error: function (error) {
+
+                 alert("Error:" + error); //Error
+                 location.reload()
+             }
+        })
+        }
+
+
+
+
+    })
+
+
+
+    function TocarSeleccionFrase(id, value) {
+        console.log(value + "   " + id);
+        var check = document.getElementById("cb"+id);
+
+            if (check.checked == false) {
+            DeseleccionarFraseUsuario(id,1);
+        } else if (check.checked == true) {
+            SeleccionarFraseUsuario(id);
+        }
+    }
+
+    function SeleccionarFraseUsuario(id) {
+         $.ajax({
+            url: '@Url.Action("SeleccionFraseUsuario", "Perfil")',
+              type: "POST",
+             data: { idFrase: id },
+
+
+                 success: function (result) {
+
+
+
+                     $("#modalFraseUsuarioIngresar").hide();
+
+             }, error: function (error) {
+
+                 alert("Error:" + error); //Error
+                // location.reload()
+             }
+        })
+    }
+
+
+    function DeseleccionarFraseUsuario(id,a) {
+         $.ajax({
+            url: '@Url.Action("DeseleccionFraseUsuario", "Perfil")',
+              type: "POST",
+              data: { idFrase:id },
+
+
+                 success: function (result) {
+
+
+                     alert("Frase deseleccionada.");
+                     $("#modalFraseUsuarioIngresar").hide();
+
+                     if (a == -99) {
+                         ActualizarFrasesSeleccionadasEnTabla();
+                         CargarFrasesUsuario(PagTablaFraseUsuario);
+                     }
+
+             }, error: function (error) {
+
+                 alert("Error:" + error); //Error
+              //   location.reload()
+             }
+        })
+    }
+    function ActualizarFrasesSeleccionadasEnTabla() {
+
+         $.ajax({
+            url: '@Url.Action("ConsultarFrasesSeleccionadasUsuario", "Perfil")',
+              type: "POST",
+
+            success: function (result) {
+
+
+
+                var Fila = "";
+                var table = "table";
+                     for(i =0; i < result.length;i++)
+            {
+                       Fila=Fila+ '<tr>'+
+                            '<td>'+(i+1)+'</td>'+
+                           '<td>' + result[i].DescripcionFrase + '</td>' +
+                           '<td><p class="text-danger"><a onclick="DeseleccionarFraseUsuario(' + result[i].IdFrase + ',-99)" class="text-danger" href="#">X</a></p></td>' +
+                        '</tr>';
+
+
+            }
+
+                $("#tblMisFrases").html(Fila);
+
+
+
+
+
+
+             }, error: function (error) {
+
+                 alert("Error:" + error); //Error
+              //   location.reload()
+             }
+        })
+    }
+    async function MostrarMisFrasesSeleccionadas() {
+
+        MostrarCarga();
+        await $.ajax({
+            url: '@Url.Action("ConsultarFrasesSeleccionadasUsuario", "Perfil")',
+              type: "POST",
+
+            success: function (result) {
+
+
+
+              var Fila = "";
+                     for(i =0; i < result.length;i++)
+            {
+                       Fila=Fila+ '<tr>'+
+                            '<td>'+(i+1)+'</td>'+
+                           '<td>' + result[i].DescripcionFrase + '</td>' +
+                           '<td><p class="text-danger"><a onclick="DeseleccionarFraseUsuario(' + result[i].IdFrase + ',-99)" href="#">X</a></p></td>' +
+                        '</tr>';
+
+
+            }
+
+                $("#tblMisFrases").html(Fila);
+
+
+                OcultarCarga();
+                $("#ContainerFrasesSeleccionadas").show();
+
+
+             }, error: function (error) {
+
+                 alert("Error:" + error); //Error
+              //   location.reload()
+             }
+        })
+
+    }
+
+    var MisFrases = 0;
+    async function MostrarContainerMisFrases() {
+        if (MisFrases == 0) {
+           await MostrarMisFrasesSeleccionadas();
+
+            MisFrases++;
+        } else {
+            $("#ContainerFrasesSeleccionadas").hide();
+            MisFrases = 0;
+        }
+    }
+
+
+    function SiguienteFraseUsuario() {
+        SiguienteStep();
+        $("#ContenedorCompletoFrase").hide();
+
+        MostrarPreguntas();
+        $("#ContainerPreguntasUsuario").show();
+    }
+
+    function VolverFraseUsuario() {
+        $("#ElegirFraseUsuarioContainer").hide();
+        MostrarVinilUFrase(1);
+        CambiarPaginaVinilU(0);
+        $("#ContainerVinilUsuario").show();
+        AnteriorStep();
+    }
+
+
+
+
+</script>
+
+
+<style>
+    .ComillaCafe {
+        color: #804000;
+        margin-right: 10px;
+        margin-left: 10px;
+    }
+
+    .SombraContainerTexto {
+        box-shadow: 0px 0px 20px 1px black;
+      
+    }
+    .FondoCorazon {
+   
+        
+    }
+
+</style>

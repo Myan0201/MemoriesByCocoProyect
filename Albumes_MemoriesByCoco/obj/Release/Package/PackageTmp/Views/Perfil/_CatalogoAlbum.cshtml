@@ -1,0 +1,90 @@
+﻿
+<div id="PaginaAlbum" class="row PaginaAlbum">
+    <div class="col-lg-6 col-md-12 col-sm-12 d-flex justify-content-center align-items-center">
+        <div class=container>
+            <div class=cardM>
+                <div class="image CartaUp">
+                    <h2 class="text-center textoInfo">Categoría</h2>
+                    <div class="d-flex justify-content-center align-items-center">
+
+                        <i class="fa-solid fa-bell NegroToBlanco text-center" style="font-size:60px"></i>
+
+                    </div>
+                </div>
+                <div class=content>
+
+                    <p>Ingresá nuevas categorías para usar en tus albumes.</p>
+
+                    <button onclick="AbrirCategorias()" class="btnCarta">Ver</button>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="col-lg-6 col-md-12 col-sm-12 d-flex justify-content-center align-items-center">
+        <div class=container>
+            <div class=cardM>
+                <div class="image CartaUp">
+                    <h2 class="text-center textoInfo">Album</h2>
+                    <div class="d-flex justify-content-center align-items-center">
+
+
+
+                        <i class="fa-solid fa-crop-simple" style="font-size:60px "></i>
+
+                    </div>
+                </div>
+                <div class=content>
+
+                    <p>Ingresa nuevos albumes para ser elegidos en album predefinido.</p>
+                    <button onclick="AbrirMantenimientoAlbum()" class="btnCarta">Ver</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+   </div>
+
+
+<div id="cv">
+    @Html.Partial("CatalogoCategoria/_CatalogoCategoria", (Albumes_MemoriesByCoco.Models.CategoriaModel)ViewBag.Categoria)
+</div>
+<div id="cv">
+    @Html.Partial("CatalogoAlbum/_CatalogoAlbum", (Albumes_MemoriesByCoco.Models.CategoriaModel)ViewBag.Categoria)
+</div>
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script>
+
+   
+    function AbrirCategorias() {
+        $("#ContainerProgressBar").show();
+        $("#PaginaAlbum").hide();
+        $("#ContainerCategoria").show();
+        CambiarPaginaCategoria(0);
+       
+        
+
+
+
+    }
+
+
+    async function AbrirMantenimientoAlbum() {
+        $("#ContainerProgressBar").show();
+        $("#PaginaAlbum").hide();
+      
+        CambiarPaginaAlbum(0);
+    
+       
+
+        $("#ContainerAlbum").show();
+    }
+
+    $("#ContainerCategoria").hide();
+    $("#ContainerAlbum").hide();
+
+
+
+</script>

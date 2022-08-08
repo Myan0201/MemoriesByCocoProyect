@@ -1,0 +1,388 @@
+﻿@model Albumes_MemoriesByCoco.Models.EstadoModel
+
+<div id="modalEstadoBorrar" style="display:none" class="modal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Ventana Emergente</h5>
+                <button onclick="MostrarEliminarEstado(-1)" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>¿Estas seguro de borrar esta Estado?</p>
+            </div>
+            <div class="modal-footer">
+                <button onclick="MostrarEliminarEstado(-1)" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button id="btnAceptarEliminarEstado" type="button" class="btn btn-primary">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="modalMostrarImgEstado" style="display:none" class="modal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-center">Imagen</h5>
+
+                <button onclick="MostrarImagenPreviaEstado('-1')" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body d-flex justify-content-center align-items-center">
+                <img id="imgVistaPreviaEstado" width="200" height="200" />
+            </div>
+            <div class="modal-footer">
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="ContainerEstado" class="row">
+    <a style="font-size:40px" onclick="OcultarContenedorEstado()"><i class="fa-solid fa-circle-arrow-left text-info"></i></a>
+
+    <h1 class="text-center">Estados</h1>
+    <button id="btnAgregarEstado" onclick="MostrarAgregarEstado()" class="btn btn-primary mb-2">Crear Nuevo</button>
+    <div class="row">
+        <div class="col-lg-2 col-md-4 ">
+
+        </div>
+        <form id="frmFormularioEstado" enctype="multipart/form-data" class="col-lg-8 col-md-8 col-sm-12 d-flex justify-content-center">
+            <div id="ContainerAgregarEstado" style="display:none" class="card p-2 mb-2 w-75">
+                <div class="card-header">
+                    <h1 class="text-center ">Formulario</h1>
+
+                </div>
+
+                <div class="d-flex justify-content-center align-items-center flex-column">
+
+
+                    @Html.EditorFor(Model => Model.nombre, "", new { htmlAttributes = new { @class = "form-control mt-2", id = "txtDescripcionEstado", placeholder = "Nombre..." } })
+                    @Html.ValidationMessageFor(Model => Model.nombre, "", new { htmlAttributes = new { @class = "text-danger" } })
+                </div>
+               
+               
+                
+                <hr />
+                <br />
+                <div class="d-flex justify-content-center align-items-center">
+
+                    <div class="form-check">
+
+                        <b> @Html.LabelFor(Model => Model.notifica)</b>
+                        @Html.CheckBoxFor(Model => Model.notifica, new { id = "cbInactivoEstado" })
+
+                    </div>
+                    </div>
+                    <div class="d-flex justify-content-center align-items-center flex-column">
+                        <button id="btnAgregarFinalEstado" class="btn btn-primary mt-2 form-control">Agregar</button>
+                        <div style="display:none" id="AlertIngresadoEstado" class="alert alert-success w-100 mt-2" role="alert">
+                            Acción realizada correctamente.
+                        </div>
+                        <div style="display:none" class="alert alert-danger w-100 mt-2" role="alert">
+                            Ha ocurrido un error.
+                        </div>
+                    </div>
+
+
+                   
+
+                </div>
+        </form>
+        <div class="col-lg-2 col-md-4 ">
+
+        </div>
+
+    </div>
+    <div class="row">
+       
+        <div class="col-lg-4 col-md-4">
+
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-12">
+
+        </div>
+
+    </div>
+    <table class="table table-dark table-hover  TablaSombra">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Notifica usuario</th>
+               
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody id="bodyTablaEstado">
+        </tbody>
+
+    </table>
+   
+
+</div>
+
+
+<style>
+    .TablaSombra {
+        box-shadow: 2px 4px 16px black;
+    }
+
+
+    [type="file"] {
+        /* Style the color of the message that says 'No file chosen' */
+        color: #878787;
+    }
+
+        [type="file"]::-webkit-file-upload-button {
+            background: #ED1C1B;
+            border: 2px solid #ED1C1B;
+            border-radius: 4px;
+            color: #fff;
+            cursor: pointer;
+            font-size: 12px;
+            outline: none;
+            padding: 10px 25px;
+            text-transform: uppercase;
+            transition: all 1s ease;
+        }
+
+            [type="file"]::-webkit-file-upload-button:hover {
+                background: #fff;
+                border: 2px solid #535353;
+                color: #000;
+            }
+</style>
+
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script>
+
+
+    var AgregaEstado = 0;
+    var PagTablaEstado = 1;
+
+
+
+    function MostrarAgregarEstado() {
+
+        $("#AlertIngresadoEstado").hide()
+        if (AgregaEstado == 0) {
+            document.getElementById("ContainerAgregarEstado").style.display = "block";
+            document.getElementById("btnAgregarEstado").className = "btn btn-danger mb-2";
+            document.getElementById("btnAgregarEstado").innerHTML = "Cerrar";
+
+            AgregaEstado++;
+        } else {
+
+            document.getElementById("btnAgregarEstado").innerHTML = "Agregar";
+            document.getElementById("btnAgregarEstado").className = "btn btn-primary mb-2";
+            document.getElementById("ContainerAgregarEstado").style.display = "none";
+            AgregaEstado = 0;
+        }
+
+    }
+
+
+
+    $("#frmFormularioEstado").submit(function (e) {
+
+        e.preventDefault();
+
+
+
+        var InputDescripcion = $("#txtDescripcionEstado").val();
+        var ImagenExiste = $("#InputCargaImagenEstado").val();
+        var NombreExiste = $("#txtNombreEstado").val();
+
+
+        if (InputDescripcion == "" || ImagenExiste == "" || NombreExiste=="") {
+            $("#AlertError").show()
+            alert("Debe rellenar todos los campos");
+        } else {
+
+            var parametros = new FormData($("#frmFormularioEstado")[0])
+
+            $.ajax({
+                url: '@Url.Action("AgregarEstado", "Perfil")',
+                type: "POST",
+                data: parametros ,
+            contentType: false,
+            processData: false,
+            success: function (result) {
+                $("#AlertIngresadoEstado").show()
+                $("#txtDescripcionEstado").val('')
+                $('#cbInactivoEstado').prop('checked', false);
+                $("#InputCargaImagenEstado").val("")
+                $("#ImgSubidaEstado").hide();
+                TraerDatosTablaEstado(PagTablaEstado);
+
+
+
+            },
+            error: function (r) {
+
+                $("#AlertError").show();
+            }
+        })
+        }
+
+
+
+
+
+
+
+    })
+
+
+  
+
+
+
+   
+    function TraerDatosTablaEstado(){
+
+
+
+        var Fila = "";
+
+             $.ajax({
+            url: '@Url.Action("ConsultarEstados", "Perfil")',
+            type: "POST",
+            
+
+
+                 success: function (result) {
+
+                     for (i = 0; i < result.length; i++) {
+                         var Notifica = result[i].notifica ? 'Si' : 'No';
+                         Fila = Fila +
+                             '<tr>' +
+                             '<td>' +
+                             result[i].idEstado +
+                             '</td>' +
+                             '<td>' +
+                             result[i].nombre +
+                             '</td>' +
+                             '<td >' +
+                             Notifica +
+                             '</td>' +
+
+                             '<td><a onclick="MostrarEliminarEstado(' + result[i].idEstado + ')" class="btn btn-danger m-2">Eliminar</a>';
+                       
+                         if (result[i].notifica) {
+                             Fila = Fila + '<a onclick="CambiarNotificaEstado(' + result[i].idEstado + ',false)" class="m-2 btn btn-warning">No notificar</td>';
+                            
+                          
+                         } else {
+                             Fila = Fila + '<a onclick="CambiarNotificaEstado(' + result[i].idEstado + ',true)" class="btn btn-info m-2">Notificar</a>';
+                         }
+
+
+
+                     Fila=Fila+'</tr>';
+
+
+             }
+
+                     $("#bodyTablaEstado").html(Fila);
+                     $("#ContainerProgressBar").hide();
+
+
+            },
+            error: function (r) {
+
+
+            }
+        })
+
+
+
+    }
+
+    $("#btnMostrarEstado").click(function (e) {
+
+        e.preventDefault();
+        TraerDatosTablaEstado(1);
+
+    })
+
+
+    var IdEliminarEstado = 0;
+    var MuestraEliminarEstado = 0;
+
+
+    $("#btnAceptarEliminarEstado").click(function (e) {
+
+         $.ajax({
+            url: '@Url.Action("EliminarEstado", "Perfil")',
+            type: "POST",
+            data: { id: IdEliminarEstado },
+            success: function (result) {
+
+                MostrarEliminarEstado(-1);
+                TraerDatosTablaEstado(PagTablaEstado);
+
+            }
+        })
+    })
+
+    function MostrarEliminarEstado(id) {
+        if (id > 0) {
+            IdEliminarEstado=id
+        }
+        if (MuestraEliminarEstado == 0) {
+            $("#modalEstadoBorrar").show();
+            MuestraEliminarEstado++;
+        } else {
+            $("#modalEstadoBorrar").hide();
+            MuestraEliminarEstado=0;
+        }
+
+
+
+    }
+
+
+   
+
+  
+
+
+
+
+
+
+    function CambiarNotificaEstado(ids, estados) {
+
+          $.ajax({
+            url: '@Url.Action("CambiarNotificaEstado", "Perfil")',
+              type: "POST",
+              data: { id: ids, estado: estados },
+
+
+                 success: function (result) {
+
+                     TraerDatosTablaEstado(PagTablaEstado);
+
+            },
+            error: function (r) {
+
+
+            }
+        })
+    }
+
+    function OcultarContenedorEstado() {
+        $("#ContainerEstado").hide();
+        $(".PaginaMantenimientos").show();
+    }
+    function SeleccionarArchivoCanceladoEstado() {
+        $("#InputCargaImagenEstado").val("")
+        $("#ImgSubidaEstado").hide();
+    }
+
+
+</script>
+

@@ -1,0 +1,364 @@
+﻿@model Albumes_MemoriesByCoco.Models.PreguntasModel
+
+<div id="modalPreguntasBorrar" style="display:none" class="modal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Ventana Emergente</h5>
+                <button onclick="MostrarEliminarPreguntas(-1)" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>¿Estas seguro de borrar esta Preguntas?</p>
+            </div>
+            <div class="modal-footer">
+                <button onclick="MostrarEliminarPreguntas(-1)" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button id="btnAceptarEliminarPreguntas" type="button" class="btn btn-primary">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div id="ContainerPreguntas" class="row">
+    <a style="font-size:40px" onclick="OcultarContenedorPreguntas()"><i class="fa-solid fa-circle-arrow-left text-info"></i></a>
+
+    <h1 class="text-center">Preguntas</h1>
+    <button id="btnAgregarPreguntas" onclick="MostrarAgregarPreguntas()" class="btn btn-primary mb-2">Crear Nuevo</button>
+    <div class="row">
+        <div class="col-lg-2 col-md-4 ">
+
+        </div>
+        <form id="frmFormularioPreguntas" enctype="multipart/form-data" class="col-lg-8 col-md-8 col-sm-12 d-flex justify-content-center">
+            <div id="ContainerAgregarPreguntas" style="display:none" class="card p-2 mb-2 w-75">
+                <div class="card-header">
+                    <h1 class="text-center ">Formulario</h1>
+
+                </div>
+
+                <div class="d-flex justify-content-center align-items-center flex-column">
+
+
+                    @Html.EditorFor(Model => Model.DescripcionPregunta, "", new { htmlAttributes = new { @class = "form-control mt-2", id = "txtNombrePreguntas", placeholder = "Nombre..." } })
+                    @Html.ValidationMessageFor(Model => Model.DescripcionPregunta, "", new { htmlAttributes = new { @class = "text-danger" } })
+                </div>
+
+
+
+                <hr />
+                <br />
+                <div class="d-flex justify-content-center align-items-center">
+
+                    <div class="form-check">
+
+                        <b> @Html.LabelFor(Model => Model.Inactiva)</b>
+                        @Html.CheckBoxFor(Model => Model.Inactiva, new { id = "cbInactivoPreguntas" })
+
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center align-items-center flex-column">
+                    <button id="btnAgregarFinalPreguntas" class="btn btn-primary mt-2 form-control">Agregar</button>
+                    <div style="display:none" id="AlertIngresadoPreguntas" class="alert alert-success w-100 mt-2" role="alert">
+                        Acción realizada correctamente.
+                    </div>
+                    <div style="display:none" class="alert alert-danger w-100 mt-2" role="alert">
+                        Ha ocurrido un error.
+                    </div>
+                </div>
+
+
+
+
+            </div>
+        </form>
+        <div class="col-lg-2 col-md-4 ">
+
+        </div>
+
+    </div>
+    <div class="row">
+
+        <div class="col-lg-4 col-md-4">
+
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-12">
+
+        </div>
+
+    </div>
+    <table class="table table-dark table-hover  TablaSombra">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Inactivo usuario</th>
+
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody id="bodyTablaPreguntas">
+        </tbody>
+
+    </table>
+
+
+</div>
+
+
+<style>
+    .TablaSombra {
+        box-shadow: 2px 4px 16px black;
+    }
+
+
+    [type="file"] {
+        /* Style the color of the message that says 'No file chosen' */
+        color: #878787;
+    }
+
+        [type="file"]::-webkit-file-upload-button {
+            background: #ED1C1B;
+            border: 2px solid #ED1C1B;
+            border-radius: 4px;
+            color: #fff;
+            cursor: pointer;
+            font-size: 12px;
+            outline: none;
+            padding: 10px 25px;
+            text-transform: uppercase;
+            transition: all 1s ease;
+        }
+
+            [type="file"]::-webkit-file-upload-button:hover {
+                background: #fff;
+                border: 2px solid #535353;
+                color: #000;
+            }
+</style>
+
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script>
+
+
+    var AgregaPreguntas = 0;
+    var PagTablaPreguntas = 1;
+
+
+
+    function MostrarAgregarPreguntas() {
+        $("#AlertIngresadoPreguntas").hide()
+
+        if (AgregaPreguntas == 0) {
+            document.getElementById("ContainerAgregarPreguntas").style.display = "block";
+            document.getElementById("btnAgregarPreguntas").className = "btn btn-danger mb-2";
+            document.getElementById("btnAgregarPreguntas").innerHTML = "Cerrar";
+
+            AgregaPreguntas++;
+        } else {
+
+            document.getElementById("btnAgregarPreguntas").innerHTML = "Agregar";
+            document.getElementById("btnAgregarPreguntas").className = "btn btn-primary mb-2";
+            document.getElementById("ContainerAgregarPreguntas").style.display = "none";
+            AgregaPreguntas = 0;
+        }
+
+    }
+
+
+
+    $("#frmFormularioPreguntas").submit(function (e) {
+
+        e.preventDefault();
+
+
+
+        var InputDescripcion = $("#txtDescripcionPreguntas").val();
+        var ImagenExiste = $("#InputCargaImagenPreguntas").val();
+        var NombreExiste = $("#txtNombrePreguntas").val();
+
+
+        if (InputDescripcion == "" || ImagenExiste == "" || NombreExiste=="") {
+            $("#AlertError").show()
+            alert("Debe rellenar todos los campos");
+        } else {
+
+            var parametros = new FormData($("#frmFormularioPreguntas")[0])
+
+            $.ajax({
+                url: '@Url.Action("AgregarPreguntas", "Perfil")',
+                type: "POST",
+                data: parametros ,
+            contentType: false,
+            processData: false,
+            success: function (result) {
+                $("#AlertIngresadoPreguntas").show()
+                $("#txtDescripcionPreguntas").val('')
+
+                $('#cbInactivoPreguntas').prop('checked', false);
+                $("#InputCargaImagenPreguntas").val("")
+                $("#ImgSubidaPreguntas").hide();
+                TraerDatosTablaPreguntas(PagTablaPreguntas);
+
+
+
+            },
+            error: function (r) {
+
+                $("#AlertError").show();
+            }
+        })
+        }
+
+
+
+
+
+
+
+    })
+
+
+
+
+
+
+    
+    function TraerDatosTablaPreguntas(){
+
+
+
+        var Fila = "";
+
+             $.ajax({
+            url: '@Url.Action("ConsultarPreguntas", "Perfil")',
+            type: "POST",
+
+
+
+                 success: function (result) {
+                     console.log(result);
+                     for (i = 0; i < result.length; i++) {
+                         var Inactivo = result[i].Inactiva ? 'Si' : 'No';
+                         Fila = Fila +
+                             '<tr>' +
+                             '<td>' +
+                             result[i].IdPregunta +
+                             '</td>' +
+                             '<td>' +
+                             result[i].DescripcionPregunta +
+                             '</td>' +
+                             '<td >' +
+                             Inactivo +
+                             '</td>' +
+
+                             '<td><a onclick="MostrarEliminarPreguntas(' + result[i].IdPregunta + ')" class="btn btn-danger m-2">Eliminar</a>';
+
+                         if (!result[i].Inactiva) {
+                             Fila = Fila + '<a onclick="CambiarInactivoPreguntas(' + result[i].IdPregunta + ',false)" class="m-2 btn btn-warning">Inactivar</td>';
+                         } else {
+                             Fila = Fila + '<a onclick="CambiarInactivoPreguntas(' + result[i].IdPregunta + ',true)" class="btn btn-info m-2">Activar</a>';
+                         }
+
+
+
+                     Fila=Fila+'</tr>';
+
+
+             }
+
+                     $("#bodyTablaPreguntas").html(Fila);
+                     $("#ContainerProgressBar").hide();
+
+
+            },
+            error: function (r) {
+
+
+            }
+        })
+
+
+
+    }
+
+    $("#btnMostrarPreguntas").click(function (e) {
+
+        e.preventDefault();
+        TraerDatosTablaPreguntas(1);
+
+    })
+
+
+    var IdEliminarPreguntas = 0;
+    var MuestraEliminarPreguntas = 0;
+
+
+    $("#btnAceptarEliminarPreguntas").click(function (e) {
+
+         $.ajax({
+            url: '@Url.Action("EliminarPreguntas", "Perfil")',
+            type: "POST",
+            data: { id: IdEliminarPreguntas },
+            success: function (result) {
+
+                MostrarEliminarPreguntas(-1);
+                TraerDatosTablaPreguntas(PagTablaPreguntas);
+
+            }
+        })
+    })
+
+    function MostrarEliminarPreguntas(id) {
+        if (id > 0) {
+            IdEliminarPreguntas=id
+        }
+        if (MuestraEliminarPreguntas == 0) {
+            $("#modalPreguntasBorrar").show();
+            MuestraEliminarPreguntas++;
+        } else {
+            $("#modalPreguntasBorrar").hide();
+            MuestraEliminarPreguntas=0;
+        }
+
+
+
+    }
+
+
+
+    function CambiarInactivoPreguntas(ids, accion) {
+        console.log(accion);
+        console.log(ids);
+          $.ajax({
+            url: '@Url.Action("CambiarInactivoPreguntas", "Perfil")',
+              type: "POST",
+              data: { id: ids, preguntas: accion },
+
+
+                 success: function (result) {
+
+                     TraerDatosTablaPreguntas(PagTablaPreguntas);
+
+            },
+            error: function (r) {
+
+
+            }
+        })
+    }
+
+    function OcultarContenedorPreguntas() {
+        $("#ContainerPreguntas").hide();
+        $(".PaginaMantenimientos").show();
+    }
+    function SeleccionarArchivoCanceladoPreguntas() {
+        $("#InputCargaImagenPreguntas").val("")
+        $("#ImgSubidaPreguntas").hide();
+    }
+
+
+</script>
+
+

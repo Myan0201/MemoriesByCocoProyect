@@ -1,0 +1,657 @@
+﻿
+@{
+    ViewBag.Title = "DiseñarAlbum";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@Styles.Render("~/Scripts/LibroAbierto/LibroAbierto.css")
+@Styles.Render("~/Scripts/BotonEnviar/BotonEnviar.css")
+@Styles.Render("~/Scripts/RoundSlider/RoundSlider.css")
+@Styles.Render("~/Scripts/Animaciones/animaciones.css")
+
+
+
+
+
+
+<div class="row">
+    <div class="col-md-3 col-lg-3 col-sm-12">
+        <div class="row">
+            <div class="col-12">
+                <div class="card borderR m-2">
+                    <div class="card-header">
+                        <p class="text-center">Filtrar</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="input-group">
+                            <input class="form-control" />
+                            <button class="btn btn-primary"><i class="fa-solid fa-magnifying-glass"></i></button>
+                        </div>
+                        <div>
+                            <select class="form-select mt-2">
+                                <option>Portada</option>
+                                <option>Amor</option>
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="card m-2 ">
+                    <p>Color de fondo:</p> <input class="picker-style" name="colorPicker" id="colorPicker" type="color" />
+
+                </div>
+                <div class="col-12">
+                    <div class="imgSeleccion">
+
+                        <table>
+                            <tr>
+                                <td>
+
+
+                                    <a onclick="GuardarId(this.id)" id="miDiv" name="miDiv" class="miDiv">
+                                        <div id="datosImagen" class="datosImagen">
+                                            <div class="row p-2">
+                                                <div class="col-4">
+                                                    <p>Ancho</p>
+                                                    <input type="number" id="txtAnchomiDiv" name="txtAnchomiDiv" class="form-control" />
+                                                    <input class="m-2" min="50" max="1000" id="rangeAncho" type="range" onchange="imprimir(this.value)" />
+                                                </div>
+                                                <div class="col-4">
+                                                    <p>Alto</p>
+                                                    <input type="number" id="txtAltomiDiv" name="txtAltomiDiv" class="form-control" />
+                                                    <input class="m-2" min="50" max="1000" id="rangeAncho" type="range" onchange="imprimir(this.value)" />
+                                                </div>
+                                                <div class="col-4">
+
+                                                    <p>Rotación</p>
+                                                    <input type="number" id="txtRotacionmiDiv" name="txtRotacionmiDiv" class="form-control" />
+
+
+                                                    <input data-modifier="c-rng--darkcyan" type="range" class="c-rng" min="0" max="360" step="1" value="1" data-range="circular" />
+
+
+                                                </div>
+
+                                            </div>
+
+                                            <button onclick="mostrarDatosImagen()" class="btn btn-danger m-2">Cancelar</button>
+                                            <button id="btnGuardar" onclick="CambiarTamanios()" class="btn btn-success m-2">Guardar</button>
+                                            <div class="rombo">
+
+                                            </div>
+                                        </div>
+                                        <div id="miDivCursor" class="miDivCursor">
+                                            <div>
+
+
+                                                <img id="imgmiDiv" height="100" width="100" src="https://img.freepik.com/psd-gratis/maqueta-logo-pared-gris_35913-2122.jpg" alt="Imágenes de Logo | Vectores, fotos de stock y PSD gratuitos" />
+
+                                            </div>
+
+                                        </div>
+
+
+                                    </a>
+
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div id="miPrueba" name="miDiv" class="miDiv">
+                                        <div id="miPruebaCursor" class="miDivCursor">
+                                            <img width="100" height="100" src="https://freepikpsd.com/file/2019/10/41367-apple-pro-imac-transparent-logo-macbook-macintosh.png" alt="Apple Pro Imac Transparent Logo Macbook Macintosh – Free PNG Images Vector,  PSD, Clipart, Templates" /><!
+                                        </div>
+
+                                    </div>
+
+                                </td>
+                            </tr>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+    <div class="col-9">
+        <div class="row">
+            <div class="col-2  flex-column d-flex align-content-end justify-content-center">
+
+
+                <a id="btnIzq" onclick="pasarPagina('btnIzq')" class="flechas align-self-lg-end"><i class="fa-solid fa-circle-arrow-left"></i></a>
+
+            </div>
+            <div class="col-8 ">
+
+
+                <div class="sombraPrueba">
+                    <button class="btnPrueba">Prueba</button>
+                </div>
+                <div id="albumDisenio" class="albumDisenio ">
+                    <p class="text-center">Portada</p>
+                </div>
+
+
+
+                <div id="libroAbierto" class="bookWrapper">
+                    <div class="bookBg">
+                        <div class="pageBg p centerClass">
+                            <div class="pageWrapper p">
+                                <div id="page3" class="page ">
+                                    <div class="pageFace front ">
+                                        <h1>front3</h1>
+                                        <div class="pageFoldRight"></div>
+                                    </div>
+                                    <div class="pageFace back">
+                                        <h1>back3</h1>
+                                        <div class="pageFoldLeft"></div>
+                                    </div>
+                                </div>
+                                <div id="page2" class="page">
+                                    <div class="pageFace front">
+                                        <h1>front2</h1>
+                                        <div class="pageFoldRight"></div>
+                                    </div>
+                                    <div class="pageFace back">
+                                        <h1>back2</h1>
+                                        <div class="pageFoldLeft"></div>
+                                    </div>
+                                </div>
+                                <div id="page1" class="page">
+                                    <div class="pageFace front">
+                                        <h1>front1</h1>
+                                        <div class="pageFoldRight"></div>
+                                    </div>
+                                    <div class="pageFace back">
+                                        <h1>back1</h1>
+                                        <div class="pageFoldLeft"></div>
+                                    </div>
+                                </div>
+                                <div id="p" class="page">
+                                    <div class="pageFace front p">
+                                        <h1>front1</h1>
+                                        <div class="pageFoldRight p"></div>
+                                    </div>
+                                    <div class="pageFace p back">
+                                        <h1>back1</h1>
+                                        <div class="pageFoldLeft p"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+                <div id="albumContraPortada" class="albumDisenio ">
+                    <p class="text-center">Parte trasera</p>
+                </div>
+
+                <div class="d-flex align-content-end justify-content-end">
+                    <button class="btn btn-primary m-2">Enviar</button>
+
+
+
+
+                </div>
+            </div>
+
+            <div class="col-2  flex-column d-flex align-content-end justify-content-center">
+                <div class="sombraPrueba">
+                    <button class="btnPrueba btnCeleste">Prueba</button>
+                </div>
+                <a id="btnDer" onclick="pasarPagina('btnDer')" class="flechas"> <i class="fa-solid fa-circle-arrow-right"></i></a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <style>
+
+
+        .rombo {
+            width: 0;
+            height: 0;
+            border-left: 50px solid rgba(0, 0, 0, 0.3);
+            border-top: 25px solid transparent;
+            border-bottom: 25px solid transparent;
+            transform: rotate(90deg);
+            margin-right: 3px;
+            position: absolute;
+        }
+
+        .btnPrueba {
+            background: radial-gradient(circle, #2be671 0%, #19dcea 89%);
+        
+            padding: 10px;
+            width: 130px;
+            height: 50px;
+            border-radius: 10px;
+            font-family: Dubai;
+            color: white;
+            border: solid 2px #2be671;
+            animation-name: rebotar;
+            animation-duration: 2s;
+            
+        }
+
+            .btnPrueba:hover {
+                animation-name: rebotar;
+                animation-duration: 2s;
+            }
+
+        .btnCeleste {
+            background-color: #19dcea;
+        }
+
+        .sombraPrueba {
+            background-color: rgba(0, 0, 0, 0.3);
+            padding: 2px;
+            width: 130px;
+            height: 60px;
+            border-radius: 10px;
+        }
+
+
+        .datosImagen {
+            position: absolute;
+            margin-top: -35vh;
+            display: none;
+            width: 30vw;
+            background-color: rgba(0, 0, 0, 0.3);
+            border-top-right-radius: 10px;
+            border-bottom-right-radius: 10px;
+            border-top-left-radius: 10px;
+        }
+
+        #p {
+            background-color: black;
+        }
+
+        #libroAbierto {
+            display: none;
+            margin: auto;
+        }
+
+        .imgSeleccion {
+            overflow-y: scroll;
+            border-radius: 7px;
+            border: 2px dashed rgba(255, 255, 255, 0.3);
+            padding: 5px;
+            margin: 10px;
+        }
+
+        .flechas {
+            color: blueviolet;
+            text-decoration: none;
+            font-size: 50px;
+        }
+
+            .flechas:hover {
+                cursor: pointer;
+            }
+
+        .albumDisenio {
+            margin: auto;
+            width: 30vw;
+            height: 40vw;
+            border: 2px solid white;
+            background: white;
+            border-radius: 40px;
+        }
+
+        .miDiv {
+            z-index: 9;
+            border: 1px solid #d3d3d3;
+            text-align: center;
+        }
+
+        .miDivCursor {
+            padding: 10px;
+            cursor: move;
+            z-index: 10;
+        }
+
+        .marcoFoto {
+            width: 100px;
+            height: 100px;
+            background-color: black;
+        }
+
+        .borderR {
+            border-radius: 50%;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.4.0/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/MotionPathPlugin.min.js" integrity="sha512-BzcSFxmHCzqSxULkAtfJQOwzt0f8HlE0GDFLfe5Bocfv7TNiO5Lcd/xZL3/erRX0Yx62KlqEHDAFhp5F+ovGrg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/LibroAbierto/LibroAbierto.js"></script>
+    <script src="~/Scripts/BotonEnviar/BotonEnviar.js"></script>
+    <script src="~/Scripts/RoundSlider/JavaScript.js"></script>
+
+
+    <script>
+
+
+        document.getElementById("btnIzq").style.display = "none";
+        dragElement(document.getElementById("miDiv"));
+        dragElement(document.getElementById("miPrueba"));
+        document.getElementById("albumContraPortada").style.display = "none";
+
+
+
+        // dragElement(document.getElementsByClassName("miDiv"));
+        var datoImagen = 0;
+        function mostrarDatosImagen() {
+            if (datoImagen == 0) {
+                document.getElementById("datosImagen").style.display = "block";
+                datoImagen++;
+            } else if (datoImagen >= 1) {
+                document.getElementById("datosImagen").style.display = "none";
+                datoImagen = 0;
+            }
+        }
+
+        function dragElement(elmnt) {
+
+            var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+
+            document.getElementById(elmnt.id + "Cursor").onmousedown = dragMouseDown;
+            // document.getElementsByClassName(elmnt.getElementsByClassName + "Cursor").onmousedown = dragMouseDown;
+
+            function dragMouseDown(e) {
+                e = e || window.event;
+                e.preventDefault();
+                // obtenemos posición de mouse
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+                document.onmouseup = closeDragElement;
+
+                // llama función para darle posición nueva al div
+                document.onmousemove = elementDrag;
+            }
+
+            function elementDrag(e) {
+                console.log("entra");
+                document.getElementById("miDiv").style.position = "absolute";
+                document.getElementById("miPrueba").style.position = "absolute";
+
+
+
+                // document.getElementById("miDiv").style.position = "absolute";
+                e = e || window.event;
+                e.preventDefault();
+                // calcula la nueva posición del cursor
+                pos1 = pos3 - e.clientX;
+                pos2 = pos4 - e.clientY;
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+                // asignamos el movimiento
+                elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+                elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+
+
+            }
+
+            function closeDragElement() {
+                // detiene movimiento cuando mouse deja de moverse
+                document.onmouseup = null;
+                document.onmousemove = null;
+
+            }
+
+            colorPicker.addEventListener("change", InsertarColor, false);
+
+            function InsertarColor(e) {
+                console.log(e.target.value);
+                document.getElementById("albumDisenio").style.backgroundColor = e.target.value;
+            }
+        }
+
+
+        var pagina = 0;
+        function pasarPagina(btn) {
+            console.log(pagina);
+            if (btn == "btnDer" && pagina == 1) {
+                document.getElementById("albumContraPortada").style.display = "block";
+                document.getElementById("libroAbierto").style.display = "none";
+                document.getElementById("btnDer").style.display = "none";
+
+                pagina++;
+            }
+            if (btn == "btnIzq" && pagina == 1) {
+                document.getElementById("albumDisenio").style.display = "block";
+                document.getElementById("libroAbierto").style.display = "none";
+                document.getElementById("btnIzq").style.display = "none";
+                document.getElementById("albumContraPortada").style.display = "none";
+                document.getElementById("btnDer").style.display = "blick";
+                pagina--;
+            }
+            if (btn == "btnIzq" && pagina == 2) {
+                document.getElementById("albumDisenio").style.display = "none";
+                document.getElementById("libroAbierto").style.display = "block";
+                document.getElementById("btnIzq").style.display = "block";
+                document.getElementById("albumContraPortada").style.display = "none";
+                document.getElementById("btnDer").style.display = "block";
+                pagina--;
+            }
+
+            if (btn == "btnDer" && pagina == 0) {
+                document.getElementById("albumDisenio").style.display = "none";
+                document.getElementById("libroAbierto").style.display = "block";
+                document.getElementById("btnIzq").style.display = "block";
+
+                pagina++;
+            }
+
+
+        }
+
+
+
+
+
+
+
+
+
+        $("#miDiv").click(function (e) {
+            var $this = $(this); if ($this.hasClass('clicked')) {
+
+                mostrarDatosImagen();
+
+                return
+
+            } else {
+                $this.addClass('clicked'); //your code for single click
+                setTimeout(function () { $this.removeClass('clicked'); }, 200);
+
+
+            }
+        });
+
+
+
+        var idClick = "";
+        function GuardarId(click) {
+
+            if (idClick == "") {
+                idClick = click;
+                var alto = $('#img' + idClick).height();
+                //Ancho del elemento
+                var ancho = $('#img' + idClick).width();
+
+                //  var rot = $('#img' + idClick).deg();
+
+
+
+
+                var inputAncho = document.getElementById("txtAncho" + idClick);
+                inputAncho.value = ancho;
+                var rangeAncho = document.getElementById("rangeAncho");
+                rangeAncho.value = ancho;
+
+
+                var inputAlto = document.getElementById("txtAlto" + idClick);
+                inputAlto.value = alto;
+            }
+
+
+        }
+
+
+        function imprimir(valor) {
+
+
+            document.getElementById("img" + idClick).style.width = valor + "px";
+            var inputAncho = document.getElementById("txtAncho" + idClick);
+            inputAncho.value = valor;
+        }
+
+        function CambiarTamanios() {
+            var inputAncho = document.getElementById("txtAncho" + idClick).value;
+
+            document.getElementById("img" + idClick).style.width = inputAncho + "px";
+
+            var inputAlto = document.getElementById("txtAlto" + idClick).value;
+
+            document.getElementById("img" + idClick).style.height = inputAlto + "px";
+
+
+            var inputRotacion = document.getElementById("txtRotacion" + idClick).value;
+
+            document.getElementById("img" + idClick).style.transform = "rotate(" + inputRotacion + "deg)";
+
+
+
+            idClick = "";
+            mostrarDatosImagen();
+        }
+
+
+
+
+
+
+        var position,
+            lastPosition,
+            canSlide = false,
+            range = $(".range"),
+            input = range.find("input"),
+            maxPoints = input.attr("max"),
+            minPoints = input.attr("min"),
+            prevVal = input.attr("min");
+
+        range.on("mousedown touchstart", rangeSliderInit);
+        range.on("mousemove touchmove", rangeSliderUpdate);
+        range.on("mouseup touchend", rangeSliderStop);
+
+        function pointerEvents(e) {
+            var pos = { x: 0, y: 0 };
+
+            if (
+                e.type == "touchstart" ||
+                e.type == "touchmove" ||
+                e.type == "touchend" ||
+                e.type == "touchcancel"
+            ) {
+                var touch = e.changedTouches[0];
+                pos.x = touch.pageX;
+                pos.y = touch.pageY;
+            } else if (
+                e.type == "mousedown" ||
+                e.type == "mouseup" ||
+                e.type == "mousemove" ||
+                e.type == "mouseover" ||
+                e.type == "mouseout" ||
+                e.type == "mouseenter" ||
+                e.type == "mouseleave"
+            ) {
+                pos.x = e.pageX;
+                pos.y = e.pageY;
+            }
+
+            return pos;
+        }
+
+        function rangeSliderInit() {
+            canSlide = true;
+        }
+
+        function rangeSliderUpdate(e) {
+            if (!canSlide || maxPoints == 0) return;
+
+            var position = pointerEvents(e),
+                dial = range.find(".dial"),
+                dialRadius = dial.width() / 2,
+                coords = {
+                    x: position.x - range.offset().left,
+                    y: position.y - range.offset().top
+                },
+                radius = range.width() / 2,
+                atan = Math.atan2(coords.x - radius, coords.y - radius),
+                deg = Math.ceil(-atan / (Math.PI / 180) + 180);
+
+            if (prevVal <= 1 && lastPosition - position.x >= 0) deg = 0;
+            if (prevVal >= 359 && lastPosition - position.x <= 0) deg = 360;
+
+            var x =
+                Math.ceil((radius - 5) * Math.sin(deg * Math.PI / 180)) + radius + "px",
+                y =
+                    Math.ceil((radius - 5) * -Math.cos(deg * Math.PI / 180)) + radius + "px",
+                points = Math.ceil(deg * maxPoints / 360);
+
+            //move dial
+            dial.css({ transform: "translate(" + x + "," + y + ")" });
+
+            //show range progress
+            if (deg <= 180) {
+                range.find(".right .blocker").css({ transform: "rotate(" + deg + "deg)" });
+                range.find(".left .blocker").css({ transform: "rotate(0)" });
+            } else {
+                range.find(".right .blocker").css({ transform: "rotate(180deg" });
+                range
+                    .find(".left .blocker")
+                    .css({ transform: "rotate(" + (deg - 180) + "deg)" });
+            }
+
+            //show value
+            range.find(".count").text(points).val(points);
+
+            prevVal = deg;
+            lastPosition = position.x;
+        }
+
+        function rangeSliderStop() {
+            canSlide = false;
+        }
+
+
+
+    </script>
+
+
+
+

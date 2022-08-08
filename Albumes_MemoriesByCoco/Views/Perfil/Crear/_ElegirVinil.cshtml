@@ -1,0 +1,287 @@
+﻿<div id="ContainerVinilUsuario">
+
+
+    <div id="modalVinilConfirmar" style="display:none" class="modal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Ventana Emergente</h5>
+                    <button onclick="VinilElegido(-1)" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>¿Estas seguro de elegir este tipo de vinil?</p>
+                </div>
+                <div class="modal-footer">
+                    <button onclick="VinilElegido(-1)" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button onclick="VinilElegidoConfirma()" type="button" class="btn btn-primary">Aceptar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <h1 class="text-center">Selecciona el tipo de Vinil para tu álbum</h1>
+    <a class="btn btn-info mt-0"  onclick="AtrasTipoVinilUsuario()"><i class="fa-solid fa-angle-left"></i></a>
+
+
+    <div id="ContainerVinilU" class="row ">
+
+
+    </div>
+    <div id="PaginationVinilU" class="d-flex justify-content-center align-items-center">
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+                <li class="page-item">
+                    <button style="display:none" onclick="CambiarPaginaVinilU(-1)" id="AtrasPaginadoVinilU" class="page-link PaginationVinilU" href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </button>
+                </li>
+
+                <li class="page-item "><a id="ActualPaginadoVinilU" class="page-link PaginationVinilU" href="#">1</a></li>
+
+                <li class="page-item">
+                    <button onclick="CambiarPaginaVinilU(1)" id="AdelantePaginadoVinilU" class="page-link PaginationVinilU" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </button>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script>
+   
+    var PaginaVinilU = 1;
+    var TotalPagsVinilU = 0;
+    function MostrarVinilUFrase(pagina) {
+         $.ajax({
+            url: '@Url.Action("ConsultarVinilUPaginadosSelect", "Perfil")',
+            type: "POST",
+             data: { pag: pagina },
+
+
+                 success: function (result) {
+
+                     MostrarDatos(result);
+
+            },
+            error: function (r) {
+
+
+            }
+        })
+    }
+   
+    async function CambiarPaginaVinilU(pagina) {
+
+        $("#ContainerProgressBar").show();
+        if (pagina == 0) {
+            await CantidadPaginasVinilU()
+        }
+
+
+        if (pagina == 1 ) {
+            PaginaVinilU = PaginaVinilU + pagina;
+        }
+        if (pagina == -1) {
+            PaginaVinilU = PaginaVinilU - 1;
+            $("#AdelantePaginadoVinilU").show();
+        }
+
+        if (PaginaVinilU== 1) {
+            $("#AtrasPaginadoVinilU").hide();
+
+
+
+
+
+        }
+
+        if (PaginaVinilU > 1) {
+            $("#AtrasPaginadoVinilU").show();
+
+        }
+
+        if ((PaginaVinilU + 1) > Math.ceil(TotalPagsVinilU)) {
+
+            $("#AdelantePaginadoVinilU").hide();
+        }
+
+
+
+
+       document.getElementById('ActualPaginadoVinilU').innerHTML = PaginaVinilU;
+
+        MostrarVinilUFrase(PaginaVinilU);
+
+    }
+
+
+    async function CantidadPaginasVinilU() {
+        await $.ajax({
+            url: '@Url.Action("ConsultarVinilUStickers", "Perfil")',
+            type: "POST",
+                 success: function (result) {
+                     console.log(result);
+                     TotalPagsVinilU = result;
+
+            },
+            error: function (r) {
+
+
+            }
+        })
+    }
+
+    function MostrarDatos(result) {
+        console.log(result);
+        var Fila = "";
+        for (i = 0; i < result.length; i++) {
+
+
+            Fila = Fila +  '<div class="col-lg-4 col-md-12 col-sm-12 d-flex justify-content-center align-items-center">' +
+
+                '<div class="container">' +
+                '<div class="cardM">' +
+                '<div class="image CartaUp">' +
+                
+                '<p style="margin-top:-30px" class="mb-0 text-center">' + result[i].nombre + '</p>' +
+                '<div class="d-flex justify-content-center align-items-center">'+
+                '<img style="border-radius:4px;" width="130" height="130" src="data:image/png;base64,' + result[i].strImagen + '" class="mt-2 ImgCover" />' +
+                '</div>'+
+                '</div>'+
+             
+                '<div class=content>' +
+                '<p>'+result[i].descripcion+'</p>' +
+                '<div class="d-flex justify-content-center align-items-center ">' +
+                '<button  onclick="VinilElegido(' + result[i].idVinil +')" class="btnCarta">Elegir</button>' +
+                '</div>' +
+                '</div>' +
+                '</div>' +
+                '</div>' +
+                '</div>';
+
+
+
+            
+
+
+        }
+
+        $("#ContainerVinilU").html(Fila);
+        $("#ContainerProgressBar").hide();
+
+    }
+
+
+
+    $("#txtBuscarVinilU").keyup(function () {
+        $("#btnCancelarBusquedaVinilU").show();
+
+        var VinilU = $("#txtBuscarVinilU").val()
+
+        if (VinilU == "") {
+            $("#btnCancelarBusquedaVinilU").hide();
+            $(".PaginationVinilU").show();
+            MostrarVinilUFrase(1);
+            $("#AtrasPaginadoVinilU").hide();
+
+
+        } else {
+            $(".PaginationVinilU").hide();
+            ConsultarVinilULike(VinilU);
+        }
+
+
+
+
+    })
+
+
+    $("#btnCancelarBusquedaVinilU").click(function () {
+        $("#txtBuscarVinilU").val("")
+        $("#btnCancelarBusquedaVinilU").hide();
+        TraerDatosTablaVinilU(1);
+        $("#PaginationVinilU").show();
+        $("#AtrasPaginadoVinilU").hide();
+        $(".PaginationVinilU").show();
+    })
+
+    function ConsultarVinilULike(str) {
+
+          $.ajax({
+            url: '@Url.Action("ConsultarVinilULike_", "Perfil")',
+              type: "POST",
+              data: { strFrase: str },
+
+
+                 success: function (result) {
+
+
+                     MostrarDatos(result);
+
+            }
+        })
+    }
+    var idTipoVinil = 0;
+    function VinilElegido(id) {
+        if (id == -1) {
+            $("#modalVinilConfirmar").hide();
+        } else {
+            idTipoVinil = id;
+            $("#modalVinilConfirmar").show();
+        }
+       
+    }
+
+
+    function VinilElegidoConfirma() {
+        $("#ContainerProgressBar").show();
+            $.ajax({
+            url: '@Url.Action("GuardarVinilElegido", "Perfil")',
+              type: "POST",
+                data: { idVinil: idTipoVinil },
+
+
+                success: function (result) {
+                   
+                    SiguienteStep();
+                    CambiarPaginaFraseUsuario(0)
+                    $("#modalVinilConfirmar").hide();
+                     $("#ContainerVinilUsuario").hide();
+                     $("#ElegirFraseUsuarioContainer").show();
+                    $("#ContainerProgressBar").hide();
+
+                },
+                error: function (error) {
+                    VinilElegido(-1);
+                    alert("Error:" + error); //Error
+                    location.reload()
+                }
+        })
+    }
+
+
+    function AtrasTipoVinilUsuario() {
+        $("#ContainerVinilUsuario").hide();
+        AnteriorStep();
+        $("#ElegirTipoAlbumPersonalizado").show();
+
+
+    }
+
+
+
+</script>
+
+
+<style>
+
+    .ImgCover{
+        object-fit:cover;
+        width:170px;
+        height:170px;
+
+    }
+   
+</style>

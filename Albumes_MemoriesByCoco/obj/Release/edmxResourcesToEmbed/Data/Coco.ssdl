@@ -1,0 +1,362 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MemoriesByCocoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <Function Name="PA_ActivarCategoria" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="nCodigo" Type="int" Mode="In" />
+    <Parameter Name="bBool" Type="bit" Mode="In" />
+  </Function>
+  <Function Name="PA_ActivarFrase" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="nCodigo" Type="int" Mode="In" />
+    <Parameter Name="bBool" Type="bit" Mode="In" />
+  </Function>
+  <Function Name="PA_ActivarVinil" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="nCodigo" Type="int" Mode="In" />
+    <Parameter Name="bBool" Type="bit" Mode="In" />
+  </Function>
+  <Function Name="PA_Actualizar_Parametro" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="nCodigo" Type="int" Mode="In" />
+    <Parameter Name="strDescripcion" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="PA_ActualizarEstadoPedido" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="nPedido" Type="int" Mode="In" />
+    <Parameter Name="nEstado" Type="int" Mode="In" />
+  </Function>
+  <Function Name="PA_ActualizarInfoUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="nCodicion" Type="int" Mode="In" />
+    <Parameter Name="nCodigo" Type="int" Mode="In" />
+    <Parameter Name="strNombre" Type="varchar" Mode="In" />
+    <Parameter Name="strApellido1" Type="varchar" Mode="In" />
+    <Parameter Name="strApellido2" Type="varchar" Mode="In" />
+    <Parameter Name="strCorreo" Type="varchar" Mode="In" />
+    <Parameter Name="strTel" Type="varchar" Mode="In" />
+    <Parameter Name="strDireccion" Type="varchar(max)" Mode="In" />
+  </Function>
+  <Function Name="PA_AsignarPuntos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="nUsuario" Type="int" Mode="In" />
+    <Parameter Name="nCantidad" Type="int" Mode="In" />
+  </Function>
+  <Function Name="PA_CambiosPassword" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="strCorreo" Type="varchar" Mode="In" />
+    <Parameter Name="strPass" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="PA_CONS_CantidadImgsxPedido" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="nId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="PA_CONS_Consultar_Solicita_Password" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="strUsuario" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="PA_CONS_ConsultarAlbum_Paginacion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="nPagina" Type="int" Mode="In" />
+    <Parameter Name="nDatos" Type="int" Mode="In" />
+  </Function>
+  <Function Name="PA_CONS_ConsultarAlbum_Paginacion_" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="nPagina" Type="int" Mode="In" />
+    <Parameter Name="nDatos" Type="int" Mode="In" />
+  </Function>
+  <Function Name="PA_CONS_ConsultarAlbumLike" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="strNombre" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="PA_CONS_ConsultarAlbumxCategoria" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="nCategoria" Type="int" Mode="In" />
+  </Function>
+  <Function Name="PA_CONS_ConsultarCantidadProyectos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="PA_CONS_ConsultarCategoria" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="nCodigo" Type="int" Mode="In" />
+  </Function>
+  <Function Name="PA_CONS_ConsultarCategoria_Paginacion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="nPagina" Type="int" Mode="In" />
+    <Parameter Name="nDatos" Type="int" Mode="In" />
+  </Function>
+  <Function Name="PA_CONS_ConsultarCategoriaImgs" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="nCodigo" Type="int" Mode="In" />
+  </Function>
+  <Function Name="PA_CONS_ConsultarCategoriaLike" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="strNombre" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="PA_CONS_ConsultarColor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="PA_CONS_ConsultarCorreo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="nCorreo" Type="int" Mode="In" />
+  </Function>
+  <Function Name="PA_CONS_ConsultarCuentaBancaria" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="nCuenta" Type="int" Mode="In" />
+  </Function>
+  <Function Name="PA_CONS_ConsultarEmailRegistrado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="strCorreo" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="PA_CONS_ConsultarEstados" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="PA_CONS_ConsultarEstadoxId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="nCodigo" Type="int" Mode="In" />
+  </Function>
+  <Function Name="PA_CONS_ConsultarFotosxPedido" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="nCodigo" Type="int" Mode="In" />
+  </Function>
+  <Function Name="PA_CONS_ConsultarFotosxPedido_" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="nCodigo" Type="int" Mode="In" />
+  </Function>
+  <Function Name="PA_CONS_ConsultarFrases_Paginacion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="nPagina" Type="int" Mode="In" />
+    <Parameter Name="nDatos" Type="int" Mode="In" />
+  </Function>
+  <Function Name="PA_CONS_ConsultarFrases_Paginacion_Sticker" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="nPagina" Type="int" Mode="In" />
+    <Parameter Name="nDatos" Type="int" Mode="In" />
+  </Function>
+  <Function Name="PA_CONS_ConsultarFrases_Paginacion_Usuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="nPagina" Type="int" Mode="In" />
+    <Parameter Name="nDatos" Type="int" Mode="In" />
+  </Function>
+  <Function Name="PA_CONS_ConsultarFrasesLike" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="strNombre" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="PA_CONS_ConsultarFrasesLike_Usuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="strNombre" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="PA_CONS_ConsultarFrasesLike_V2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="strNombre" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="PA_CONS_ConsultarFrasesxPedido" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="nCodigo" Type="int" Mode="In" />
+  </Function>
+  <Function Name="PA_CONS_ConsultarFrasesxPedido_V2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="nCodigo" Type="int" Mode="In" />
+  </Function>
+  <Function Name="PA_CONS_ConsultarFrasexID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="nCodigo" Type="int" Mode="In" />
+  </Function>
+  <Function Name="PA_CONS_ConsultarImagenesAlbumPredefinido" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="PA_CONS_ConsultarImagenesAlbumPredefinido_" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="nCodigo" Type="int" Mode="In" />
+  </Function>
+  <Function Name="PA_CONS_ConsultarImagenesAlbumPredefinido_V2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="nCodigo" Type="int" Mode="In" />
+  </Function>
+  <Function Name="PA_CONS_ConsultarImgxIDCategoria" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="nCodigo" Type="int" Mode="In" />
+  </Function>
+  <Function Name="PA_CONS_ConsultarImgxIDVinil" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="nCodigo" Type="int" Mode="In" />
+  </Function>
+  <Function Name="PA_CONS_ConsultarImgxProyecto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="nCodigo" Type="int" Mode="In" />
+  </Function>
+  <Function Name="PA_CONS_ConsultarInicioSesion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="strUsuario" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="PA_CONS_ConsultarPedidos_Paginados" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="nCodigo" Type="int" Mode="In" />
+    <Parameter Name="nPagina" Type="int" Mode="In" />
+    <Parameter Name="nDatos" Type="int" Mode="In" />
+  </Function>
+  <Function Name="PA_CONS_ConsultarPedidos_Paginados_v2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="nCodigo" Type="int" Mode="In" />
+    <Parameter Name="nPagina" Type="int" Mode="In" />
+    <Parameter Name="nDatos" Type="int" Mode="In" />
+  </Function>
+  <Function Name="PA_CONS_ConsultarPedidos_Paginados_v3" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="nCodigo" Type="int" Mode="In" />
+    <Parameter Name="nPagina" Type="int" Mode="In" />
+    <Parameter Name="nDatos" Type="int" Mode="In" />
+  </Function>
+  <Function Name="PA_CONS_ConsultarPedidos_Paginados_v4" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="nCodigo" Type="int" Mode="In" />
+    <Parameter Name="nPagina" Type="int" Mode="In" />
+    <Parameter Name="nDatos" Type="int" Mode="In" />
+  </Function>
+  <Function Name="PA_CONS_ConsultarPedidoxId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="nCodigo" Type="int" Mode="In" />
+  </Function>
+  <Function Name="PA_CONS_ConsultarPrecios" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="PA_CONS_ConsultarPreguntas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="PA_CONS_ConsultarPreguntaxID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="nCodigo" Type="int" Mode="In" />
+  </Function>
+  <Function Name="PA_CONS_ConsultarPuntosxUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="nUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="PA_CONS_ConsultarRegistrosAlbum" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="PA_CONS_ConsultarRegistrosCategoria" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="PA_CONS_ConsultarRegistrosFrases" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="PA_CONS_ConsultarRegistrosFrases_Usuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="PA_CONS_ConsultarRegistrosPedido" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="nCodigo" Type="int" Mode="In" />
+  </Function>
+  <Function Name="PA_CONS_ConsultarRegistroStickers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="PA_CONS_ConsultarRegistrosVinil" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="PA_CONS_ConsultarRegistroVinilActivo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="PA_CONS_ConsultarRespuestasxPedido" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="nCodigo" Type="int" Mode="In" />
+  </Function>
+  <Function Name="PA_CONS_ConsultarStickerxID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="nCodigo" Type="int" Mode="In" />
+  </Function>
+  <Function Name="PA_CONS_ConsultarTelMemories" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="nTel" Type="int" Mode="In" />
+  </Function>
+  <Function Name="PA_CONS_ConsultarUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="nCodigo" Type="int" Mode="In" />
+  </Function>
+  <Function Name="PA_CONS_ConsultarUsuarioAdmin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="PA_CONS_ConsultarVinil_Paginacion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="nPagina" Type="int" Mode="In" />
+    <Parameter Name="nDatos" Type="int" Mode="In" />
+  </Function>
+  <Function Name="PA_CONS_ConsultarVinil_Paginacion_Img" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="nPagina" Type="int" Mode="In" />
+    <Parameter Name="nDatos" Type="int" Mode="In" />
+  </Function>
+  <Function Name="PA_CONS_ConsultarVinilLike" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="strNombre" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="PA_CONS_ConsultarVinilLike_Img" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="strNombre" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="PA_ConsultarParametros" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="nCodigo" Type="int" Mode="In" />
+  </Function>
+  <Function Name="PA_ConsultarProyecto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="nCodigo" Type="int" Mode="In" />
+  </Function>
+  <Function Name="PA_ConsultarProyectoImg" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="nCodigo" Type="int" Mode="In" />
+  </Function>
+  <Function Name="PA_Eliminar_ImagenPedido" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="nCodigo" Type="int" Mode="In" />
+  </Function>
+  <Function Name="PA_EliminarPuntos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="nUsuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="PA_EliminarPuntos_Cantidad" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="nUsuario" Type="int" Mode="In" />
+    <Parameter Name="nCantidad" Type="int" Mode="In" />
+  </Function>
+  <Function Name="PA_INS_InsertarImagenPedidoUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="nCodigo" Type="int" Mode="In" />
+    <Parameter Name="byImagen" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="PA_INS_InsertarRespuestasUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="nPregunta" Type="int" Mode="In" />
+    <Parameter Name="strRespuesta" Type="varchar(max)" Mode="In" />
+    <Parameter Name="nPedido" Type="int" Mode="In" />
+  </Function>
+  <Function Name="PA_INS_RegistrarUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="strNombre" Type="varchar" Mode="In" />
+    <Parameter Name="strApellido1" Type="varchar" Mode="In" />
+    <Parameter Name="strApellido2" Type="varchar" Mode="In" />
+    <Parameter Name="strCorreo" Type="varchar" Mode="In" />
+    <Parameter Name="strTelefono" Type="varchar" Mode="In" />
+    <Parameter Name="strDireccion" Type="varchar(max)" Mode="In" />
+    <Parameter Name="strUsuario" Type="varchar" Mode="In" />
+    <Parameter Name="strPass" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="PA_INS_SolicitaCambio" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="strUsuario" Type="varchar" Mode="In" />
+    <Parameter Name="nCambio" Type="int" Mode="In" />
+  </Function>
+  <Function Name="PA_InsertarBitacora" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="error" Type="varchar(max)" Mode="In" />
+    <Parameter Name="fecha" Type="datetime" Mode="In" />
+    <Parameter Name="usuario" Type="int" Mode="In" />
+  </Function>
+  <Function Name="PA_InsertarFrases" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="nAccion" Type="int" Mode="In" />
+    <Parameter Name="nCodigo" Type="int" Mode="In" />
+    <Parameter Name="strDescripcion" Type="varchar" Mode="In" />
+    <Parameter Name="bInactivo" Type="bit" Mode="In" />
+    <Parameter Name="bySticker" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="PA_InsertarFrasesxPedido" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="nPedido" Type="int" Mode="In" />
+    <Parameter Name="nFrase" Type="int" Mode="In" />
+  </Function>
+  <Function Name="PA_InsertarVinil" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="nCodigo" Type="int" Mode="In" />
+    <Parameter Name="strNombre" Type="varchar" Mode="In" />
+    <Parameter Name="strDescripcion" Type="varchar" Mode="In" />
+    <Parameter Name="bInactivo" Type="bit" Mode="In" />
+    <Parameter Name="byImg" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="PA_Mantenimiento_PAQ_ESTADO_PEDIDO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="nOperacion" Type="int" Mode="In" />
+    <Parameter Name="bNotifica" Type="bit" Mode="In" />
+    <Parameter Name="nCodigo" Type="int" Mode="In" />
+    <Parameter Name="strDescripcion" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="PA_Mantenimiento_Preguntas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="nOperacion" Type="int" Mode="In" />
+    <Parameter Name="bInactivo" Type="bit" Mode="In" />
+    <Parameter Name="nCodigo" Type="int" Mode="In" />
+    <Parameter Name="strDescripcion" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="PA_MantenimientoAlbumPredefinido" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="nOperacion" Type="int" Mode="In" />
+    <Parameter Name="nCodigo" Type="int" Mode="In" />
+    <Parameter Name="strNombre" Type="varchar" Mode="In" />
+    <Parameter Name="nCategoria" Type="int" Mode="In" />
+  </Function>
+  <Function Name="PA_MantenimientoCategoria" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="nAccion" Type="int" Mode="In" />
+    <Parameter Name="nCodigo" Type="int" Mode="In" />
+    <Parameter Name="strNombre" Type="varchar" Mode="In" />
+    <Parameter Name="strDescripcion" Type="varchar" Mode="In" />
+    <Parameter Name="bInactivo" Type="bit" Mode="In" />
+    <Parameter Name="bySticker" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="PA_MantenimientoFrases_" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="nAccion" Type="int" Mode="In" />
+    <Parameter Name="nCodigo" Type="int" Mode="In" />
+    <Parameter Name="strDescripcion" Type="varchar" Mode="In" />
+    <Parameter Name="bInactivo" Type="bit" Mode="In" />
+    <Parameter Name="bySticker" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="PA_MantenimientoImgAlbumPredefinido" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="nOperacion" Type="int" Mode="In" />
+    <Parameter Name="nAlbum" Type="int" Mode="In" />
+    <Parameter Name="nCodigo" Type="int" Mode="In" />
+    <Parameter Name="byImg" Type="varbinary(max)" Mode="In" />
+    <Parameter Name="bPortada" Type="bit" Mode="In" />
+  </Function>
+  <Function Name="PA_MantenimientoPrecios" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="nOperacion" Type="int" Mode="In" />
+    <Parameter Name="nCodigo" Type="int" Mode="In" />
+    <Parameter Name="strDescripcion" Type="varchar" Mode="In" />
+    <Parameter Name="nValor" Type="numeric" Mode="In" />
+  </Function>
+  <Function Name="PA_MantenimientoProyecto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="nOperacion" Type="int" Mode="In" />
+    <Parameter Name="nCodigo" Type="int" Mode="In" />
+    <Parameter Name="strNombre" Type="varchar" Mode="In" />
+    <Parameter Name="strCategoria" Type="varchar" Mode="In" />
+    <Parameter Name="byImg" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="PA_MantenimientoVinil" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="nAccion" Type="int" Mode="In" />
+    <Parameter Name="nCodigo" Type="int" Mode="In" />
+    <Parameter Name="strNombre" Type="varchar" Mode="In" />
+    <Parameter Name="strDescripcion" Type="varchar" Mode="In" />
+    <Parameter Name="bInactivo" Type="bit" Mode="In" />
+    <Parameter Name="bySticker" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="PA_Obtener_NumeroPedido" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="PA_RegistrarPedido" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="nCodigo" Type="int" Mode="In" />
+    <Parameter Name="nUsuario" Type="int" Mode="In" />
+    <Parameter Name="nPersonalizado" Type="int" Mode="In" />
+    <Parameter Name="strTipoAlbum" Type="varchar" Mode="In" />
+    <Parameter Name="nVinil" Type="int" Mode="In" />
+    <Parameter Name="strNumeroTransferencia" Type="varchar" Mode="In" />
+    <Parameter Name="nMonto" Type="numeric" Mode="In" />
+    <Parameter Name="nEstado" Type="int" Mode="In" />
+    <Parameter Name="date" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="PA_RegistrarPedido_V2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="nCodigo" Type="int" Mode="In" />
+    <Parameter Name="nUsuario" Type="int" Mode="In" />
+    <Parameter Name="nPersonalizado" Type="int" Mode="In" />
+    <Parameter Name="strTipoAlbum" Type="varchar" Mode="In" />
+    <Parameter Name="nVinil" Type="int" Mode="In" />
+    <Parameter Name="strNumeroTransferencia" Type="varchar" Mode="In" />
+    <Parameter Name="nMonto" Type="numeric" Mode="In" />
+    <Parameter Name="nEstado" Type="int" Mode="In" />
+    <Parameter Name="date" Type="datetime" Mode="In" />
+  </Function>
+  <EntityContainer Name="MemoriesByCocoModelStoreContainer" />
+</Schema>

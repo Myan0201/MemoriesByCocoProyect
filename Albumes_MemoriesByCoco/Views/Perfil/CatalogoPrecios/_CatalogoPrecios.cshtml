@@ -1,0 +1,382 @@
+﻿
+@model Albumes_MemoriesByCoco.Models.PrecioModel
+
+<div id="modalPreciosBorrar" style="display:none" class="modal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Ventana Emergente</h5>
+                <button onclick="MostrarEliminarPrecios(-1)" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>¿Estas seguro de borrar este elemento?</p>
+            </div>
+            <div class="modal-footer">
+                <button onclick="MostrarEliminarPrecios(-1)" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button id="btnAceptarEliminarPrecios" type="button" class="btn btn-primary">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div id="ContainerPrecios" class="row">
+    <a style="font-size:40px" onclick="OcultarContenedorPrecios()"><i class="fa-solid fa-circle-arrow-left text-info"></i></a>
+
+    <h1 class="text-center">Precios</h1>
+    <button id="btnAgregarPrecios" onclick="MostrarAgregarPrecios()" class="btn btn-primary mb-2">Crear Nuevo</button>
+    <div class="row">
+        <div class="col-lg-2 col-md-4 ">
+
+        </div>
+        <form id="frmFormularioPrecios" enctype="multipart/form-data" class="col-lg-8 col-md-8 col-sm-12 d-flex justify-content-center">
+            <div id="ContainerAgregarPrecios" style="display:none" class="card p-2 mb-2 w-75">
+                <div class="card-header">
+                    <h1 class="text-center ">Formulario</h1>
+
+                </div>
+
+                <div class="d-flex justify-content-center align-items-center flex-column">
+
+
+                    @Html.EditorFor(Model => Model.DescripcionPrecios, "", new { htmlAttributes = new { @class = "form-control mt-2", id = "txtDescripcionPrecios", placeholder = "Descripción..." } })
+                    @Html.ValidationMessageFor(Model => Model.DescripcionPrecios, "", new { htmlAttributes = new { @class = "text-danger" } })
+                </div>
+
+                <div class="d-flex justify-content-center align-items-center flex-column">
+
+
+                    @Html.EditorFor(Model => Model.Valor, "", new { htmlAttributes = new { @class = "form-control mt-2", id = "txtValPrecios", placeholder = "Valor..." } })
+                    @Html.ValidationMessageFor(Model => Model.Valor, "", new { htmlAttributes = new { @class = "text-danger" } })
+                </div>
+
+
+
+                <hr />
+                <br />
+              
+                <div class="d-flex justify-content-center align-items-center flex-column">
+                    <button id="btnAgregarFinalPrecios" class="btn btn-primary mt-2 form-control">Agregar</button>
+                    <div style="display:none" id="AlertIngresadoPrecios" class="alert alert-success w-100 mt-2" role="alert">
+                        Acción realizada correctamente.
+                    </div>
+                    <div style="display:none" class="alert alert-danger w-100 mt-2" role="alert">
+                        Ha ocurrido un error.
+                    </div>
+                </div>
+
+
+
+
+            </div>
+        </form>
+        <div class="col-lg-2 col-md-4 ">
+
+        </div>
+
+    </div>
+    <div class="row">
+
+        <div class="col-lg-4 col-md-4">
+
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-12">
+
+        </div>
+
+    </div>
+    <table class="table table-dark table-hover  TablaSombra">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Descripcion</th>
+                <th>Valor</th>
+
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody id="bodyTablaPrecios">
+        </tbody>
+
+    </table>
+
+
+</div>
+
+
+<style>
+    .TablaSombra {
+        box-shadow: 2px 4px 16px black;
+    }
+
+
+    [type="file"] {
+        /* Style the color of the message that says 'No file chosen' */
+        color: #878787;
+    }
+
+        [type="file"]::-webkit-file-upload-button {
+            background: #ED1C1B;
+            border: 2px solid #ED1C1B;
+            border-radius: 4px;
+            color: #fff;
+            cursor: pointer;
+            font-size: 12px;
+            outline: none;
+            padding: 10px 25px;
+            text-transform: uppercase;
+            transition: all 1s ease;
+        }
+
+            [type="file"]::-webkit-file-upload-button:hover {
+                background: #fff;
+                border: 2px solid #535353;
+                color: #000;
+            }
+</style>
+
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script>
+
+
+    var AgregaPrecios = 0;
+    var PagTablaPrecios = 1;
+
+
+
+    function MostrarAgregarPrecios() {
+        $("#AlertIngresadoPrecios").hide()
+
+        if (AgregaPrecios == 0) {
+            document.getElementById("ContainerAgregarPrecios").style.display = "block";
+            document.getElementById("btnAgregarPrecios").className = "btn btn-danger mb-2";
+            document.getElementById("btnAgregarPrecios").innerHTML = "Cancelar";
+
+            AgregaPrecios++;
+        } else {
+
+            document.getElementById("btnAgregarPrecios").innerHTML = "Agregar";
+            document.getElementById("btnAgregarPrecios").className = "btn btn-primary mb-2";
+            document.getElementById("ContainerAgregarPrecios").style.display = "none";
+            AgregaPrecios = 0;
+        }
+
+    }
+
+
+
+    $("#frmFormularioPrecios").submit(function (e) {
+
+        e.preventDefault();
+
+
+
+        var InputDescripcion = $("#txtDescripcionPrecios").val();
+        var ImagenExiste = $("#InputCargaImagenPrecios").val();
+        var NombreExiste = $("#txtNombrePrecios").val();
+
+
+        if (InputDescripcion == "" || ImagenExiste == "" || NombreExiste=="") {
+            $("#AlertError").show()
+            alert("Debe rellenar todos los campos");
+        } else {
+
+            var parametros = new FormData($("#frmFormularioPrecios")[0])
+
+            $.ajax({
+                url: '@Url.Action("AgregarPrecios", "Perfil")',
+                type: "POST",
+                data: parametros ,
+            contentType: false,
+            processData: false,
+            success: function (result) {
+                $("#AlertIngresadoPrecios").show()
+                $("#txtDescripcionPrecios").val('')
+                $("#txtValPrecios").val('')
+                $("#cbInactivoPrecios").val('')
+                $("#InputCargaImagenPrecios").val("")
+               
+                TraerDatosTablaPrecios(PagTablaPrecios);
+
+
+
+            },
+            error: function (r) {
+
+                $("#AlertError").show();
+            }
+        })
+        }
+
+
+
+
+
+
+
+    })
+
+
+
+
+
+    
+
+
+    function TraerDatosTablaPrecios(){
+    
+
+
+        var Fila = "";
+
+             $.ajax({
+            url: '@Url.Action("ConsultarPrecios", "Perfil")',
+            type: "POST",
+
+
+
+                 success: function (result) {
+                     console.log(result);
+                     for (i = 0; i < result.length; i++) {
+                       
+                         Fila = Fila +
+                             '<tr>' +
+                             '<td>' +
+                             result[i].IdPrecios+
+                             '</td>' +
+                             '<td>' +
+                             result[i].DescripcionPrecios +
+                             '</td>' +
+                             '<td >' +
+                             '<div class="d-flex justify-content-center align-items-center" >'+
+                             '<input id="inputEditPrecio'  + result[i].IdPrecios + '" type="number" disabled="disabled" class="form-control" value="' + result[i].Valor + '" /> <a onclick="EditarCampo(' + result[i].IdPrecios+')"><i class="fa-solid fa-pen text-light" style="margin-left:10px"></i></a>'+
+                             '</div>'+
+                             '</td>' +
+
+                             '<td><a onclick="MostrarEliminarPrecios(' + result[i].IdPrecios + ')" class="btn btn-danger m-2">Eliminar</a>';
+
+                    
+                         Fila = Fila + '<a id="btnGuardarPrecio' + result[i].IdPrecios+'" onclick="ActualizarPrecio(' + result[i].IdPrecios + ')" class="m-2 btn btn-success OcultarBoton">Guardar</a></td>';
+                      
+                         
+                         
+
+
+
+                     Fila=Fila+'</tr>';
+
+
+             }
+
+                     $("#bodyTablaPrecios").html(Fila);
+                     $(".OcultarBoton").hide();
+                     $("#ContainerProgressBar").hide();
+
+
+            },
+            error: function (r) {
+
+
+            }
+        })
+
+
+
+    }
+  
+    function EditarCampo(id) {
+        $("#btnGuardarPrecio" + id).show();
+        document.getElementById("inputEditPrecio"+id).disabled =false;
+
+
+    }
+
+    $("#btnMostrarPrecios").click(function (e) {
+
+        e.preventDefault();
+        TraerDatosTablaPrecios(1);
+
+    })
+
+
+    var IdEliminarPrecios = 0;
+    var MuestraEliminarPrecios = 0;
+
+
+    $("#btnAceptarEliminarPrecios").click(function (e) {
+
+         $.ajax({
+            url: '@Url.Action("EliminarPrecios", "Perfil")',
+            type: "POST",
+            data: { id: IdEliminarPrecios },
+            success: function (result) {
+
+                MostrarEliminarPrecios(-1);
+                TraerDatosTablaPrecios(PagTablaPrecios);
+
+            }
+        })
+    })
+
+    function MostrarEliminarPrecios(id) {
+        if (id > 0) {
+            IdEliminarPrecios=id
+        }
+        if (MuestraEliminarPrecios == 0) {
+            $("#modalPreciosBorrar").show();
+            MuestraEliminarPrecios++;
+        } else {
+            $("#modalPreciosBorrar").hide();
+            MuestraEliminarPrecios=0;
+        }
+
+
+
+    }
+
+
+
+    function ActualizarPrecio(ids) {
+        var tPrecio = $("#inputEditPrecio" + ids).val();
+          $.ajax({
+            url: '@Url.Action("ActualizarPrecios", "Perfil")',
+              type: "POST",
+              data: { id: ids, valor: tPrecio },
+
+
+                 success: function (result) {
+
+                     TraerDatosTablaPrecios();
+                     alert("Datos actualizados");
+
+            },
+            error: function (r) {
+
+
+            }
+        })
+    }
+
+    function OcultarContenedorPrecios() {
+        $("#ContainerPrecios").hide();
+        $(".PaginaMantenimientos").show();
+    }
+    function SeleccionarArchivoCanceladoPrecios() {
+        $("#InputCargaImagenPrecios").val("")
+        $("#ImgSubidaPrecios").hide();
+    }
+
+  
+</script>
+
+
+<style>
+    a:hover{
+        cursor:pointer;
+    }
+</style>
+
+

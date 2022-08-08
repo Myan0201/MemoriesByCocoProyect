@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="MemoriesByCocoEntities-Web.config Connection String" description="MemoriesByCocoEntities Cadena de conexión que usa la aplicación en web.config para obtener acceso a la base de datos." defaultValue="metadata=res://*/Data.Coco.csdl|res://*/Data.Coco.ssdl|res://*/Data.Coco.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=SQL8002.site4now.net;initial catalog=db_a88ca5_diego123;User Id=db_a88ca5_diego123_admin;Password=diego123;MultipleActiveResultSets=True;App=EntityFramework&quot;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\PC-Jandro\\source\\repos\\Albumes_MemoriesByCoco\\Albumes_MemoriesByCoco\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='MemoriesByCocoEntities']/@connectionString" />
+  </parameter>
+</parameters>

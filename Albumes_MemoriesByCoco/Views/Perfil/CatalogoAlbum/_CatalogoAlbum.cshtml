@@ -1,0 +1,782 @@
+﻿
+
+@model Albumes_MemoriesByCoco.Models.AlbumModel
+
+<div id="modalAlbumBorrar" style="display:none" class="modal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Ventana Emergente</h5>
+                <button onclick="MostrarEliminarAlbum(-1)" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>¿Estas seguro de borrar este album?</p>
+            </div>
+            <div class="modal-footer">
+                <button onclick="MostrarEliminarAlbum(-1)" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button id="btnAceptarEliminarAlbum" type="button" class="btn btn-primary">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="modalMostrarImgAlbum" style="display:none" class="modal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Ventana Emergente</h5>
+                <button onclick="OcultarMostrarImgAlbum()" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div id="ContenedorImagenesAlbum" class="modal-body d-flex justify-content-center align-items-center flex-column">
+           
+
+            </div>
+            <div class="modal-footer">
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="ContainerAlbum" class="row">
+    <a style="font-size:40px" onclick="OcultarContenedorAlbum()"><i class="fa-solid fa-circle-arrow-left text-info"></i></a>
+
+    <h1 class="text-center">Album</h1>
+    <button id="btnAgregarAlbum" onclick="MostrarAgregarAlbum()" class="btn btn-primary mb-2">Crear Nuevo</button>
+    <div class="row">
+       
+        <form id="frmFormularioAlbum" enctype="multipart/form-data" class="col-lg-12 col-md-12 col-sm-12 d-flex justify-content-center">
+            <div id="ContainerAgregarAlbum" style="display:none" class="card p-2 mb-2 w-75">
+                <div class="card-header">
+                    <h1 class="text-center ">Formulario</h1>
+
+                </div>
+
+                <div class="d-flex justify-content-center align-items-center flex-column">
+
+
+                    @Html.EditorFor(Model => Model.nombre, "", new { htmlAttributes = new { @class = "form-control mt-2", id = "txtNombreAlbum", placeholder = "Nombre..." } })
+                    @Html.ValidationMessageFor(Model => Model.nombre, "", new { htmlAttributes = new { @class = "text-danger" } })
+                </div>
+                <div class="d-flex justify-content-center align-items-center flex-column">
+
+                    <select asp-name="" id="selectCategoria" class="form-select mt-2">
+                        <option value="-1">Seleccione</option>
+                    </select>
+                
+                </div>
+                <hr />
+                <div class="d-flex justify-content-center align-items-center  flex-column w-100">
+                    <div class="row">
+
+                        <div class="col-6 d-flex justify-content-start align-items-center ">
+                            <div class="d-flex justify-content-start align-items-start flex-column">
+                                @Html.TextBoxFor(Model => Model.strImagen, new { type = "file", onchange = "MostrarImagenAlbum()", oncancel = "SeleccionarArchivoCanceladoAlbum()", id = "InputCargaImagenAlbum", htmlAttributes = new { id = "InputCargaImagenAlbum", @class = "w-100" } })
+
+                             
+
+
+                              
+                            </div>
+                           
+                        </div>
+                        <div class="col-6">
+                            <div class="form-check align-items-center justify-content-center">
+                                @Html.CheckBoxFor(Model => Model.esPortada, new { id = "cbPortada", htmlAttributes = new { id = "cbPortada", @class = "form-check-input" } })
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    @Html.LabelFor(Model => Model.esPortada)
+                                </label>
+                            </div>
+                          
+                           
+                        </div>
+                        <div class="col-6">
+                           
+                        </div>
+
+                    </div>
+
+                </div>
+                <div id="ContainerFotosAlbum" class="row">
+
+                </div>
+                <hr />
+                <br />
+                <div class="d-flex justify-content-center align-items-center flex-column">
+
+                
+                    <div class="d-flex justify-content-center align-items-center flex-column">
+                        <button id="btnAgregarFinalAlbum" class="btn btn-primary mt-2 form-control">Agregar</button>
+                        <div style="display:none" id="AlertIngresadoAlbum" class="alert alert-success w-100 mt-2" role="alert">
+                            Acción realizada correctamente.
+                        </div>
+                        <div style="display:none" class="alert alert-danger w-100 mt-2" role="alert">
+                            Ha ocurrido un error.
+                        </div>
+                    </div>
+
+
+
+
+                </div>
+            </div>
+        </form>
+       
+
+    </div>
+    <div class="row">
+        <div class="col-lg-4 col-md-4  col-sm-12">
+            <div class="input-group mb-2">
+                <label class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></label>
+                <input placeholder="Buscar..." id="txtBuscarAlbum" class="form-control" />
+                <button id="btnCancelarBusquedaAlbum" style="display:none" class="btn btn-danger m-0 ">X</button>
+            </div>
+
+
+        </div>
+        <div class="col-lg-4 col-md-4">
+
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-12">
+
+        </div>
+
+    </div>
+    <table class="table table-dark table-hover  TablaSombra">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th colspan="4">Categoría</th>
+             
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody id="bodyTablaAlbum">
+        </tbody>
+
+    </table>
+    <div id="PaginationAlbum" class="d-flex justify-content-center align-items-center">
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+                <li class="page-item">
+                    <button style="display:none" onclick="CambiarPaginaAlbum(-1)" id="AtrasPaginadoAlbum" class="page-link PaginationAlbum" href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </button>
+                </li>
+
+                <li class="page-item PaginationAlbum"><a id="ActualPaginadoAlbum" class="page-link" href="#">1</a></li>
+
+                <li class="page-item">
+                    <button onclick="CambiarPaginaAlbum(1)" id="AdelantePaginadoAlbum" class="page-link PaginationAlbum" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </button>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+</div>
+
+
+<style>
+    .TablaSombra {
+        box-shadow: 2px 4px 16px black;
+    }
+
+
+    [type="file"] {
+        /* Style the color of the message that says 'No file chosen' */
+        color: #878787;
+    }
+
+        [type="file"]::-webkit-file-upload-button {
+            background: #ED1C1B;
+            border: 2px solid #ED1C1B;
+            border-radius: 4px;
+            color: #fff;
+            cursor: pointer;
+            font-size: 12px;
+            outline: none;
+            padding: 10px 25px;
+            text-transform: uppercase;
+            transition: all 1s ease;
+        }
+
+            [type="file"]::-webkit-file-upload-button:hover {
+                background: #fff;
+                border: 2px solid #535353;
+                color: #000;
+            }
+</style>
+
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script>
+
+
+    var AgregaAlbum = 0;
+    var PagTablaAlbum = 1;
+    var TotalPagsAlbum = 1;
+    var MinAlbum = 0;
+    var MaxAlbum = 0;
+
+    async function CambiarPaginaAlbum(pagina) {
+
+        if (pagina == 0) {
+            await CantidadPaginasAlbum()
+        }
+
+
+        if (pagina == 1) {
+            PagTablaAlbum = PagTablaAlbum + pagina;
+        }
+        if (pagina == -1) {
+            PagTablaAlbum = PagTablaAlbum - 1;
+            $("#AdelantePaginadoAlbum").show();
+        }
+
+        if (PagTablaAlbum == MinAlbum) {
+            $("#AtrasPaginadoAlbum").hide();
+
+        } else {
+            $("#AtrasPaginadoAlbum").show();
+        }
+
+        if (PagTablaAlbum == MaxAlbum) {
+            $("#AdelantePaginadoAlbum").hide();
+        } else {
+            $("#AdelantePaginadoAlbum").show();
+        }
+       
+
+
+
+
+        document.getElementById('ActualPaginadoAlbum').innerHTML = PagTablaAlbum;
+
+        TraerDatosTablaAlbum(PagTablaAlbum);
+
+
+
+    }
+
+   function MostrarAgregarAlbum() {
+       $("#AlertIngresadoAlbum").hide();
+
+        if (AgregaAlbum == 0) {
+            document.getElementById("ContainerAgregarAlbum").style.display = "block";
+            document.getElementById("btnAgregarAlbum").className = "btn btn-danger mb-2";
+            document.getElementById("btnAgregarAlbum").innerHTML = "Cerrar";
+            ObtenerIdAlbum();
+
+            AgregaAlbum++;
+        } else {
+
+            document.getElementById("btnAgregarAlbum").innerHTML = "Agregar";
+            document.getElementById("btnAgregarAlbum").className = "btn btn-primary mb-2";
+            document.getElementById("ContainerAgregarAlbum").style.display = "none";
+            $("#AlertIngresadoAlbum").hide();
+            EliminarSesion();
+            AgregaAlbum = 0;
+        }
+
+    }
+
+
+
+    function ObtenerIdAlbum() {
+          $.ajax({
+            url: '@Url.Action("ObtenerIdAlbum", "Album")',
+            type: "POST",
+            success: function (result) {
+
+            }
+        })
+    }
+
+    var ImagenCargadaAlbum = 0;
+
+    function CargaImagenAlbum() {
+
+        var Imagen = $("#ContainerFotosAlbum").html();
+
+        var NuevaVariable = "ImagenCargada" + ImagenCargadaAlbum;
+        Imagen = '<div id="CargaFotoAlbum" class="col-lg-4 col-md-6 col-sm-12 mt-2 ">' +
+            '<div style="display:none" class="d-flex justify-content-center align-items-center mt-2">' +
+            '<progress id="' + NuevaVariable + '" class="pure-material-progress-circular" />' +
+            '</div>' +
+            '</div>' + Imagen;
+
+
+        $("#" + NuevaVariable).show();
+
+        $("#ContainerFotosAlbum").html(Imagen);
+    }
+
+
+    function EliminarSesion() {
+         $.ajax({
+            url: '@Url.Action("EliminarSesionAlbum", "Album")',
+            type: "POST",
+            success: function (result) {
+
+            }
+        })
+    }
+
+   async  function MostrarImagenAlbum() {
+
+       if ($("#InputCargaImagenAlbum").val() != "") {
+
+
+           CargaImagenAlbum();
+
+           var formData = new FormData();
+           var file = $("#InputCargaImagenAlbum").get(0).files;
+           formData.append("Imagen", file[0]);
+           formData.append("esPortada", document.getElementById("cbPortada").checked);
+
+           var archivo = document.getElementById("InputCargaImagenAlbum").files[0];
+           var reader = new FileReader();
+           if (archivo) {
+
+               reader.readAsDataURL(archivo);
+               reader.onloadend = function () {
+
+
+
+                   $.ajax({
+                       url: '@Url.Action("InsertarImgAlbum", "Album")',
+                       type: "POST",
+                       data: formData,
+                       contentType: false,
+                       processData: false,
+                       success: function (result) {
+                           console.log(result);
+                           var Imagen = $("#ContainerFotosAlbum").html();
+                           var VariableActual = "ImagenCargada" + ImagenCargada;
+
+                           var CodigoImagen = "Img" + result;
+                           Imagen = '<div id="' + CodigoImagen + '" class="col-lg-4 col-md-6 col-sm-12 mt-2 d-flex justify-content-center align-items-center flex-column">' +
+
+                               '<div class="d-flex justify-content-end align-items-end w-100">' +
+                               '<a onclick="EliminarImagenAlbum(' + result + ')" class="" ><i class="fa-solid fa-circle-xmark QuitarImagen"></i></a>' +
+                               '</div>' +
+                               '<img width="150" heigth="150" src="' + reader.result + '" > </img> ' +
+                               '</div>' + Imagen;
+
+
+
+                           $("#ContainerFotosAlbum").html(Imagen);
+                           $('#CargaFotoAlbum').remove();
+                           $("#" + VariableActual).hide();
+                           $("#cbPortada").checked = false;
+
+                       },
+                       error: function (r) {
+
+                       }
+                   })
+
+
+
+
+
+               }
+           }
+       }
+    }
+
+
+    function EliminarImagenAlbum(idImg) {
+        var ImagenEliminar = "Img" + idImg;
+        $('#' + ImagenEliminar).remove();
+        console.log(idImg + " elim")
+        $.ajax({
+            url: '@Url.Action("EliminarImagenAlbum", "Album")',
+            type: "POST",
+            data: { id: idImg },
+
+
+            success: function (result) {
+
+
+
+
+            }
+        })
+
+
+    }
+
+    $("#frmFormularioAlbum").submit(function (e) {
+       
+        e.preventDefault();
+
+
+
+
+
+        var NombreExiste = $("#txtNombreAlbum").val();
+        var seleccionCategoria = $("#selectCategoria").val();
+
+        if (NombreExiste == "" || seleccionCategoria==-1) {
+            $("#AlertError").show()
+            alert("Debe rellenar todos los campos");
+        } else {
+
+
+
+            $.ajax({
+                url: '@Url.Action("AgregarAlbum", "Album")',
+                type: "POST",
+                data: { Nombre: NombreExiste, Categoria: $("#selectCategoria").val() },
+
+            success: function (result) {
+                $("#txtNombreAlbum").val("")
+                $("#selectCategoria").val(-1);
+     
+                $('#cbPortada').prop('checked', false);
+                $("#AlertIngresadoAlbum").show();
+                TraerDatosTablaAlbum(PagTablaAlbum);
+                $("#ContainerFotosAlbum").html("");
+
+
+
+            },
+            error: function (r) {
+
+                $("#AlertError").show();
+            }
+        })
+        }
+
+
+
+
+
+
+
+    })
+
+
+
+
+
+    function ConsultarCategoriasAlbum() {
+            $.ajax({
+            url: '@Url.Action("ConsultarCategoria", "Categoria")',
+            type: "POST",
+
+
+                success: function (result) {
+                    var Fila = $("#selectCategoria").html();
+                    for (i = 0; i < result.length; i++) {
+                        Fila = Fila + '<option value="' + result[i].idCategoria + '">' + result[i].nombre + '</option>';
+
+                    }
+                    $("#selectCategoria").html(Fila);
+            },
+            error: function (r) {
+
+
+            }
+        })
+    }
+
+
+    async function CantidadPaginasAlbum() {
+        await $.ajax({
+            url: '@Url.Action("ConsultarRegistroAlbum", "Album")',
+            type: "POST",
+
+
+
+            success: function (result) {
+                console.log(result);
+                MinAlbum = result.nMin;
+                MaxAlbum = result.nMax;
+
+
+            }
+        })
+    }
+   
+
+
+
+   async function MostrarImagenPreviaAlbum(img) {
+
+        if (img == "-1") {
+            $("#modalMostrarImgAlbum").hide();
+        } else {
+
+            $("#modalMostrarImgAlbum").show();
+
+            CargaConsulta = '<div id="CargaFotoAlbumConsultaAlbum" class="col-lg-4 col-md-6 col-sm-12 mt-4 ">' +
+                '<div style="display:none" class="d-flex justify-content-center align-items-center mt-2">' +
+                '<progress class="pure-material-progress-circular" />' +
+                '</div>' +
+                '</div>';
+
+            $("#ContenedorImagenesAlbum").html(CargaConsulta);
+
+
+            await $.ajax({
+            url: '@Url.Action("ConsultarImagenesXAlbum", "Album")',
+            type: "POST",
+            data: {id:img},
+                success: function (result) {
+
+
+                    var fila = "";
+                    if (result.length > 0) {
+
+
+                        for (i = 0; i < result.length; i++) {
+                            fila = fila + '<div class="d-flex justify-content-center align-items-center flex-column">' +
+                                '<p class="text-left">' + (i + 1) + '. </p>' +
+                                '<img width="300" src="data:image/png;base64,' + result[i].strImagen + '" />' +
+                                '</div>';
+                        }
+
+                    } else {
+                        fila = '<b class="text-center text-danger">No existen imagenes para este álbum</b>'
+                    }
+
+                        $('#CargaFotoAlbumConsultaAlbum').remove();
+                        $("#ContenedorImagenesAlbum").html(fila);
+
+
+            },
+            error: function (r) {
+
+                $("#AlertError").show();
+            }
+        })
+        }
+
+
+
+
+
+    }
+
+
+    function TraerDatosTablaAlbum(pag){
+
+
+
+        var Fila = "";
+
+             $.ajax({
+            url: '@Url.Action("MostrarAlbum", "Album")',
+            type: "POST",
+             data: { pagina: pag },
+
+
+                 success: function (result) {
+
+                     for (i = 0; i < result.length; i++) {
+
+                         Fila = Fila +
+                             '<tr>' +
+                             '<td>' +
+                             result[i].idAlbum +
+                             '</td>' +
+                             '<td>' +
+                             result[i].nombre +
+                             '</td>' +
+                             '<td colspan="4">' +
+                             result[i].nombreCategoria +
+                             '</td>' +
+
+                             '<td><a onclick="MostrarEliminarAlbum(' + result[i].idAlbum + ')" class="btn btn-danger m-2">Eliminar</a>' +
+                             '<a onclick = "MostrarImagenPreviaAlbum(' + result[i].idAlbum + ')" class="btn btn-success m-2" > Ver imagenes</a>';
+
+
+
+
+                     Fila=Fila+'</tr>';
+
+
+             }
+
+                     $("#bodyTablaAlbum").html(Fila);
+                     $("#ContainerProgressBar").hide();
+
+
+            },
+            error: function (r) {
+
+
+            }
+        })
+
+
+
+    }
+
+    $("#btnMostrarAlbum").click(function (e) {
+
+        e.preventDefault();
+        TraerDatosTablaAlbum(1);
+
+    })
+
+
+    var IdEliminarAlbum = 0;
+    var MuestraEliminarAlbum = 0;
+
+
+    $("#btnAceptarEliminarAlbum").click(function (e) {
+
+         $.ajax({
+            url: '@Url.Action("EliminarRegistroAlbum", "Album")',
+            type: "POST",
+            data: { id: IdEliminarAlbum },
+            success: function (result) {
+
+                MostrarEliminarAlbum(-1);
+                TraerDatosTablaAlbum(PagTablaAlbum);
+
+            }
+        })
+    })
+
+    function MostrarEliminarAlbum(id) {
+        if (id > 0) {
+            IdEliminarAlbum=id
+        }
+        if (MuestraEliminarAlbum == 0) {
+            $("#modalAlbumBorrar").show();
+            MuestraEliminarAlbum++;
+        } else {
+            $("#modalAlbumBorrar").hide();
+            MuestraEliminarAlbum=0;
+        }
+
+
+
+    }
+
+
+    function ConsultarAlbumLike(str) {
+
+        var Fila = "";
+          $.ajax({
+            url: '@Url.Action("ConsultarAlbumLike", "Album")',
+              type: "POST",
+              data: { strAlbum: str },
+
+
+                 success: function (result) {
+
+
+                     for (i = 0; i < result.length; i++) {
+                         var EsInactivo = result[i].Inactivo ? 'Si' : 'No';
+                         Fila = Fila +
+                             '<tr>' +
+                             '<td>' +
+                             result[i].idAlbum +
+                             '</td>' +
+                             '<td>' +
+                             result[i].nombre +
+                             '</td>' +
+                             '<td colspan="4">' +
+                             result[i].nombreCategoria +
+                             '</td>' +
+
+                             '<td><a onclick="MostrarEliminarAlbum(' + result[i].idAlbum + ')" class="btn btn-danger m-2">Eliminar</a>' +
+                             '<a onclick = "MostrarImagenPreviaAlbum(' + result[i].idAlbum + ')" class="btn btn-success m-2" > Ver imagen</a>';
+
+
+
+
+                         Fila = Fila + '</tr>';
+
+
+                     }
+
+                $("#bodyTablaAlbum").html(Fila);
+
+
+            }
+        })
+    }
+
+    $("#txtBuscarAlbum").keyup(function(){
+        $("#btnCancelarBusquedaAlbum").show();
+
+        var Album = $("#txtBuscarAlbum").val()
+
+        if (Album == "") {
+            $("#btnCancelarBusquedaAlbum").hide();
+
+            $(".PaginationAlbum").show()
+            $("#AtrasPaginadoAlbum").hide();
+            TraerDatosTablaAlbum(1);
+
+        } else {
+            $(".PaginationAlbum").hide()
+
+            ConsultarAlbumLike(Album);
+        }
+
+
+
+
+    })
+
+
+    $("#btnCancelarBusquedaAlbum").click(function () {
+        $("#txtBuscarAlbum").val("")
+        $("#btnCancelarBusquedaAlbum").hide();
+        $("#AtrasPaginadoAlbum").hide();
+        $(".PaginationAlbum").show();
+        TraerDatosTablaAlbum(1);
+        $("#PaginationAlbum").show();
+    })
+
+
+    $("#ImgSubidaAlbum").hide();
+
+    function OcultarMostrarImgAlbum() {
+        $("#modalMostrarImgAlbum").hide();
+    }
+
+    function CambiarInactivoAlbum(ids, estados) {
+
+          $.ajax({
+            url: '@Url.Action("CambiarInactivoAlbum", "Album")',
+              type: "POST",
+              data: { id: ids, estado: estados },
+
+
+                 success: function (result) {
+
+                     TraerDatosTablaAlbum(PagTablaAlbum);
+
+            },
+            error: function (r) {
+
+
+            }
+        })
+    }
+
+    function OcultarContenedorAlbum() {
+        $("#ContainerAlbum").hide();
+        $("#PaginaAlbum").show();
+    }
+    function SeleccionarArchivoCanceladoAlbum() {
+        console.log("cancel")
+        $("#InputCargaImagenAlbum").val("")
+        $("#ImgSubidaAlbum").hide();
+    }
+
+
+</script>

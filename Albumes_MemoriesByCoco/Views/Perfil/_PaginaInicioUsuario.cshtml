@@ -1,0 +1,321 @@
+﻿
+
+
+
+<div id="modalCancelarPedido" style="display:none" class="modal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Ventana Emergente</h5>
+
+            </div>
+            <div class="modal-body">
+                <label>¿Estas seguro de cancelar el pedido?</label>
+            </div>
+            <div class="modal-footer">
+                <button onclick="CerrarCancelarPedido()" type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                <button onclick="AceptarCancelarPedido()" type="button" class="btn btn-primary">Si</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="ContenedorPrincipalUsuario" class="row">
+    <div class="col-lg-4 col-md-12 col-sm-12 d-flex justify-content-center align-items-center">
+        <div class=container>
+            <div class="cardM PaginaPerfilUsuario">
+                <div class="image CartaUp ">
+                    <h2 class="text-center textoInfo">Mis pedidos</h2>
+                    <div class="d-flex justify-content-center align-items-center">
+                        <i class="fa-solid fa-book NegroToBlanco text-center" style="font-size:60px "></i>
+                    </div>
+                </div>
+                <div class=content>
+
+                    <p>Revisá el estados e historial de tus pedidos. </p>
+
+                    <button onclick="MisPedidos()" class="btnCarta">Ver</button>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="col-lg-4 col-md-12 col-sm-12 d-flex justify-content-center align-items-center">
+        <div class=container>
+            <div class="cardM PaginaPerfilUsuario">
+                <div class="image CartaUp">
+                    <h2 class="text-center textoInfo">Crear álbum</h2>
+                    <div class="d-flex justify-content-center align-items-center">
+
+                        <i class="fa-brands fa-earlybirds NegroToBlanco" style="font-size:60px "></i>
+
+                    </div>
+                </div>
+                <div class=content>
+
+                    <p>Encarga tu álbum y escoge tus materiales favoritos. </p>
+                    <button onclick="CrearAlbum()" class="btnCarta">Crear</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="col-lg-4 col-md-12 col-sm-12 d-flex justify-content-center align-items-center">
+
+        <div class=container>
+            <div class="cardM PaginaPerfilUsuario">
+                <div class="image CartaUp">
+                    <h2 class="text-center textoInfo">Mis puntos</h2>
+                    <div class="d-flex justify-content-center align-items-center">
+                        <i class="fa-brands fa-bilibili NegroToBlanco" style="font-size:60px"></i>
+
+
+                    </div>
+                </div>
+                <div class=content>
+                    <p>Acumulá puntos y canjealos por álbumes gratis.</p>
+                    <div class="d-flex justify-content-center align-items-center ">
+                        <button onclick="MisPuntosConsulta(1)" class="btnCarta">Ver</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+<div id="StepContainer" class="bodyStep">
+    <div class="containerStep">
+        <div class="progress-containerStep">
+            <div class="progressStep" id="progress"></div>
+            <div class="circleStep activeStep">
+                1
+            </div>
+            <div class="circleStep">
+                2
+            </div>
+            <div class="circleStep">
+                3
+            </div>
+            <div class="circleStep">
+                4
+            </div>
+            <div class="circleStep">
+                5
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+
+
+<!--Creación de álbum-->
+<!--Si lo quiere personalizado o predefinido-->
+
+
+<div>
+    @Html.Partial("Crear/ElegirTipoAlbum")
+</div>
+
+<!--Si lo quiere predefinido-->
+<div>
+    @Html.Partial("Crear/ElegirTipoAlbum2")
+</div>
+
+<div>
+    @Html.Partial("Crear/_ElegirVinil")
+</div>
+
+<div>
+    @Html.Partial("Crear/_ElegirFrase")
+</div>
+
+<div>
+    @Html.Partial("Crear/_Preguntas")
+</div>
+
+<div>
+    @Html.Partial("Crear/_PreciosUsuario")
+</div>
+
+<div>
+    @Html.Partial("Crear/_CategoriaPredefinido")
+</div>
+
+<div>
+    @Html.Partial("Crear/_AlbumPredefinido")
+</div>
+
+<div>
+    @Html.Partial("ConsultaPedido/_ConsultaPedido")
+</div>
+
+
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script>
+
+    OcultarInicio();
+    function CrearAlbum() {
+        $("#ElegirTipoAlbumPre").show();
+        $("#ContenedorPrincipalUsuario").hide();
+
+
+    }
+
+    function MisPedidos() {
+        $("#ContainerProgressBar").show();
+        CambiarPaginaPedidoU(0);
+        $("#ContenedorPedido").show();
+        $("#ContenedorPrincipalUsuario").hide();
+    }
+
+
+
+
+    function OcultarInicio() {
+        $("#ElegirTipoAlbumPre").hide();
+        $("#ElegirTipoAlbumPersonalizado").hide();
+        $("#ContainerVinilUsuario").hide();
+        $("#ElegirFraseUsuarioContainer").hide();
+        $("#StepContainer").hide();
+        $("#ContainerPreguntasUsuario").hide();
+        $("#ContainerPrecioUsuario").hide();
+        $("#ContainerCategoriaPredefinido").hide();
+        $("#ContenedorAlbumPreUs").hide();
+        $("#ContenedorPedido").hide();
+
+    }
+
+
+
+
+    const progress = document.getElementById('progress');
+
+    const circles = document.querySelectorAll('.circleStep');
+
+    let currentActive = 1;
+
+    function SiguienteStep() {
+        currentActive++
+
+        if (currentActive > circles.length) {
+            currentActive = circles.length;
+        }
+
+        update();
+    }
+    function AnteriorStep() {
+        currentActive--
+
+        // prevents currentActive from going below 1
+        if (currentActive < 1) {
+            currentActive = 1;
+        }
+
+        update();
+    }
+
+
+    function update() {
+        circles.forEach((circle, idx) => {
+            if (idx < currentActive) {
+                circle.classList.add('activeStep')
+            } else {
+                circle.classList.remove('activeStep')
+            }
+        });
+
+        const actives = document.querySelectorAll('.activeStep');
+
+        progress.style.width = (actives.length - 1) / (circles.length - 1) * 80 + '%';
+
+
+    };
+
+
+    function MisPuntosConsulta(accion) {
+
+        if (accion == -1) {
+            $("#modalMisPuntos").hide();
+        } else {
+            $("#modalMisPuntos").show();
+
+
+             $.ajax({
+            url: '@Url.Action("ConsultarPuntos", "Perfil")',
+            type: "POST",
+
+
+
+                 success: function (result) {
+
+                     $("#txtMisPuntos").html('La cantidad de puntos es de : '+result);
+
+            },
+            error: function (r) {
+
+
+            }
+        })
+        }
+
+    }
+
+    function CancelarPedido() {
+        $("#modalCancelarPedido").show();
+    }
+    function CerrarCancelarPedido() {
+        $("#modalCancelarPedido").hide();
+
+    }
+
+    function AceptarCancelarPedido() {
+      
+
+
+           $.ajax({
+            url: '@Url.Action("CancelarPedido", "Perfil")',
+            type: "POST",
+
+
+
+                 success: function (result) {
+
+                     location.reload();
+
+            },
+            error: function (r) {
+
+
+            }
+        })
+    }
+
+
+</script>
+
+
+<style>
+    .modal {
+    }
+
+    .modal {
+        text-align: center;
+        padding: 0 !important;
+        z-index: 10;
+    }
+
+        .modal:before {
+            content: '';
+            height: 100%;
+            vertical-align: middle;
+            margin-right: -4px;
+            background-color: rgba(0,0,0,0.7);
+        }
+</style>

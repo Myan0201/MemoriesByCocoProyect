@@ -1,0 +1,215 @@
+﻿@model Albumes_MemoriesByCoco.Models.UsuarioModel
+<div id="modalConfiguracionUsuario" style="display:none" class="modal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Ventana Emergente</h5>
+                <button onclick="AbrirModalConfig()" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Confirme su contraseña para actualizar los datos.</p>
+                <input type="password" class="form-control" />
+            </div>
+            <div class="modal-footer">
+                <button onclick="AbrirModalConfig()" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button onclick="VinilElegidoConfirma()" type="button" class="btn btn-primary">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row mt-2">
+    <div class="col-lg-4 col-md-4 ">
+
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-12 card">
+        <div class="card-header">
+            <div class="d-flex justify-content-end">
+                <a href="@Url.Action("CerrarSesion", "InicioSesion")" style="font-size:30px; text-decoration:none" title="Cerrar sesión" ><i class="fa-solid fa-right-from-bracket"></i></a>
+            </div>
+
+            <h1 class="text-center">Información personal</h1>
+
+        </div>
+
+        <form id="frmActualizaConfig" class="card-body">
+            <div class="row">
+                <div class="col-4">
+                    <p class="text-center">Nombre </p>
+                </div>
+                <div class="col-8">
+                    @Html.EditorFor(Model => Model.strNombre, "", new { htmlAttributes = new { @class = "form-control", id = "inputNombreConfig" } })
+               
+                </div>
+                <br />
+                <div class="col-4 mt-4">
+                    <p class="text-center">Primer Apellido </p>
+                </div>
+                <div class="col-8 mt-4">
+                    @Html.EditorFor(Model => Model.strApellido1, "", new { htmlAttributes = new { @class = "form-control", id = "inputPrimerApellidoConfig" } })
+                   
+                </div>
+                <div class="col-4 mt-4">
+                    <p class="text-center">Segundo Apellido </p>
+                </div>
+                <div class="col-8 mt-4">
+                    @Html.EditorFor(Model => Model.strApellido2, "", new { htmlAttributes = new { @class = "form-control", id = "inputSegundoApellidoConfig" } })
+            
+                </div>
+                <div class="col-4 mt-4">
+                    <p class="text-center">Correo </p>
+                </div>
+                <div class="col-8 mt-4">
+                    <div class="row">
+                       
+                        <div class="col-10">
+                            @Html.EditorFor(Model => Model.strCorreo, "", new { htmlAttributes = new { @class = "form-control", id = "inputCorreoConfig", disabled = "disabled" } })
+
+                        </div>
+                        <div class="col-2 d-flex flex-column justify-content-center align-content-center">
+                            <a onclick="HabilitarCorreoConfig()"><i class="fa-solid fa-pen"></i></a>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="col-4 mt-4">
+                    <p class="text-center">Telefono </p>
+                </div>
+                <div class="col-8 mt-4">
+                    <div class="row">
+                        <div class="col-10">
+                            @Html.EditorFor(Model => Model.strTel, "", new { htmlAttributes = new { @class = "form-control", id = "inputTelefonoConfig", disabled="disabled" } })
+                         
+                        </div>
+                        <div class="col-2 d-flex flex-column justify-content-center align-content-center">
+                            <a onclick="HabilitarNumeroConfig()"><i class="fa-solid fa-pen"></i></a>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-4 mt-4">
+                    <p class="text-center">Dirección </p>
+                </div>
+                <div class="col-8 mt-4">
+                    @Html.TextAreaFor(m => m.strDireccion, new { @class = "form-control", id = "inputDireccionConfig" })
+                  
+
+                </div>
+
+                <button class="btnAzulOscuro mt-4">Actualizar</button>
+                <b style="display:none" id="UsuarioExisteConfig" class="text-danger text-center">El correo digitado ya existe.</b>
+
+
+            </div>
+
+        </form>
+    </div>
+    <div class="col-lg-4 col-md-4">
+
+    </div>
+
+</div>
+
+
+<script>
+    CargarInformacionPersonal();
+    function CargarInformacionPersonal() {
+        $.ajax({
+            url: '@Url.Action("CargarInformacionPersonalConfig", "Perfil")',
+            type: "POST",
+            success: function (result) {
+
+                $("#inputNombreConfig").val(result.strNombre);
+                $("#inputPrimerApellidoConfig").val(result.strApellido1);
+                $("#inputSegundoApellidoConfig").val(result.strApellido2);
+                $("#inputCorreoConfig").val(result.strCorreo);
+
+                $("#inputDireccionConfig").val(result.strDireccion);
+
+                 $("#inputTelefonoConfig").val(result.strTel);
+
+             },
+            error: function (r) {
+
+
+            }
+        })
+    }
+    $("#frmActualizaConfig").submit(function (e) {
+        e.preventDefault();
+        $('#inputCorreoConfig').prop('disabled', false);
+        $('#inputTelefonoConfig').prop('disabled', false);
+        $("#UsuarioExisteConfig").hide();
+        var parametros = new FormData($("#frmActualizaConfig")[0])
+      
+         $.ajax({
+            url: '@Url.Action("ActualizarInformacionConfig", "Perfil")',
+             type: "POST",
+             data: parametros,
+             contentType: false,
+             processData: false,
+            success: function (result) {
+
+                if (result == true) {
+                    alert("Datos actualizados correctamente");
+                } else {
+                    $("#UsuarioExisteConfig").show();
+                }
+
+                $('#inputCorreoConfig').prop('disabled', true);
+                $('#inputTelefonoConfig').prop('disabled', true);
+                CargarInformacionPersonal();
+
+             },
+            error: function (r) {
+
+
+            }
+        })
+
+
+    });
+    function CorreoExisteConfig() {
+          $.ajax({
+            url: '@Url.Action("CargarInformacionPersonalConfig", "Perfil")',
+            type: "POST",
+            success: function (result) {
+
+                $("#inputNombreConfig").val(result.strNombre);
+                $("#inputPrimerApellidoConfig").val(result.strApellido1);
+                $("#inputSegundoApellidoConfig").val(result.strApellido2);
+                $("#inputCorreoConfig").val(result.strCorreo);
+
+                $("#inputDireccionConfig").val(result.strDireccion);
+
+                 $("#inputTelefonoConfig").val(result.strTel);
+
+             },
+            error: function (r) {
+
+
+            }
+        })
+    }
+
+    var ModalConfig = 0;
+    
+    function AbrirModalConfig() {
+        if (ModalConfig == 0) {
+            $("#modalConfiguracionUsuario").show();
+            ModalConfig++;
+        } else {
+            $("#modalConfiguracionUsuario").hide();
+            ModalConfig = 0;
+        }
+    }
+
+    function HabilitarCorreoConfig() {
+        $('#inputCorreoConfig').prop('disabled', false);
+    }
+
+    function HabilitarNumeroConfig() {
+        $('#inputTelefonoConfig').prop('disabled', false);
+    }
+   
+</script>

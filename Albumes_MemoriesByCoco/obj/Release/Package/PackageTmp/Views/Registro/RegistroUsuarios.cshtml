@@ -1,0 +1,231 @@
+﻿@model Albumes_MemoriesByCoco.Models.UsuarioModel
+
+
+<div class="container CentrarDiv">
+    <div class="row">
+        <div class="col-lg-2 col-md-2 col-sm-0">
+
+        </div>
+        <div class="col-lg-8 col-md-8 col-sm-12 p-2">
+            @if (ViewBag.nRandom == null && ViewBag.ErrorVerificacion == null)
+            {
+
+
+            <div class="fondoRegistro">
+                <div class="card-header d-flex justify-content-center">
+                    <img width="100" height="100" src="~/Imagenes/Logo transparente.png" />
+
+                </div>
+                @using (Html.BeginForm("Registrar", "Registro"))
+                {
+            <div class="row d-flex">
+                <h1 class="text-center">Registro</h1>
+
+
+
+                <div class="col-lg-6 col-sm-12 mt-2 d-flex flex-column justify-content-center align-items-center">
+
+                    @Html.EditorFor(Model => Model.strNombre, "", new { htmlAttributes = new { @class = "form-control", placeholder = "Nombre" } })
+
+                    @Html.ValidationMessageFor(Model => Model.strNombre, "", new { @class = "text-danger" })
+
+                </div>
+
+
+
+                <div class="col-lg-6 col-sm-12 mt-2 d-flex flex-column justify-content-center align-items-center">
+
+                    @Html.EditorFor(Model => Model.strApellido1, "", new { htmlAttributes = new { @class = "form-control", placeholder = "Primer apellido" } })
+                    @Html.ValidationMessageFor(Model => Model.strApellido1, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-lg-6 col-sm-12 mt-2 d-flex flex-column justify-content-center align-items-center">
+                    @Html.EditorFor(Model => Model.strApellido2, "", new { htmlAttributes = new { @class = "form-control", placeholder = "Segundo apellido" } })
+                    @Html.ValidationMessageFor(Model => Model.strApellido2, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-lg-6 col-sm-12 mt-2 d-flex flex-column justify-content-center align-items-center">
+                    @Html.EditorFor(Model => Model.strCorreo, "", new { htmlAttributes = new { @class = "form-control", placeholder = "Correo" } })
+                    @Html.ValidationMessageFor(Model => Model.strCorreo, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-lg-6 col-sm-12 mt-2 d-flex flex-column justify-content-center align-items-center">
+                    @Html.EditorFor(Model => Model.strTel, "", new { htmlAttributes = new { @class = "form-control", placeholder = "Telefono" } })
+                    @Html.ValidationMessageFor(Model => Model.strTel, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-lg-6 col-sm-12 mt-2 d-flex flex-column justify-content-center align-items-center">
+                    @Html.EditorFor(Model => Model.strDireccion, "", new { htmlAttributes = new { @class = "form-control", placeholder = "Dirección" } })
+                    @Html.ValidationMessageFor(Model => Model.strDireccion, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-lg-6 col-sm-12 mt-2 d-flex flex-column justify-content-center align-items-center">
+                    @Html.EditorFor(Model => Model.pass, "", new { htmlAttributes = new { @class = "form-control", placeholder = "Contraseña", type = "password", onchange = "PasswordCoincide(this.value,'p1')" } })
+                    @Html.ValidationMessageFor(Model => Model.pass, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-lg-6 col-sm-12 mt-2 d-flex flex-column justify-content-center align-items-center">
+                    @Html.EditorFor(Model => Model.passConfirma, "", new { htmlAttributes = new { @class = "form-control", placeholder = "Verificar contraseña", type = "password", onchange = "PasswordCoincide(this.value,'p2')" } })
+                    @Html.ValidationMessageFor(Model => Model.passConfirma, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-lg-12 col-sm-12 mt-2 d-flex flex-column justify-content-center align-items-center">
+                    <p id="msjPass" class="text-danger text-center letraMidInfo">Las contraseñas no coinciden</p>
+                </div>
+                <div class="col-lg-6 col-sm-12 ms-2 d-flex-column  justify-content-center align-items-center letraMidInfo">
+                    <div class="d-flex align-items-center justify-content-center">
+                        <input onclick="ValidarCheckBox()" id="cbCondiciones" type="checkbox" name="cbCondiciones" /> Acepto los términos y condiciones
+                    </div>
+
+                    <p class="text-danger letraPeqInfo text-center" id="txtCondiciones">Debes aceptar nuestras condiciones</p>
+
+                </div>
+                @if (ViewBag.CorreoExiste != null)
+                {
+                    <div class="col-lg-12 col-sm-12 mt-2 d-flex flex-column justify-content-center align-items-center">
+                        <p class="letraMidInfo text-danger">El correo ya esta registrado.</p>
+                    </div>
+                }
+                @if (ViewBag.FailPass != null)
+                {
+                    <div class="col-lg-12 col-sm-12 mt-2 d-flex flex-column justify-content-center align-items-center">
+                        <p class="letraPeqInfo text-danger">
+                            La contraseña debe contener:
+                            <ul class="letraPeqInfo text-danger">
+                                <li>Minimo 8 caracteres</li>
+                                <li>Al menos una letra mayuscula</li>
+                                <li>Al menos una letra minuscula</li>
+                                <li>Al menos un dígito</li>
+                                <li>Al menos un caracter especial(. * , - _ )</li>
+                            </ul>
+                         
+                        </p>
+                    </div>
+                }
+
+                <div class="col-lg-12 col-sm-12 mt-2 d-flex flex-column justify-content-center align-items-center">
+                    <button onclick="ValidarCheckBox()" id="btnRegistrar" class="btnAzulOscuro">Registrar</button>
+                </div>
+                <div class="col-lg-12 col-sm-12 mt-2 d-flex flex-column justify-content-center align-items-center">
+                    <p class="letraMidInfo">¿Ya eres miembro? <a href="@Url.Action("InicioSesion","InicioSesion")">Inicia tu sesión</a></p>
+
+                    <a class="letraPeqInfo" href="@Url.Action("RecuperarContraseña", "RecuperarPassword")">¿Olvidaste tu contraseña?</a>
+                </div>
+
+
+            </div>
+                }
+                </div>
+            }
+            @if (ViewBag.nRandom != null)
+            {
+                <div class="row">
+                    <div class="col-1">
+
+                    </div>
+                    <div class="col-md-10 col-sm-12 col-lg-10">
+                        <div class=" fondoRegistro p-4">
+                            <div classs="card-header">
+                                <h2 class="text-center">Verifica tu cuenta</h2><hr style="height: 5px; background-color: #171b51; "  />
+                                <div class="d-flex justify-content-center">
+                                  
+                                </div>
+
+                            </div>
+                            <div class="row card-body d-flex flex-row align-items-center justify-content-center">
+                                <p class="letraMidInfo mt-2 text-center">Hemos enviado un código de verificación al correo registrado para verificar tu cuenta.</p>
+                                @using (Html.BeginForm("FinalizarRegistroUsuario", "Registro"))
+                                {
+                                    <div class="col-12 d-flex flex-column justify-content-center align-items-center">
+
+
+
+                                        <input autocomplete="off" autofocus="autofocus" name="verificacion" class="form-control" placeholder="Código de verificación" />
+
+                                        @if (ViewBag.ErrorVerificacion != null)
+                                        {
+                                        <p class="text-danger text-center">Código invalido</p>
+                                        }
+                                        
+
+                                    </div><div class="col-12 d-flex flex-column mt-2 justify-content-center align-items-center">
+                                             <button class="btnAzulOscuro marginTop30">Verificar</button>
+                             @if (ViewBag.Reenviado!=null)
+                         {
+                                 <p class="text-center mt-2 letraMidInfo text-success">Codígo de verificacion reenviado.</p>
+                         }
+
+    <p class="letraMidInfo marginTop30">No he recibido ningun código. <a href="@Url.Action("ReenviarCodigoVerificacion","Registro")">Volver a enviar</a></p>
+</div>
+                                }
+                                </div>
+
+                        </div>
+                    </div>
+                    <div class="col-1">
+
+                    </div>
+
+                </div>
+                
+            }
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-0">
+            
+        </div>
+
+    </div>
+    
+</div>
+<style>
+   
+   
+</style>
+
+<script>
+    document.getElementById("msjPass").style.display = "none";
+    document.getElementById("txtCondiciones").style.display = "none";
+    var pass1="";
+    var pass2 = "";
+
+
+    function ValidarCheckBox() {
+      var isChecked=  document.getElementById("cbCondiciones").checked;
+
+        if (!isChecked) {
+            document.getElementById("txtCondiciones").style.display = "block";
+            BloquearBoton();
+        } else {
+            document.getElementById("txtCondiciones").style.display = "none";
+            HabilitarBoton();
+        }
+    }
+
+    function PasswordCoincide(valor, tipo) {
+        console.log(valor);
+        if (tipo == "p1") {
+            pass1 = valor;
+        } else if (tipo == "p2") {
+            pass2 = valor;
+        }
+
+        if (pass1 != "" && pass2 != "") {
+            if (pass1 == pass2) {
+                document.getElementById("msjPass").style.display = "none";
+                HabilitarBoton();
+               
+            } else {
+                document.getElementById("msjPass").style.display = "block";
+                BloquearBoton();
+              
+            }
+           
+        } else {
+            document.getElementById("msjPass").style.display = "none";
+        }
+    }
+
+    function BloquearBoton() {
+        document.getElementById("btnRegistrar").disabled = true;
+        document.getElementById("btnRegistrar").style.backgroundColor = "#d3cbcb";
+    }
+    function HabilitarBoton() {
+        document.getElementById("btnRegistrar").disabled = false;
+        document.getElementById("btnRegistrar").style.backgroundColor = "#171b51";
+    }
+
+</script>
+

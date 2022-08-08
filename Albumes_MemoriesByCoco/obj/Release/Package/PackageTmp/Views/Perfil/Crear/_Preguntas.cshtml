@@ -1,0 +1,305 @@
+﻿<div id="ContainerPreguntasUsuario">
+   
+
+
+    <div class="row ">
+        <div class="d-flex justify-content-end align-items-end">
+            <div>
+                <button id="AtrasPreguntas" class="btn btn-info mt-2"><i class="fa-solid fa-angle-left"></i></button>
+                <a onclick="CancelarPedido()" class="btn btn-danger mt-2">Salir</a>
+            </div>
+        </div>
+
+        <div class="col-2">
+
+        </div>
+        <div class="col-8 p-4 text-wrap EvitarDesborde card">
+            <div class="card-header">
+                <h1 class="text-center">Favor completar la información</h1>
+            </div>
+            <form id="ContainerPreguntaBody" class="card-body">
+                
+
+
+
+
+            </form>
+           
+
+        </div>
+        <div class="col-2">
+
+        </div>
+    </div>
+
+    <div class="row mt-2">
+
+        <div class="col-2">
+
+        </div>
+        <form id="formImages" enctype="multipart/form-data" class="col-8 p-4 text-wrap EvitarDesborde card">
+            <div class="card-header">
+                <h1 class="text-center">Espacio para subir tus fotos</h1>
+            </div>
+            <div class="card-body">
+                <p class="text-center">*15 fotos máximo, adicional se cobra extra*</p>
+                <input accept="image/png,image/jpeg"  id="InputCargaImagenPregunta"  onchange="InsertarImagenPedido()" type="file" />
+                <div id="ContainerFotos" class="row">
+
+                </div>
+            </div>
+
+
+        </form>
+        <div class="col-2">
+
+        </div>
+    </div>
+
+
+    <div class="row mt-2">
+
+        <div class="col-2">
+
+        </div>
+        <div class="col-8 p-4 text-wrap EvitarDesborde card">
+           <button onclick="ProcesarPreguntaUsuario()" class="btn btn-primary form-control mt-0">Procesar</button>
+
+
+        </div>
+        <div class="col-2">
+
+        </div>
+    </div>
+
+
+
+</div>
+<script>
+
+
+    $("#AtrasPreguntas").click(function (e) {
+        e.preventDefault();
+        AnteriorStep();
+
+        $("#ContenedorCompletoFrase").show();
+
+        $("#ContainerPreguntasUsuario").hide();
+    })
+
+    MostrarPreguntas();
+    const ArrayIdPreguntas = new Array();
+
+    function ProcesarPreguntaUsuario() {
+
+
+        for (i = 0; i < ArrayIdPreguntas.length; i++) {
+            $.ajax({
+                url: '@Url.Action("InsertarRespuestasUsuario", "Perfil")',
+                type: "POST",
+
+                data: {
+                    response: $("#Response" + ArrayIdPreguntas[i]).val(),
+                    idPregunta: ArrayIdPreguntas[i]
+                },
+            success: function (result) {
+                SiguientePreguntas();
+
+            },
+            error: function (r) {
+
+
+            }
+        })
+        }
+
+    }
+
+
+    async function MostrarImagenSubidaPregunta(idImagen) {
+
+
+        var archivo = document.getElementById("InputCargaImagenPregunta").files[0];
+        var reader = new FileReader();
+        if (archivo) {
+            reader.readAsDataURL(archivo);
+            reader.onloadend = function () {
+
+                var Imagen = $("#ContainerFotos").html();
+                var VariableActual = "ImagenCargada" + ImagenCargada;
+
+                var CodigoImagen = "Img" + idImagen;
+                Imagen = '<div id="' + CodigoImagen + '" class="col-lg-4 col-md-6 col-sm-12 mt-2 d-flex justify-content-center align-items-center flex-column">' +
+
+                    '<div class="d-flex justify-content-end align-items-end w-100">' +
+                    '<a onclick="EliminarImagenUsuario(' + idImagen + ')" class="" ><i class="fa-solid fa-circle-xmark QuitarImagen"></i></a>' +
+                        '</div>'+
+                    '<img width="150" heigth="150" src="' + reader.result + '" > </img> ' +
+                    '</div>'+Imagen;
+
+
+
+                $("#ContainerFotos").html(Imagen);
+                $('#CargaFotoUsuario').remove();
+                $("#" + VariableActual).hide();
+                //document.getElementById("ImgSubidaVinil").src = reader.result;
+            }
+        }
+    }
+
+
+    function MostrarPreguntas() {
+        console.log("Hola");
+        $.ajax({
+            url: '@Url.Action("ConsultarPreguntasUsuario", "Perfil")',
+              type: "POST",
+            success: function (result) {
+
+                var Fila = "";
+                     for (i = 0; i < result.length; i++) {
+                         Fila = Fila +'<div class="row"><div class="col-12">'+
+                             '<div class="w-75">' +
+                             '<p class="text-wrap">'+(i+1)+'.'+result[i].DescripcionPregunta+'</p>' +
+                                 '</div>' +
+                             '<textarea id="Response' + result[i].IdPregunta + '" class="form-control TamanioTextArea w-100"></textarea></div></div>';
+                         ArrayIdPreguntas.push(result[i].IdPregunta);
+                     }
+
+
+
+                $("#ContainerPreguntaBody").html(Fila);
+
+
+
+            },
+            error: function (r) {
+
+
+            }
+        })
+    }
+
+    async function InsertarImagenPedido() {
+
+
+        if ($("#InputCargaImagenPregunta").val() != "") {
+             CargaImagen();
+
+        var formData = new FormData();
+        var file = $("#InputCargaImagenPregunta").get(0).files;
+        formData.append("Imagen", file[0]);
+
+
+        await $.ajax({
+            url: '@Url.Action("InsertarImagenPedido", "Perfil")',
+            type: "POST",
+            contentType: false,
+            processData: false,
+            data: formData,
+            success: function (result) {
+
+
+                MostrarImagenSubidaPregunta(result);
+
+
+            },
+            error: function (r) {
+
+
+            }
+        })
+        }
+
+
+    }
+
+    var ImagenCargada = 0;
+
+    function CargaImagen() {
+
+        var Imagen = $("#ContainerFotos").html();
+
+        var NuevaVariable = "ImagenCargada" + ImagenCargada;
+        Imagen = '<div id="CargaFotoUsuario" class="col-lg-4 col-md-6 col-sm-12 mt-2 ">' +
+            '<div style="display:none" class="d-flex justify-content-center align-items-center mt-2">' +
+            '<progress id="' + NuevaVariable+'" class="pure-material-progress-circular" />' +
+            '</div>'+
+            '</div>' + Imagen;
+
+
+        $("#" + NuevaVariable).show();
+
+        $("#ContainerFotos").html(Imagen);
+    }
+
+    function EliminarImagenUsuario(id) {
+        var ImagenEliminar = "Img" + id;
+        $('#' + ImagenEliminar).remove();
+
+        $.ajax({
+            url: '@Url.Action("EliminarImagenPedido", "Perfil")',
+            type: "POST",
+
+            data: { IdImagen:id },
+            success: function (result) {
+
+            },
+            error: function (r) {
+
+
+            }
+        })
+
+
+    }
+
+
+    function SiguientePreguntas() {
+
+        $("#ContainerPrecioUsuario").show();
+        ConsultarPuntosUsuarioFinal();
+        MuestraPrecioU();
+        SiguienteStep();
+        $("#ContainerPreguntasUsuario").hide();
+
+
+
+    }
+
+
+
+
+
+
+
+
+
+</script>
+<style>
+
+    .TamanioTextArea{
+        width:100%;
+        height:120px;
+    }
+
+    .EvitarDesborde {
+        word-wrap: break-word;
+    }
+
+    .QuitarImagen {
+        font-size: 30px;
+        position: relative;
+        z-index: 20;
+        top:10px;
+        right:20px;
+        color: rgba(0,0,0,0.8);
+    }
+        .QuitarImagen:hover{
+            cursor:pointer;
+        }
+        .ContenedorImagenUsuario {
+            width: 150px;
+            display: flex;
+            justify-content: center;
+        }
+</style>

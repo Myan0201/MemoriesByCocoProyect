@@ -1,0 +1,514 @@
+﻿
+<div id="modalDetallePedidoAdmin" style="display:none" class="modal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Ventana Emergente</h5>
+                <button onclick="ConsultarDetallePedidoAdmin(-1)" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <table id="tblDetallePedidoAdmin" class="table">
+                </table>
+                <div class="row">
+                    <div id="ContainerFrasesConsultaPedidoAdmin" class="d-flex justify-content-center align-items-center">
+
+                    </div>
+
+                </div>
+            </div>
+            <div id="footerDetalle" class="modal-footer">
+           
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="modalRespuestasPedidoAdmin" style="display:none" class="modal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Ventana Emergente</h5>
+                <button onclick="ConsultarRespuestasxPedidoAdmin(-1)" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+                    <div id="ContainerRespuestasConsultaPedidoAdmin" class="d-flex justify-content-center align-items-center flex-column">
+
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div id="modalFotosPedidoAdmin" style="display:none" class="modal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Fotos</h5>
+                <button onclick="ConsultarFotosxPedidoAdmin(-1)" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+                    <div id="ContainerFotosConsultaPedidoAdmin" class="d-flex justify-content-center align-items-center flex-column">
+
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="ContenedorPedidoAdmin">
+
+   
+    <div class="row">
+
+        <div class="col-12 mt-4">
+            <h1 class="text-center">Pedidos</h1>
+            <table class="table-dark table table-responsive table-responsive-sm table-responsive-md">
+                <thead>
+                    <tr>
+                        <th>Número de pedido</th>
+                        <th>Fecha</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="bodyPedidoTablaUsuarioAdmin">
+                </tbody>
+            </table>
+            <div id="PaginationPedidoAdmin" class="d-flex justify-content-center align-items-center">
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                        <li class="page-item">
+                            <button style="display:none" onclick="CambiarPaginaPedidoAdmin(-1)" id="AtrasPaginadoPedidoAdmin" class="page-link PaginationPedidoU" href="#" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </button>
+                        </li>
+
+                        <li class="page-item "><a id="ActualPaginadoPedidoAdmin" class="page-link PaginationPedidoU" href="#">1</a></li>
+
+                        <li class="page-item">
+                            <button onclick="CambiarPaginaPedidoAdmin(1)" id="AdelantePaginadoPedidoAdmin" class="page-link PaginationPedidoU" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </button>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script>
+
+     var PaginaPedidoAdmin = 1;
+    var TotalPagsPedidoAdmin = 0;
+   
+
+    var minPedidoAdmin = 0;
+    var maxPedidoAdmin = 0;
+    
+
+
+    function MostrarPedidoAdmin(pag) {
+         $.ajax({
+            url: '@Url.Action("ConsultarPedido", "Perfil")',
+            type: "POST",
+             data: { pagina: pag, rol:1 },
+
+
+                 success: function (result) {
+
+                     MostrarDatosPedidoAdmin(result);
+
+            },
+            error: function (r) {
+
+
+            }
+        })
+    }
+
+
+    function ConsultarDetallePedidoAdmin(id) {
+
+        if (id == -1) {
+            $("#modalDetallePedidoAdmin").hide();
+        } else {
+
+             $.ajax({
+            url: '@Url.Action("ConsultarPedidoXId", "Perfil")',
+            type: "POST",
+             data: { codigo: id },
+
+
+                 success: function (result) {
+                     console.log(result);
+                     var Fila = "";
+                     var strAlbum = result.paq_personalizado != null ? result.paq_nombre_album : 'Personalizado';
+                     var strTipo = result.paq_tipo_album != "" ? result.paq_tipo_album : 'Predefinido';
+                     var strVinil = result.paq_tipo_vinil!= null ? result.paq_nombre_vinil : 'Predefinido';
+                     Fila = '<tr>' +
+                         '<td>Álbum</td>' +
+
+                         '<td>' + strAlbum + '</td>' +
+                         '</tr><tr>' +
+                         '<td>Pedido por</td>' +
+                         '<td>' + result.seg_nombre_completo + '</td>' +
+                         '</tr><tr>' +
+                         '<td>Tipo de álbum</td>' +
+                         '<td>' + strTipo + '</td>' +
+                         '</tr><tr>' +
+                         '<td>Vinil</td>' +
+                         '<td>' + strVinil + '</td>' +
+                         '</tr><tr>' +
+                         '<td>Monto</td>' +
+                         '<td>' + result.paq_monto + '</td>' +
+                         '</tr><tr>' +
+                         '<td>Número de transferencia</td>' +
+                         '<td>' + result.paq_numero_transferencia + '</td>' +
+                         '</tr><tr>' +
+                         '<td>Estado</td>' +
+                         '<td>'+
+                     '<div id="selectEstadoAdmin"></div>'+
+                     '</td> '+
+                         '</tr>';
+                     $("#tblDetallePedidoAdmin").html(Fila);
+                     ConsultarEstadosPedidoAdmin(id, result.paq_estado);
+                     $("#modalDetallePedidoAdmin").show();
+                     ConsultarFrasesxPedidoAdmin(id);
+
+
+
+
+
+            },
+            error: function (r) {
+
+
+            }
+        })
+        }
+    }
+
+
+    function MostrarDatosPedidoAdmin(result) {
+        var Fila = "";
+        for (i = 0; i < result.length; i++) {
+            Fila = Fila + '<tr>' +
+                '<td>' + result[i].IdPedido + '</td>' +
+                '<td>' + result[i].fechaPedido + '</td>' +
+                '<td>' +
+                result[i].strEstado+
+
+
+                '</td>' +
+                '<td><button onclick="ConsultarDetallePedidoAdmin(' + result[i].IdPedido + ')" class="btn btn-info m-2">Detalle</button>'+
+                '<button onclick="ConsultarFotosxPedidoAdmin(' + result[i].IdPedido + ')" class="btn btn-success m-2" > Fotos</button>'+
+                '<button onclick="ConsultarRespuestasxPedidoAdmin(' + result[i].IdPedido + ')" class="btn btn-warning m-2" > Respuestas</button>'
+            '</td > ' +
+
+                '</tr>';
+        }
+
+        $("#bodyPedidoTablaUsuarioAdmin").html(Fila);
+
+        for (i = 0; i < result.length; i++) {
+
+            $("#select" + result[i].IdPedido).val(result[i].nEstado);
+
+
+
+        }
+        $("#ContainerProgressBar").hide();
+
+    }
+
+
+
+
+    function ConsultarFrasesxPedidoAdmin(id) {
+        $("#ContainerFrasesConsultaPedidoAdmin").html("");
+         $.ajax({
+            url: '@Url.Action("ConsultarFrasesxPedido", "Perfil")',
+            type: "POST",
+             data: { codigo: id },
+
+
+             success: function (result) {
+
+                 if (result.length > 0) {
+                     console.log(result);
+
+                     Fila = '<div class="d-flex jusitfy-items-center flex-column">';
+                     for (i = 0; i < result.length; i++) {
+
+
+                  
+                         Fila = Fila +
+                             '<p class="text-center"><i class="fa-solid fa-quote-left ComillaCafe"></i>' +
+
+                             result[i].paq_descripcion +
+                             '<i class="fa-solid fa-quote-right ComillaCafe" ></i></p>';
+                                
+                     }
+
+                     Fila = Fila + '</div>';
+                     } else {
+                         Fila = '<p class="text-center text-danger">No se encontraron frases.</p>';
+                 }
+
+
+              
+            
+                     $("#ContainerFrasesConsultaPedidoAdmin").html(Fila);
+
+
+            },
+            error: function (r) {
+
+
+            }
+        })
+    }
+
+    function ConsultarRespuestasxPedidoAdmin(id) {
+
+        if (id > 0) {
+
+            $("#modalRespuestasPedidoAdmin").show();
+                $.ajax({
+            url: '@Url.Action("ConsultarRespuestasxPedido", "Perfil")',
+            type: "POST",
+             data: { codigo: id },
+
+
+                    success: function (result) {
+
+                     var Fila = "";
+                     for (i = 0; i < result.length; i++) {
+
+                         Fila = Fila + '<p class="text-center">' + (i + 1) + '.' + result[i].paq_descripcion + '</p>' +
+                             '<textarea disabled="disabled"  rows="5" class="form-control">' + result[i].paq_respuesta+'</textarea> <hr>';
+
+
+
+
+                     }
+
+                     $("#ContainerRespuestasConsultaPedidoAdmin").html(Fila);
+
+            },
+            error: function (r) {
+
+
+            }
+         })
+        }else {
+            $("#modalRespuestasPedidoAdmin").hide();
+        }
+    }
+
+function ConsultarFotosxPedidoAdmin(id) {
+                $("#ContainerFotosConsultaPedidoAdmin").html("");
+        if (id > 0) {
+            CargaConsulta = $("#ContainerFotosConsultaPedidoAdmin").html()+'<div id="CargaFotoPedidoAdmin" class="col-lg-4 col-md-6 col-sm-12 mt-4 ">' +
+                '<div style="display:none" class="d-flex justify-content-center align-items-center mt-2">' +
+                '<progress class="pure-material-progress-circular" />' +
+                '</div>' +
+                '</div>';
+
+            $("#ContainerFotosConsultaPedidoAdmin").html(CargaConsulta)
+
+            $("#modalFotosPedidoAdmin").show();
+                $.ajax({
+            url: '@Url.Action("ConsultarFotosxPedido", "Perfil")',
+            type: "POST",
+             data: { codigo: id },
+
+
+
+                    success: function (result) {
+
+                        var Fila = "";
+
+                        if (result.length == 0) {
+                            Fila = "<p class='text-center text-danger'>No se encontraron fotos.</p>";
+                        }
+
+                     for (i = 0; i < result.length; i++) {
+
+                         Fila = Fila + '<p class="text-center">'+(i+1)+'.</p><img class="imgCategoria" src="data:image/png;base64,'+result[i].strFoto+'" width="300" heigth="400"/><br>';
+
+
+
+
+                     }
+
+                        $("#ContainerFotosConsultaPedidoAdmin").html(Fila);
+                        $("#CargaFotoPedidoAdmin").remove();
+
+            },
+            error: function (r) {
+
+
+            }
+         })
+        }else {
+            $("#modalFotosPedidoAdmin").hide();
+        }
+    }
+
+    async function CantidadPaginasPedidoAdmin() {
+        await $.ajax({
+            url: '@Url.Action("ConsultarCantidadRegistrosPedido", "Perfil")',
+            type: "POST",
+            data: {rol:1},
+                 success: function (result) {
+                     console.log(result);
+                     minPedidoAdmin = result.nMin;
+                     maxPedidoAdmin = result.nMax;
+
+            },
+            error: function (r) {
+
+
+            }
+        })
+    }
+
+    async function CambiarPaginaPedidoAdmin(pagina) {
+
+
+        if (pagina == 0) {
+            await CantidadPaginasPedidoAdmin()
+        }
+        
+
+        if (pagina == 1 ) {
+            PaginaPedidoAdmin = PaginaPedidoAdmin + pagina;
+        }
+        if (pagina == -1) {
+            PaginaPedidoAdmin = PaginaPedidoAdmin - 1;
+            $("#AdelantePaginadoPedidoAdmin").show();
+        }
+
+      
+        
+      
+        if (PaginaPedidoAdmin == minPedidoAdmin) {
+            $("#AtrasPaginadoPedidoAdmin").hide();
+
+        } else {
+            $("#AtrasPaginadoPedidoAdmin").show();
+        }
+
+        if (PaginaPedidoAdmin == maxPedidoAdmin) {
+            $("#AdelantePaginadoPedidoAdmin").hide();
+        } else {
+            $("#AdelantePaginadoPedidoAdmin").show();
+        }
+
+      
+
+
+
+
+        document.getElementById('ActualPaginadoPedidoAdmin').innerHTML = PaginaPedidoAdmin;
+
+        MostrarPedidoAdmin(PaginaPedidoAdmin);
+
+
+    }
+
+
+    function VolverInicioFromConsultaPedidoAdmin() {
+
+        $("#ContenedorPedidoAdmin").hide();
+        $("#ContenedorPrincipalUsuario").show();
+
+    }
+
+
+  function ConsultarEstadosPedidoAdmin(id, estado) {
+      var response = "";
+      console.log(estado);
+         $.ajax({
+            url: '@Url.Action("ConsultarEstados", "Perfil")',
+            type: "POST",
+
+
+
+             success: function (result) {
+
+                 Fila = '<select class="form-select" id="select' + id + '">';
+                 for (i = 0; i < result.length; i++) {
+                     Fila = Fila + '<option value="' + result[i].idEstado + '">' + result[i].nombre + '</option>';
+                 }
+                 Fila = Fila + '</select>';
+
+                 $("#selectEstadoAdmin").html(Fila);
+
+                 $("#selectEstadoAdmin option[value='" + estado + "']").attr("selected", true);
+
+                 $("#footerDetalle").html('<button onclick="GuardarNuevoDetalle('+id+')" class="btn btn-primary">Guardar</button>');
+
+
+            },
+            error: function (r) {
+
+
+            }
+          })
+
+
+        return response;
+
+    }
+
+
+    function GuardarNuevoDetalle(id) {
+
+           $.ajax({
+            url: '@Url.Action("NuevoDetallePedido", "Perfil")',
+            type: "POST",
+               data: { codigo: id, nuevoEstado: $("#select" + id).val()},
+
+
+             success: function (result) {
+
+                 alert("¡Estado actualizado correctamente!");
+                 MostrarPedidoAdmin(PaginaPedidoAdmin);
+
+            },
+            error: function (r) {
+
+
+            }
+          })
+    }
+
+
+
+</script>

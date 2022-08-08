@@ -1,0 +1,118 @@
+﻿<div id="ElegirTipoAlbumPre" >
+    <a class="btn btn-info mt-0" onclick="OcultarElegirTipoAlbum1()"><i class="fa-solid fa-angle-left"></i></a>
+    <div class="row">
+        <div class="col-lg-6 col-md-12 col-sm-12 d-flex justify-content-center align-items-center">
+            <div class=container>
+
+                <div class=cardM>
+                    <div class="image CartaUp">
+                        <h2 class="text-center textoInfo">Álbum personalizado</h2>
+                        <div class="d-flex justify-content-center align-items-center">
+
+                            <i class="fa-solid fa-person NegroToBlanco text-center" style="font-size:60px "></i>
+                        </div>
+                    </div>
+                    <div class=content>
+
+                        <p>Personalizá tu álbum y escoge materiales y frases a tu gusto.</p>
+
+                        <button id="btnAlbumPersonalizado" class="btnCarta">Escoger</button>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-lg-6 col-md-12 col-sm-12 d-flex justify-content-center align-items-center">
+            <div class=container>
+                <div class=cardM>
+                    <div class="image CartaUp">
+                        <h2 class="text-center textoInfo">Álbum <br />predefinido</h2>
+                        <div class="d-flex justify-content-center align-items-center">
+
+                            <i class="fa-brands fa-delicious NegroToBlanco text-center" style="font-size:60px "></i>
+                        </div>
+                    </div>
+                    <div class=content>
+
+                        <p>Escoge uno de nuestros álbumes predefinidos.</p>
+
+                        <button id="btnAlbumPredefinido" class="btnCarta">Escoger</button>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+   
+
+</div>
+
+
+
+
+<style>
+</style>
+
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script>
+
+    $("#btnAlbumPersonalizado").click(function (e) {
+        e.preventDefault();
+
+
+         $.ajax({
+            url: '@Url.Action("ObtenerNumeroPedido", "Perfil")',
+              type: "POST"
+        })
+
+        NumeroPredefinido(-1);
+        $("#StepContainer").show();
+        $("#ElegirTipoAlbumPre").hide();
+        $("#ElegirTipoAlbumPersonalizado").show();
+
+
+    })
+
+
+    function NumeroPredefinido(pred) {
+        $.ajax({
+            url: '@Url.Action("AlbumPredefinido", "Perfil")',
+            type: "POST",
+            data: { nPredefinido: pred }
+
+        })
+
+
+    }
+
+
+      $("#btnAlbumPredefinido").click(function (e) {
+          e.preventDefault();
+
+       
+
+
+         $.ajax({
+            url: '@Url.Action("ObtenerNumeroPedido", "Perfil")',
+              type: "POST"
+        })
+          ConsultarCategoriasUsuario();
+          $("#StepContainer").show();
+          $("#ElegirTipoAlbumPre").hide();
+          $("#ContainerCategoriaPredefinido").show();
+
+
+    })
+
+
+    function OcultarElegirTipoAlbum1() {
+        $("#ElegirTipoAlbumPre").hide();
+        $("#ContenedorPrincipalUsuario").show();
+
+    }
+
+
+</script>

@@ -1,0 +1,97 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>PedidoProcesado</title>
+    <link href="~/Boostrap/styles.css"/>
+</head>
+<body>
+    <div>
+
+
+        @Styles.Render("~/Boostrap/styles.css")
+        @Styles.Render("~/Estilos/Vela.css")
+        <div class="row">
+            <div class="col-lg-2 col-md-0 col-sm-0">
+
+            </div>
+            <div class="col-lg-8 col-md-12 col-sm-12">
+                <h1 class="text-center mt-4">¡Su pedido ha sido procesado! </h1>
+                <h2 class="text-center mt-4" id="lblNumeroPedido"></h2>
+                <h3 class="text-center mt-4">Recuerda que puedes consultar el estado de este, en tu perfil.</h3>
+                <a href="@Url.Action("Index","Perfil")" class="btn btn-primary m-2">Volver</a>
+            </div>
+            <div class="col-lg-2 col-md-0 col-sm-0">
+
+            </div>
+
+        </div>
+        <div class="wrapper">
+            <div class="candles">
+                <div class="light__wave"></div>
+                <div class="candle1">
+                    <div class="candle1__body">
+                        <div class="candle1__eyes">
+                            <span class="candle1__eyes-one"></span>
+                            <span class="candle1__eyes-two"></span>
+                        </div>
+                        <div class="candle1__mouth"></div>
+                    </div>
+                    <div class="candle1__stick"></div>
+                </div>
+
+                <div class="candle2">
+                    <div class="candle2__body">
+                        <div class="candle2__eyes">
+                            <div class="candle2__eyes-one"></div>
+                            <div class="candle2__eyes-two"></div>
+                        </div>
+                    </div>
+                    <div class="candle2__stick"></div>
+                </div>
+                <div class="candle2__fire"></div>
+                <div class="sparkles-one"></div>
+                <div class="sparkles-two"></div>
+                <div class="candle__smoke-one">
+
+                </div>
+                <div class="candle__smoke-two">
+
+                </div>
+
+            </div>
+            <div class="floor">
+            </div>
+
+
+        </div>
+    </div>
+</body>
+</html>
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script>
+
+
+    function NumeroPedido() {
+       $.ajax({
+            url: '@Url.Action("ObtenerNumeroPedido", "Velas")',
+            type: "POST",
+
+
+
+            success: function (result) {
+
+                $("#lblNumeroPedido").html("El número de tu pedido es:" + result);
+
+
+            }
+        })
+    }
+</script>

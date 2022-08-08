@@ -1,0 +1,63 @@
+﻿@model Albumes_MemoriesByCoco.Models.RecuperacionPasswordModel
+
+<div class="row CentrarDiv">
+    <div class="col-md-2 col-sm-1 col-lg-2">
+
+    </div>
+    <div class="col-md-8 col-sm-10 col-lg-8">
+        <div class="row">
+            <div class="col-1">
+
+            </div>
+            <div class="col-md-10 col-sm-12 col-lg-10">
+                <div class=" fondoRegistro p-4">
+                    <div classs="card-header">
+                        <h2 class="text-center">Recuperar contraseña</h2><hr style="height: 5px; background-color: #171b51; " />
+                        <div class="d-flex justify-content-center">
+
+                        </div>
+
+                    </div>
+                    <div class="row card-body d-flex flex-row align-items-center justify-content-center">
+                        <p class="letraMidInfo mt-2 text-center">Coloca el correo que usas para el registro, te enviaremos un código para que puedas cambiar la contraseña.</p>
+                        @using (Html.BeginForm("EnviarRecuperacionPassword", "RecuperarPassword"))
+                        {
+                    <div class="col-12 d-flex flex-column justify-content-center align-items-center">
+
+
+                        @Html.EditorFor(Model => Model.Correo, "", new { htmlAttributes = new { @class = "form-control", placeholder = "Correo", autocomplete = "off", autofocus = "autofocus" } })
+                        @Html.ValidationMessageFor(Model => Model.Correo, "", new { @class = "text-danger" })
+                        
+
+                        @if (ViewBag.CorreoNoExiste != null)
+                        {
+                            <p class="text-danger mt-2 text-center">Este correo no esta registrado</p>
+                        }
+                        @if (ViewBag.CorreoExito != null)
+                        {
+                            <p class="text-success mt-2 text-center">Código enviado</p>
+                        }
+
+
+                    </div><div class="col-12 d-flex flex-column mt-2 justify-content-center align-items-center">
+                                <button class="btnAzulOscuro marginTop30">Enviar</button>
+                              
+
+                                
+                            </div>
+                        }
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-1">
+
+            </div>
+
+        </div>
+    </div>
+    <div class="col-md-2 col-sm-1 col-lg-2">
+
+    </div>
+
+</div>
